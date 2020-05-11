@@ -1,0 +1,25 @@
+클라이언트(웹브라우저)에서 웹 서버에 요청 보내기
+	* 브라우저는 항상 URL 형태의 요청을 서버로 보낸다.	
+	http://localhost:80/home.jsp
+
+	* URL의 구성
+		http - 프로토콜명
+		localhost - 서버 프로그램이 구동되고 있는 컴퓨터이름
+		80 - 서버 프로그램이 사용하고 있는 포트번호
+		/home.jsp - 클라이언트가 실행을 요청한 웹 어플리케이션 이름
+
+	* 브라우저의 요청 내용
+		내 컴퓨터(localhost)의 80번 포트를 사용하는 서버 프로그램에게 요청을 보낸다.
+		/home.jsp의 실행을 요청한다.
+
+서버(Tomcat)에서 클라이언트의 요청을 처리하기
+	* 요청 URL을 분석한다.
+		프로토콜 - http
+		실행할 jsp파일의 경로 - / ==> C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/ROOT/
+		실행할 jsp파일의 이름 - home.jsp
+	* home.jsp를 실행한다.
+		1. home.jsp를 home_jsp.java로 변환한다.
+		2. home_jsp.java를 home_jsp.class로 컴파일한다.
+		3. home_jsp.class로 객체를 생성한다.
+		4. 생성된 객체의 _jspService()메소드를 실행한다.
+		5. _jpsService() 메소드는 동적인 웹 컨텐츠를 생성해서 브라우저에 출력한다.

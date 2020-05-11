@@ -1,0 +1,29 @@
+﻿<%@ page pageEncoding="utf-8" contentType="text/html;charset=utf-8" %>
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>민석의 홈페이지</title>
+	</head>
+	<body>
+		<h1>민석의 브이로그</h1>
+		<p>제 일상의 사진과 사진을 보러 오세요.</p>
+		
+		<%
+			List<String> photoNames = service.getNewPhotos();
+			for (String name : photoNames) {
+		%>
+				<img src="images/<%=name%>" width="250" height="270">
+		<%
+			}
+		>%
+
+	</body>
+</html>
+
+
+- Java 코드는 <% %> 안에 적는다.
+- Java 코드에서 가져온 값은 <%= %> 안에 적는다.
+- 이런 식으로 Java 코드를 jsp에 적어주는 것이 우리가 하는 일
+- image 이름은 DB에서 가져온다.
+- getNewPhotos()메소드로 가져온 파일 수나 업로드 순서 등에 따라 다른 결과가 출력된다. (동적인 컨텐츠가 결과로 출력됨)

@@ -8,8 +8,11 @@
 	<body>
 		<h1>민석의 브이로그</h1>
 		<p>제 일상의 사진과 사진을 보러 오세요.</p>
+		
+		<img src="images/sarang.jpg" width="250" height="270">
 	</body>
 </html>
 
 
 TOMCAT 설치폴더/ROOT 아래에 home.jsp 이름으로 붙여넣기
+image는 ROOT아래에 images 폴더에 넣으면 됨
