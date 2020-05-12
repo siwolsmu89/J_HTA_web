@@ -89,3 +89,5 @@ HTML
 					<img src="김수영.png" data-job="가수"
 							      data-genre="인디"
 							      data-company="매직스트로베리사운드" />
+		* 속성
+		* 컨텐츠
