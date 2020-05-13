@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>html-07-link</title>
+</head>
+<body>
+    <!--
+    링크를 담는 태그(Anchor 태그)
+        * <a></a> 태그를 사용하면 HyperLink를 정의할 수 있다.
+        * a 태그의 구성
+            <a href="" target="" title="">화면에 표시되는 텍스트</a>
+            * href
+                - 연결된 문서의 주소(경로)를 정의한다.
+                - 필수 속성(생략 불가)
+                - 주소작성방법
+                    외부사이트 문서    <a href="http://주소">텍스트</a>
+                    프로젝트 내 문서   <a href="경로/파일명">텍스트</a>
+                    같은 문서 내의 특정 위치    <a href="#아이디">텍스트</a>
+            * target
+                - 연결된 문서를 오픈할 위치를 정의한다.
+                    target="_blank"    연결된 페이지를 새 창이나 새 탭에서 연다.
+                    target="_self"     연결된 페이지를 지금 창에서 연다.
+                - 생략가능
+            * title
+                - 풍선도움말에 표시될 내용을 정의한다.
+    -->
+    
+    <h1>Hyper Links 연결하기</h1>
+    
+    <h3>주요 포털사이트</h3>
+    
+    <ul>
+        <li>
+           <a href="http://daum.net" 
+            target="_blank"
+            title="다음을 시작페이지로 설정해보세요.">다음</a>
+        </li>
+        <li>
+           <a href="http://naver.com" 
+            title="네이버는 녹색창!!">네이버</a>
+        </li>
+        <li>
+           <a href="http://google.com" 
+            title="모든 검색은 구글이다.">구글</a>
+        </li>
+    </ul>
+    
+    <h3>프로젝트 내 문서와 연결하기</h3>
+    <p> 
+        <a href="html-01-doc.html" title="html-01-doc">HTML의 문서구조</a>를 살펴보고, 
+        먼저 <a href="html-02-title.html" title="html-02-title">제목 태그</a>를 사용해보자.
+    </p>
+</body>
+</html>
