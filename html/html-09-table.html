@@ -12,7 +12,7 @@
             border-collapse: collapse;
         }
         th {
-           text-align: left;
+           text-align: center;
             background-color:lightslategray
         }
         th, td {
@@ -67,9 +67,8 @@
             <td colspan="2">값</td>
         </tr>
         <tr>
-            <td colspan="3">값</td>
             <td colspan="2">값</td>
-            <td>값</td>
+            <td colspan="4">값</td>
         </tr>
         <tr>
             <td>값</td>
@@ -81,15 +80,208 @@
         </tr>
     </table>
             
+    <h3>세로방향으로 병합된 셀이 있는 표</h3>
+    <table>
+        <tr>
+            <td rowspan="6"></td>
+            <td rowspan="3"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td rowspan="3"></td>
+            <td rowspan="3"></td>
+            <td rowspan="3"></td>
+            <td rowspan="3"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <hr/>
+            
     <h3>병합된 셀이 있는 표</h3>
     <table>
         <thead>
             <tr>
-                <th>학과명</th>
-                <th>교수 수</th>
-                <th>학생 수</th>
+                <th rowspan="2">학과명</th>
+                <th rowspan="2">학년</th>
+                <th colspan="2">교수 수</th>
+                <th colspan="2">학생 수</th>
+            </tr>
+            <tr>
+                <th>교수</th>
+                <th>강사</th>
+                <th>재학생</th>
+                <th>휴학생</th>
             </tr>
         </thead>
     </table>
+    <hr/>
+       
+    <h3>예제</h3>
+        <table>
+            <tr>
+                <th rowspan="2">학과명</th>
+                <th rowspan="2">학년</th>
+                <th colspan="2">교수 수</th>
+                <th colspan="2">학생 수</th>
+            </tr>
+            <tr>
+                <th>교수</th>
+                <th>강사</th>
+                <th>재학생</th>
+                <th>휴학생</th>
+            </tr>
+            <tr>
+                <th rowspan="4">전자공학과</th>
+                <th>1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th rowspan="4">기계공학과</th>
+                <th>1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <hr/>   
+        <table>
+            <tr>
+                <td rowspan=2>학과명</td>
+                <td rowspan=2>학년</td>
+                <td colspan=2>교직원</td>
+                <td colspan=2>학생</td>
+            </tr>
+            <tr>
+                <td>교수</td>
+                <td>강사</td>
+                <td>재학생</td>
+                <td>휴학생</td>
+            </tr>
+            <tr>
+                <td rowspan=4>전자공학과</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan=4>기계공학과</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
 </body>
 </html>
