@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>html-11-form</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 200px;
+            text-align: right;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+   <!--
+   입력폼 태그
+       * 사용자가 값을 입력하거나, 체크하거나, 선택할 수 있는 입력요소를 만든다.
+       * 폼 태그와 폼 입력 태그
+           - 폼 태그
+               * <form></form>
+               * 사용자의 입력을 받는 입력요소를 가지는 태그다.
+               * 모든 입력요소들은 <form>태그 안에 정의되어야 한다.
+               * 주요 속성
+                   <form method="" action="" enctype="">
+                   method : 클라이언트의 요청방식을 결정한다.
+                           method="GET"
+                           method="POST"
+                   action : 폼입력값을 처리할 서버 웹 애플리케이션의 주소
+                           action="logincheck.jsp"
+                           action="orderbook.jsp"
+                   enctype : 폼입력값의 인코딩방식을 결정한다.
+                           enctype="application/x-form-urlencoded"
+                           enctype="multipart/form-data"
+           - 입력요소 태그
+               * <input />, <select></select>, <textarea></textarea>, <button></button>
+               * <input > 태그
+                   - 입력필드, 비밀번호필드, 체크박스, 라디오버튼, 첨부파일필드, 날짜필드 등의 입력요소를 생성한다.
+                   - 주요 속성
+                       <input type="" name="" value="" readonly="readonly" disabled="disabled"
+                       type : 입력요소의 타입을 결정한다.
+                           type="text" : 입력필드
+                           type="password" : 비밀번호필드
+                           type="date" : 날짜필드
+                           type="checkbox" : 체크박스
+                           type="radio" : 라디오버튼
+                           type="file" : 첨부파일필드
+                           type="hidden" : 숨겨진 입력필드
+                           type="reset" : 입력값을 초기상태로 되돌리는 버튼
+                           type="submit" : 입력값을 웹서버로 제출하는 버튼
+                           등등 더 많지만 주요 타입은 위와 같다.
+   -->
+    
+    <h1>폼과 폼 입력 요소</h1>
+    
+    <h3>input 태그의 다양한 형태</h3>
+    <form method="post" action="register.jsp">
+        <label>입력필드</label><input type="text"        name="username" value="초기값" /><br/>
+        <label>비밀번호필드</label><input type="password" name="password" /><br/>
+        <label>날짜</label><input type="date"            name="birth"/><br/>
+        <label>체크박스</label><input type="checkbox"    name="skill" value="자바" /> 자바<br/>
+        <label>라디오버튼</label><input type="radio"     name="gender" value="female" /> 여성<br/>
+        <label>첨부파일입력</label><input type="file"     name="profilefile" /><br/>
+        <label>숨김입력필드</label><input type="hidden"   name="code" value="c001" /><br/>
+        <label>초기화버튼</label><input type="reset"      name="reset" /><br/>
+        <label>입력값 제출 버튼</label><input type="submit" /><br/>
+        
+    </form>
+</body>
+</html>
