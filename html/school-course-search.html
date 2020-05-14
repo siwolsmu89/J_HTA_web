@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>school-course-search</title>
+    <style>
+        div {
+            margin: 7px 0;
+        }
+        table {width:100%;}
+        table, th, td {
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 3px;
+        }
+        th {
+            background-color: gray;
+            color: white;
+            text-align:left;
+        }
+        tr:nth-child(even) {
+            background-color:#dddddd;
+        }
+    </style>
+</head>
+<body>
+   <div style="width: 600px; margin:10px auto;">
+        <div>
+            <!-- Header -->
+            <div>
+                <!-- 제목 -->
+                <h1>과정 검색</h1>
+            </div>
+        </div>
+        <div style="background-color: #eeeeee; padding: 16px; border: 1px solid gray;">
+            <!-- Body -->
+            <div>
+               <!-- 검색창 -->
+                <form>
+                    <select name="dept" style="width: 30%; height: 30px;">
+                        <option value="" selected disabled>--검색어 카테고리 선택--</option>
+                        <option value="dept">학과</option>
+                        <option value="prof">담당교수</option>
+                        <option value="course">과정명</option>
+                    </select>
+                    <input type="text" name="coursename" placeholder="유형에 맞는 검색어를 입력하세요." style="width: 50%; height:22px;"/>
+                    <button type="submit" style="padding: 3px 15px;">조회</button>
+                </form>
+            </div>
+            <div>
+                <!-- 표 -->
+                <table>
+                   <thead>
+                        <tr>
+                            <th>과정번호</th>
+                            <th>과정명</th>
+                            <th>담당교수</th>
+                            <th>정원</th>
+                            <th>신청자수</th>
+                            <th>마감여부</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10000</td>
+                            <td>자바기초</td>
+                            <td>이교수</td>
+                            <td>30</td>
+                            <td>15</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>10000</td>
+                            <td>자바기초</td>
+                            <td>이교수</td>
+                            <td>30</td>
+                            <td>15</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>10000</td>
+                            <td>자바기초</td>
+                            <td>이교수</td>
+                            <td>30</td>
+                            <td>15</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>10000</td>
+                            <td>자바기초</td>
+                            <td>이교수</td>
+                            <td>30</td>
+                            <td>15</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>10000</td>
+                            <td>자바기초</td>
+                            <td>이교수</td>
+                            <td>30</td>
+                            <td>15</td>
+                            <td>N</td>
+                        </tr>
+                   </tbody>
+                </table>
+            </div>
+            <div>
+                <!-- 검색결과 요약 -->
+                <p>
+                    수강신청 가능과정: 
+                    <span style="color: red; padding-right: 30px;">5개</span> 
+                    마감된 과정: 
+                    <span style="color: red">1개</span>
+                </p>
+            </div>
+        </div>
+        <div>
+            <!-- Footer -->
+            <div>
+                <!-- 학원주소 -->
+                <p>
+                    중앙HTA학교 주소:서울특별시 종로구 율곡로 10길 105 디아망 4층
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

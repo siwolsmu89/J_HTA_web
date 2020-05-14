@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>html-13-inline</title>
+    <style>
+        strong {
+            background-color: lightblue;
+        }
+        p {
+            padding: 6px;
+            border:1px solid crimson;
+        }
+    </style>
+</head>
+<body>
+    <h1>인라인 엘리먼트</h1>
+    
+    <h3>인라인 엘리먼트는 너비를 조절할 수 없다.</h3>
+    <strong style="width:300px;">안녕</strong>
+    <strong style="width: 10px;">안녕</strong>
+    <button>버튼</button>
+    
+    <h3>인라인 엘리먼트는 컨텐츠의 위치를 조절할 수 없다.</h3>
+    <strong style="text-align: left">안녕</strong>
+    <strong style="text-align: center">안녕</strong>
+    <strong style="text-align: right">안녕</strong>
+    <button style="text-align: right">버튼</button>
+    
+    <h3>블록 엘리먼트 안에 위치한 인라인 엘리먼트는 위치 조절이 가능하다.</h3>
+    <p style="text-align: left">
+        <strong>안녕</strong>
+    </p>
+    <p style="text-align: center">
+        <strong>안녕</strong>
+    </p>
+    <p style="text-align: right">
+        <strong>안녕</strong>
+    </p>
+    
+</body>
+</html>

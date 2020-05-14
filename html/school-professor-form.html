@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>school-professor-form</title>
+    <style>
+        div {
+            margin: 7px 0;
+        }
+    </style>
+</head>
+<body>
+  <div style="width: 600px; margin: 10px auto;">
+       <div>
+          <!-- header -->
+           <h1>교수 정보 등록 폼</h1>
+       </div>
+       <div style="background-color: #eeeeee; padding:16px; border: 1px solid gray">
+           <!-- body -->
+           <form>
+                <div>
+                   <!-- 교수명 -->
+                    <div><label>교수명</label></div>
+                    <div><input type="text" name="profname" style="width: 95%; height: 30px" /></div>
+                </div>
+                <div>
+                   <!-- 학과 -->
+                    <div><label>학과</label></div>
+                    <div>
+                        <select name="dept" style="width: 96%; height: 35px;">
+                            <option value="" selected disabled>--학과명을 선택하세요--</option>
+                            <option value="electronic"> 전자공학과 </option>
+                            <option value="infocom"> 정보통신공학과 </option>
+                            <option value="machine"> 기계공학과 </option>
+                            <option value="computer"> 컴퓨터공학과 </option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                   <!-- 직위 -->
+                    <div><label>직위</label></div>
+                    <div>
+                        <input type="radio" name="position" value="G"/> 정교수
+                        <input type="radio" name="position" value="V"/> 부교수
+                        <input type="radio" name="position" value="S" checked/> 조교수
+                        <input type="radio" name="position" value="L"/> 강사
+                    </div>
+                </div>
+                <div>
+                   <!-- 버튼 -->
+                    <div style="text-align: right;">
+                        <button type="reset" style="padding: 3px 15px;">취소</button>
+                        <button type="submit" style="padding: 3px 15px;">등록</button>
+                    </div>
+                </div>
+            </form>
+       </div>
+       <div>
+           <!-- footer -->
+           <p>
+               중앙HTA학교 주소:서울특별시 종로구 율곡로 10길 105 디아망 4층
+           </p>
+       </div>
+   </div>
+</body>
+</html>

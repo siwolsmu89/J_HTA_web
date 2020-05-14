@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>school-student-form</title>
+    <style>
+        div {
+            margin: 7px 0;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 600px; margin: 10px auto;">
+        <div>
+            <!-- Header -->
+            <h1>학생 정보 입력 폼</h1>
+        </div>
+        <div  style="background-color: #eeeeee; padding: 16px; border: 1px solid gray;">
+            <!-- Body -->
+            <form>
+                <div>
+                    <!-- 이름 -->
+                    <div><label>이름</label></div>
+                    <div>
+                        <input type="text" name="studentname" style="width:95%; height:30px;"/>
+                    </div>
+                </div>
+                <div>
+                    <!-- 학과 -->
+                    <div><label>학과</label></div>
+                    <div>
+                        <select name="dept" style="width:96%; height: 35px;">
+                            <option value="" selected disabled>-- 학과를 선택하세요 --</option>
+                            <option value="electronic">전자공학과</option>
+                            <option value="infocom">정보통신공학과</option>
+                            <option value="machine">기계공학과</option>
+                            <option value="computer">컴퓨터공학과</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <!-- 학년 -->
+                    <div><label>학년</label></div>
+                    <div>
+                        <input type="radio" name="grade" value="1" checked/> 1학년
+                        <input type="radio" name="grade" value="2" /> 2학년
+                        <input type="radio" name="grade" value="3" /> 3학년
+                        <input type="radio" name="grade" value="4" /> 4학년
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <!-- 버튼 -->
+                    <div>
+                        <button type="reset" style="padding: 3px 15px;">취소</button>
+                        <button type="submit" style="padding: 3px 15px;">제출</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <!-- Footer -->
+            <div>
+                <p>
+                    중앙HTA학교 주소:서울특별시 종로구 율곡로 10길 105 디아망 4층
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

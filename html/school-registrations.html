@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>school-registrations</title>
+    <style>
+        div {
+            margin: 7px 0;
+        }
+        table {width:100%;}
+        table, th, td {
+            border:1px solid black;
+            border-collapse: collapse;
+            text-align:center;
+        }
+        th, td {
+            padding: 3px;
+        }
+        th {
+            background-color: gray;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color:#dddddd;
+        }
+    </style>
+</head>
+<body>
+   <div style="width: 600px; margin: 10px auto;">
+       <div>
+           <!-- Header -->
+           <div>
+               <!-- title -->
+               <h1>수강신청 현황 조회</h1>
+           </div>    
+       </div>
+       <div style="background-color: #eeeeee; border: 1px solid gray; padding: 16px;">
+           <!-- Body -->
+           <div>
+               <!-- Form -->
+               <form>
+                  <label>학기</label>
+                   <select name="year">
+                       <option value="">2020</option>
+                       <option value="">2019</option>
+                       <option value="">2018</option>
+                       <option value="">2017</option>
+                       <option value="">2016</option>
+                       <option value="">2015</option>
+                   </select>
+                   <select name="semester">
+                       <option value="1">1</option>
+                       <option value="1">2</option>
+                   </select>
+                   <button type="submit">조회</button>
+               </form>
+           </div>
+           <div>
+               <!-- Table -->
+               <!-- form 안에 table이 있는 형태로 수정해야 됨 폼 안에 표+버튼이 다 있어야함-->
+               <table>
+                   <tr>
+                       <th>
+                           <form>
+                               <input type="checkbox" disabled />    
+                           </form>
+                       </th>
+                       <th>과정번호</th>
+                       <th>과정명</th>
+                       <th>담당교수</th>
+                       <th>취소여부</th>
+                       <th>수료여부</th>
+                       <th>성적</th>
+                   </tr>
+                   <tr>
+                       <td>
+                           <form>
+                               <input type="checkbox" value="과정취소하기" />
+                           </form>
+                       </td>
+                       <td>10010</td>
+                       <td>자바기초</td>
+                       <td>이교수</td>
+                       <td>N</td>
+                       <td>N</td>
+                       <td>-</td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <form>
+                               <input type="checkbox" value="과정취소하기" />
+                           </form>
+                       </td>
+                       <td>10010</td>
+                       <td>자바기초</td>
+                       <td>이교수</td>
+                       <td>N</td>
+                       <td>N</td>
+                       <td>-</td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <form>
+                               <input type="checkbox" value="과정취소하기" />
+                           </form>
+                       </td>
+                       <td>10010</td>
+                       <td>자바기초</td>
+                       <td>이교수</td>
+                       <td>N</td>
+                       <td>N</td>
+                       <td>-</td>
+                   </tr>
+               </table>
+           </div>
+           <div>
+               <!-- Buttons -->
+               <button type="submit" style="padding: 3px 5px;">전체취소</button>
+               <button type="submit" style="padding: 3px 5px;">선택취소</button>
+           </div>
+       </div>       
+       <div>
+           <!-- Footer -->
+           <div>
+               <!-- Address -->
+               <p>
+                   중앙HTA학교 주소:서울특별시 종로구 율곡로 10길 105 디아망 4층
+               </p>
+           </div>
+       </div>
+   </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>school-course-form</title>
+    <style>
+        div {
+            margin: 7px 0;
+        }
+    </style>
+</head>
+<body>
+    <div  style="width: 600px; margin: 10px auto;">   
+        <div>
+            <!-- Header -->
+            <div>
+                <h1>과정 등록 폼</h1>
+            </div>
+        </div>
+           <!-- Body -->
+        <div style="background-color: #eeeeee; padding: 16px; border: 1px solid gray;">
+            <form>
+                <div>
+                    <div><label>과목명</label></div>
+                    <div>
+                        <input type="text" name="coursename" style="width:95%; height: 30px"/>
+                    </div>
+                </div>
+                <div>
+                    <div><label>담당교수</label></div>
+                    <div>
+                        <select name="profname" style="width: 96%; height: 35px;">
+                            <option value="이">이교수</option>
+                            <option value="김">김교수</option>
+                            <option value="박">박교수</option>
+                            <option value="홍">홍교수</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div><label>과정명</label></div>
+                    <div>
+                        <input type="text" name="subjectname" style="width:95%; height:30px;"/>
+                    </div>
+                </div>
+                <div>
+                    <div><label>정원</label></div>
+                    <div>
+                        <input type="text" name="quota" style="width:95%; height:30px;"/>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <button type="reset" style="padding: 3px 15px;">취소</button>
+                    <button type="submit" style="padding: 3px 15px;">제출</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <!--Footer-->
+            <div>
+                <p>
+                    중앙HTA학교 주소:서울특별시 종로구 율곡로 10길 105 디아망 4층
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
