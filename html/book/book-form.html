@@ -3,42 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>book-form</title>
-    <style>
-        #menubar ul {
-            list-style-type: none;            /* 리스트의 블릿을 없앤다. */
-            margin: 0;                        /* 바깥 여백을 없앤다. */
-            padding: 0;                       /* 안쪽 여백을 없앤다. */
-            overflow: hidden;                 /* 내부 컨텐츠의 높이만큼 늘어난다. */
-            background-color: #333333;        /* 배경색을 검정색에 가까운 색으로 지정한다. */
-        }
-        #menubar li {
-            float: left;                      /* li 태그를 왼쪽에서 오른쪽 가로방향으로 배치한다.*/
-        }
-        #menubar li a {
-            display: block;                   /* a 태그를 블록 엘리먼트로 변신시킨다. */
-            color: white;                     /* 글자색을 하얀색으로 설정한다. */
-            text-align: center;               /* 글자를 가운데 정렬한다. */
-            padding: 14px;                    /* 가로, 세로 안쪽 여백을 지정한다. */
-            text-decoration: none;            /* 링크의 밑줄을 없앤다. */
-        }
-        .active {
-            background-color: #4CAF50;        /*  */
-        }
-        
-        #contents {
-            width: 750px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin: 10px 5px;
-        }
-        .form-group input[type='text'], .form-group input[type='number'] {
-            width: 100%;
-            height: 30px;
-            
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style/bookstore.css" />
 </head>
 <body>
     <div id="wrapper">
@@ -52,9 +17,9 @@
         
         <div id="contents">
             <div id="header">
-               <h1>책 - <small>책 등록</small></h1>
+               <h1>책 - <small>등록</small></h1>
             </div>
-            <div class="body">
+            <div class="body well">
                 <form>
                     <div class="form-group">
                         <label>제목</label>
@@ -76,17 +41,17 @@
                         <label>할인가격</label>
                         <div><input type="text" name="discountPrice" /></div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit">등록</button>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn">등록</button>
                     </div>
                 </form>
             </div>
         </div>
         
         <div id="footer">
-            푸터
+            <p>중앙 도서대여점</p>
+            <p>주소 : 서울특별시 종로구 율곡로 10길 105 디아망빌딩 4층</p>
         </div>
-        <div></div>
     </div>
 </body>
 </html>
