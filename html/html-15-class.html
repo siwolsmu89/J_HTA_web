@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>html-15-class</title>
+    <style>
+        #hot {
+            color: red;
+            text-decoration: underline;
+        }
+        .normal-news {
+            color: blue;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <!-- Header -->
+            헤더부
+        </div>
+        <div>
+           <!-- Body -->
+            <div>
+                <!-- Body 1 -->
+                <!-- 뉴스 속보는 글자색이 빨강, 밑줄 표시 -->
+                <h3 id="hot" class="highlight">뉴스 속보</h3>
+            </div>
+            <div>
+                <!-- Body 2 -->
+                <!-- 정치 뉴스는 글자색만 파랑 -->
+                <h3 id="politic-news" class="normal-news">정치 뉴스</h3>
+            </div>
+            <div>
+                <!-- Body 3 -->
+                <!-- 연예 뉴스는 글자색만 파랑 -->
+                <h3 id="ent-news" class="normal-news">연예 뉴스</h3>
+            </div>
+            <div>
+                <!-- Body 3 -->
+                <!-- 연예 뉴스는 글자색만 파랑 -->
+                <h3 id="sports-news" class="normal-news">스포츠 뉴스</h3>
+            </div>
+        </div>
+        <div>
+           <!-- Footer -->
+           푸터부
+        </div>
+    </div>
+    
+</body>
+</html>

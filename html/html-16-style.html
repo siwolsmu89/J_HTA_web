@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>html-16-style</title>
+    <style>
+        #container {
+            width: 800px;
+            margin: 10px auto;
+            padding: 6px;
+        }
+        
+        .well {
+            padding: 10px;
+            border: 1px solid lightgray;
+            background-color: #eeeeee;
+        }
+        
+        .table {
+            width: 100%;
+        }
+        .table, .table th, .table td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 7px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h1>경기 기록 조회</h1>
+        </div>
+        
+        <div>
+            <div>
+                <h3>KBO리그 종합순위</h3>
+                <table class="table">
+                   <thead>
+                       <tr>
+                            <th>순위</th>
+                            <th>팀</th>
+                            <th>승</th>
+                            <th>무</th>
+                            <th>패</th>
+                        </tr>
+                   </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>NC</td>
+                            <td>7</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>롯데</td>
+                            <td>6</td>
+                            <td>0</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>키움</td>
+                            <td>6</td>
+                            <td>0</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>퓨처스리그 종합순위</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>순위</th>
+                            <th>팀</th>
+                            <th>승</th>
+                            <th>무</th>
+                            <th>패</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>삼성</td>
+                            <td>6</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>상무</td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>롯데</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div>
+            <div class="well">
+                <p>한국 야구 협회</p>
+                <p>주소 : 서울특별시 종로구 율곡로10길 105</p>
+                <p>전화번호 : 02-1111-2222</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
