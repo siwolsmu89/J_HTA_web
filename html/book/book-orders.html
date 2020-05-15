@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>book-orders</title>
+    <style>
+        #menubar ul {
+            list-style-type: none;            /* 리스트의 블릿을 없앤다. */
+            margin: 0;                        /* 바깥 여백을 없앤다. */
+            padding: 0;                       /* 안쪽 여백을 없앤다. */
+            overflow: hidden;                 /* 내부 컨텐츠의 높이만큼 늘어난다. */
+            background-color: #333333;        /* 배경색을 검정색에 가까운 색으로 지정한다. */
+        }
+        #menubar li {
+            float: left;                      /* li 태그를 왼쪽에서 오른쪽 가로방향으로 배치한다.*/
+        }
+        #menubar li a {
+            display: block;                   /* a 태그를 블록 엘리먼트로 변신시킨다. */
+            color: white;                     /* 글자색을 하얀색으로 설정한다. */
+            text-align: center;               /* 글자를 가운데 정렬한다. */
+            padding: 14px;                    /* 가로, 세로 안쪽 여백을 지정한다. */
+            text-decoration: none;            /* 링크의 밑줄을 없앤다. */
+        }
+        .active {
+            background-color: #4CAF50;        /*  */
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="menubar">
+             <ul>
+                 <li><a href="book-list.html">홈</a></li>
+                 <li><a href="book-form.html">등록</a></li>
+                 <li><a href="book-orders.html" class="active">주문현황</a></li>
+            </ul>
+        </div>
+        
+        <div id="contents">
+            <div id="header">
+               
+            </div>
+            <div id="body">
+                바디
+            </div>
+        </div>
+        
+        <div id="footer">
+            푸터
+        </div>
+        <div></div>
+    </div>
+</body>
+</html>
