@@ -41,12 +41,12 @@
                <form>
                   <label>학기</label>
                    <select name="year">
-                       <option value="">2020</option>
-                       <option value="">2019</option>
-                       <option value="">2018</option>
-                       <option value="">2017</option>
-                       <option value="">2016</option>
-                       <option value="">2015</option>
+                       <option value="2020">2020</option>
+                       <option value="2019">2019</option>
+                       <option value="2018">2018</option>
+                       <option value="2017">2017</option>
+                       <option value="2016">2016</option>
+                       <option value="2015">2015</option>
                    </select>
                    <select name="semester">
                        <option value="1">1</option>
@@ -56,69 +56,68 @@
                </form>
            </div>
            <div>
-               <!-- Table -->
-               <!-- form 안에 table이 있는 형태로 수정해야 됨 폼 안에 표+버튼이 다 있어야함-->
-               <table>
-                   <tr>
-                       <th>
-                           <form>
-                               <input type="checkbox" disabled />    
-                           </form>
-                       </th>
-                       <th>과정번호</th>
-                       <th>과정명</th>
-                       <th>담당교수</th>
-                       <th>취소여부</th>
-                       <th>수료여부</th>
-                       <th>성적</th>
-                   </tr>
-                   <tr>
-                       <td>
-                           <form>
-                               <input type="checkbox" value="과정취소하기" />
-                           </form>
-                       </td>
-                       <td>10010</td>
-                       <td>자바기초</td>
-                       <td>이교수</td>
-                       <td>N</td>
-                       <td>N</td>
-                       <td>-</td>
-                   </tr>
-                   <tr>
-                       <td>
-                           <form>
-                               <input type="checkbox" value="과정취소하기" />
-                           </form>
-                       </td>
-                       <td>10010</td>
-                       <td>자바기초</td>
-                       <td>이교수</td>
-                       <td>N</td>
-                       <td>N</td>
-                       <td>-</td>
-                   </tr>
-                   <tr>
-                       <td>
-                           <form>
-                               <input type="checkbox" value="과정취소하기" />
-                           </form>
-                       </td>
-                       <td>10010</td>
-                       <td>자바기초</td>
-                       <td>이교수</td>
-                       <td>N</td>
-                       <td>N</td>
-                       <td>-</td>
-                   </tr>
-               </table>
-           </div>
-           <div>
-               <!-- Buttons -->
-               <button type="submit" style="padding: 3px 5px;">전체취소</button>
-               <button type="submit" style="padding: 3px 5px;">선택취소</button>
-           </div>
-       </div>       
+              <!-- Form -->
+               <form>
+                    <div>
+                     <!-- Table -->
+                      <table>
+                           <tr>
+                               <th>
+                                   <input type="checkbox" name="selectAllCourses" value="Y" />
+                               </th>
+                               <th>과정번호</th>
+                               <th>과정명</th>
+                               <th>담당교수</th>
+                               <th>취소여부</th>
+                               <th>수료여부</th>
+                               <th>성적</th>
+                               <th></th>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <input type="checkbox" name="selectCourse" value="10010" />
+                               </td>
+                               <td>10010</td>
+                               <td>자바기초</td>
+                               <td>이교수</td>
+                               <td>N</td>
+                               <td>N</td>
+                               <td>-</td>
+                               <td><button type="button">삭제</button></td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <input type="checkbox" name="selectCourse" value="10010" />
+                               </td>
+                               <td>10010</td>
+                               <td>자바기초</td>
+                               <td>이교수</td>
+                               <td>N</td>
+                               <td>N</td>
+                               <td>-</td>
+                               <td><button type="button">삭제</button></td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <input type="checkbox" name="selectCourse" value="10011" disabled/>
+                               </td>
+                               <td>10011</td>
+                               <td>전자계산기</td>
+                               <td>김교수</td>
+                               <td>Y</td>
+                               <td>N</td>
+                               <td>-</td>
+                               <td><button type="button" disabled>삭제</button></td>
+                           </tr>
+                       </table>
+                   </div>
+                   <div>
+                       <!-- Buttons -->
+                       <button type="submit" style="padding: 3px 5px;">전체취소</button>
+                       <button type="submit" style="padding: 3px 5px;">선택취소</button>
+                   </div>
+               </form>
+           </div>       
        <div>
            <!-- Footer -->
            <div>
