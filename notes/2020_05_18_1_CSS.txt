@@ -1,0 +1,45 @@
+CSS(Cascading Style Sheets)
+	- HTML 문서가 웹브라우저의 화면, 인쇄물 혹은 여러 미디어에 어떻게 표현될지를 정의하는 언어이다.
+	- CSS는 화면의 레이아웃, 이미지의 크기나 위치, 애니메이션 효과, 3D 효과 등을 설정할 수 있다.
+	- HTML 문서의 디자인적 요소를 담당한다.
+	- 문법
+		Selector(선택자)	Declaration(CSS 선언)
+		h1			{color:blue; font-size:12px;}
+		* 선택자 : 스타일을 적용할 대상 엘리먼트(태그)를 지정한다.
+		* CSS 선언 - 선택자에서 지정한 엘리먼트에 적용할 스타일을 선언한다.
+			     각 CSS 선언은 세미콜론으로 구분한다.
+			     CSS 선언은 PropertyName:PropertyValue로 구성된다.
+			     color:blue; -> propertyName은 color, propertyValue는 blue
+			     PropertyName은 CSS문법에 의해 미리 결정되어 있고, 
+			     각 PropertyName에 맞는 PropertyValue도 사용할 수 있는 값들이 정해져 있다.
+	- CSS 적용하기
+		* Inline CSS
+			- 하나의 엘리먼트에만 적용할 스타일을 정의할 때 사용한다.
+			- 엘리먼트에 CSS 선언을 정의하는 것
+			- 예)
+				<h1 style="color:red; font-size:12px;">컨텐츠</h1>
+				* 해당 CSS가 선언된 h1 태그에만 스타일이 적용된다.
+		* Internal CSS
+			- 하나의 HTML 문서에만 적용할 스타일을 정의할 때 사용한다.
+			- HTML문서의 헤더부분(<head>)에서 <style>태그 안에 CSS 선언을 정의하는 것
+			- 예)
+				<stlye>
+					h1 {color:red; font-size:12px;}
+					p {margin:10px; padding:6px;}
+				</style>
+				* HTML문서에 있는 모든 <h1>, <p> 태그에 같은 스타일이 적용된다.
+		* External CSS
+			- 프로젝트 내의 모든 HTML 문서에 적용할 스타일을 정의할 때 사용한다.
+			- 별도의 css 파일에 CSS 선언을 정의하고, <ling> 태그를 이용해서 css 파일을 html문서와 연결한다.
+			- 하나의 css파일만 변경하면 프로젝트 내의 모든 HTML문서의 스타일을 변경할 수 있다.
+			- 예)
+				style.css 파일
+					h1{color:red; font-size:12px;}
+					p1{margin:10px; padding:6px;}
+				HTML문서
+					<link rel="stylesheet" type"text/css" href="style.css">
+		* 적용 우선 순위
+			Inline Style >> Internal Style == External Style >> 브라우저 기본 스타일
+
+	- CSS에 주석(Comments) 달기
+		* 
