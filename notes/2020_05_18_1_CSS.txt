@@ -42,4 +42,8 @@ CSS(Cascading Style Sheets)
 			Inline Style >> Internal Style == External Style >> 브라우저 기본 스타일
 
 	- CSS에 주석(Comments) 달기
-		* 
+		* 자바스크립트의 주석과 유사하다.
+		* 예)
+			/* 주석입니다. */
+			h1 {color:red; font-size:12px;}
+			p1 {margin:10px; padding:6px;}
