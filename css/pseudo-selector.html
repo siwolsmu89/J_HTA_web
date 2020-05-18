@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>pseudo-selector</title>
+    <style>
+        #container {
+            width: 500px;
+            overflow: hidden;
+            border: 2px solid black;
+            padding: 15px;
+        }
+        
+        #container div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+            margin: 10px;
+        }
+        
+        #container div:hover {
+            background-color: green;
+        }
+        
+        #gallary img {
+            opacity: 0.3;
+        }
+        
+        #gallary img:hover {
+            opacity: 1;
+        }
+        
+        /* unvisited link, visited link에 대한 스타일 설정*/
+        #news a:link, #news a:visited {
+            color: black;
+            text-decoration: none;
+        }
+        
+        #news a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+        
+        #news a:active {
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>링크, 마우스 관련 가상 선택자</h1>
+    
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div id="gallary">
+       <img src="../html/images/Lighthouse.jpg" alt="" width="120px" height="120">
+       <img src="../html/images/Desert.jpg" alt="" width="120px" height="120">
+       <img src="../html/images/Hydrangeas.jpg" alt="" width="120px" height="120">
+       <img src="../html/images/Jellyfish.jpg" alt="" width="120px" height="120">
+       <img src="../html/images/Penguins.jpg" alt="" width="120px" height="120">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div id="news">
+        <a href="a.html">오늘의 날씨는 천둥, 번개가 치고 밤에 많은 비가 내릴..</a> <br />
+        <a href="">오늘의 날씨는 천둥, 번개가 치고 밤에 많은 비가 내릴..</a> <br />
+        <a href="">오늘의 날씨는 천둥, 번개가 치고 밤에 많은 비가 내릴..</a> <br />
+        <a href="">오늘의 날씨는 천둥, 번개가 치고 밤에 많은 비가 내릴..</a> <br />
+        <a href="">오늘의 날씨는 천둥, 번개가 치고 밤에 많은 비가 내릴..</a> <br />
+    </div>
+</body>
+</html>
