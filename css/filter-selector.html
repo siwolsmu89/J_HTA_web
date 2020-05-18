@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>filter-selector</title>
+    <style>
+        /* div의 후손인 p 중에서 장남인 것 */
+        div p:first-child {color: red;}
+        /* div의 후손인 p 중에서 막내인 것 */
+        div p:last-child {color: blue;}
+        
+        /* div의 후손인 p 중에서 둘째인 것 */
+        div p:nth-child(2) {color: orange;}
+        /* div의 후손인 p 중에서 순서가 홀수번째인 것 */
+        div p:nth-child(odd) {background-color: yellow;}
+        /* div의 후손인 p 중에서 순서가 짝수번째인 것 */
+        div p:nth-child(even) {background-color: lightgreen;}
+        
+        /* div의 후손인 p 중에서 장남이 아닌 것 */
+        div p:not(:first-child) {border: 2px solid black;}
+    </style>
+</head>
+<body>
+    <h1>필터 선택자</h1>
+    <p>필터 선택자는 :선택자 형태로 작성한다.</p>
+    
+    <div style="border: 1px solid black; padding: 10px;">
+        <p>1번째 p</p>
+        <p>2번째 p</p>
+        <p>3번째 p</p>
+        <p>4번째 p</p>
+        <p>5번째 p</p>
+        <p>6번째 p</p>
+    </div>
+    
+    <div style="border: 1px solid black; padding: 10px;">
+        <p>1번째 p</p>
+        <p>2번째 p</p>
+        <p>3번째 p</p>
+        <p>4번째 p</p>
+        <p>5번째 p</p>
+        <p>6번째 p</p>
+    </div>
+    
+    <p>필터 선택자는 selector:filterSelector의 형태로 주로 사용된다.</p>
+</body>
+</html>

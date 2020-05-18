@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>attr-selector</title>
+    <style>
+        li {margin: 10px; padding: 15px;}
+        a[href="www.moe.go.kr"] {background-color: yellow;}
+        a[href^="http"] {background-color: lightgreen;}
+        a[href$="com"] {border: 2px solid black;}
+        a[title*="포털"] {font-size: 30px;}
+        a[title~="포털"] {font-style: italic; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>속성 선택자</h1>
+    
+    <div id="links">
+        <h3>포털 사이트</h3>
+        <ul>
+            <li><a href="http://www.daum.net" title="다음 다음포털 뉴스, 동영상, 메일">http://www.daum.net</a></li>
+            <li><a href="http://www.naver.com" title="네이버 포털 뉴스, 동영상, 메일, 웹툰">http://www.naver.com</a></li>
+            <li><a href="www.google.com" title="구글 검색">www.google.com</a></li>
+            <li><a href="www.instagram.com" title="사진공유 SNS">www.instagram.com</a></li>
+            <li><a href="www.moe.go.kr" title="교육부, 온라인수업">www.moe.go.kr</a></li>
+        </ul>
+    </div>
+</body>
+</html>

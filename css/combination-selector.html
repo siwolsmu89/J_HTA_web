@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>combination-selector</title>
+    <style>
+        /* 후손 선택자 */
+        div a {font-weight: bold; background-color: yellow; text-decoration: none;}
+        div ul a {padding: 0 10px;}
+        /* 자식 선택자 */
+        div > a {font-size: 40px;}
+        /* 인접한 형제 선택자 */
+        h3 + p {color: red;}
+        ul + p {color: darkgreen;}
+        /* 형제 선택자 */
+        h3 ~ p {padding: 10px; border: 2px solid black;}
+        
+        /* 위의 형제 선택자 대신 클래스 선택자를 사용하자. */
+        /* 사실 조합 선택자를 사용하기보다는 이런 식으로 적는 경우가 더 많다. */
+        /* 순서가 바뀌어도 괜찮고, 명확하게 대상을 지정해줄 수도 있기 때문. */
+        .hot {color: red;}
+        .info {color: darkgreen;}
+        .box {padding: 10px; border: 2px solid black;}
+        
+    </style>
+</head>
+<body>
+    <h1>조합 선택자</h1>
+    
+    <div>
+        <h3>후손, 자식, 인접한 형제, 형제</h3>
+        <p class="box hot">공백, >, +, ~을 사용해서 2개 이상의 기본 선택자를 조합할 수 있다.</p>
+        <p class="box">조합 선택자를 활용하면 다양한 방식으로 엘리먼트를 선택할 수 있다.</p>
+        더 많은 선택자는 이 <a href="">링크</a>를 참조하세요.
+        
+        <h4>조합 선택자 예제</h4>
+        <ul>
+            <li><a href="">샘플1</a></li>
+            <li><a href="">샘플2</a></li>
+            <li><a href="">샘플3</a></li>
+        </ul>
+        <p class="box info">모든 예제는 www.schools.com을 참조하였습니다.</p>
+    </div>
+</body>
+</html>
