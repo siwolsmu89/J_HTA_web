@@ -1,2 +1,0 @@
-JSP(Java Server Page)
-	- µ¿ÀûÀÎ À¥ ÄÁÅÙÃ÷(html ÄÁÅÙÃ÷)¸¦ 

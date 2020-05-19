@@ -1,0 +1,10 @@
+JSP(Java Server Page)
+	- 동적인 웹 컨텐츠(html 컨텐츠)를 작성하는데 사용되는 자바의 표준 기술이다.
+	- 요청을 처리하고 응답을 제공하기 위한 기능을 제공하고 있다.
+	- html, XML, JSON, 바이너리 데이터(그림, 영상, 압축파일)
+	- 작성된 JSP를 실행하기 위해서는 반드시 Tomcat과 같은 웹 애플리케이션 서버(WAS)가 필요하다.
+
+WAS(Web Application Server)
+	- Servlet/JSP로 작성된 애플리케이션 프로그램을 실행시켜주는 서버 프로그램이다.
+	- Tomcat, jBoss, webLogic, Jeus 등의 WAS 프로그램이 있다.
+	- 웹 애플리케이션을 실행하기 위해서는 웹 서버에 해당 애플리케이션이 배포되어야 한다.

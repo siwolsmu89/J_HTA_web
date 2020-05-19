@@ -1,0 +1,38 @@
+웹 프로젝트 개발환경 구성하기
+	
+	1. JDK 설치
+	
+	2. 시스템 환경변수 등록
+		이름 : JAVA_HOME
+		값(경로) : (C:/Program Files/Java/jdk1.8.0_241)
+
+	3. Eclipse, Tomcat 설치
+		- Eclipse : Eclipse IDE for Enterprise Java Developers (Eclipse IDE for Java EE Developers)
+		- Tomcat : http://tomcat.apache.org > Download > Tomcat 9 > 32-bit/64-bit Windows Service Installer
+
+	4. Workspace 폴더 생성
+		- 생성 후, Switch workspace를 통해 Eclipse에 연동 (Preference가 초기화됨)
+		- web_workspace
+
+	5. Eclipse의 문자 Encoding 방식을 모두  "UTF-8"로 설정하기
+		- Eclipse > Window > Preference > General workspace > Text file Encoding
+						   > Web > css
+							 > html
+							 > jsp
+
+	6. Eclipse와 Tomcat 연동시키기
+		- Eclipse > Window > Preference > Server > Runtime Environment > Add > Apache Tomcat 9.0 등록
+
+	7. 새 웹 프로젝트 생성
+		- New Project > web > Dynamic Web Project > Project명 지정(myweb) > Finish
+
+	8. 웹 프로젝트를 배포할 Tomcat 서버 생성하기
+		- Server 탭 > Create a new server > Eclipse와 연동된 Tomcat 서버 선택 > Finish
+
+	9. 웹 프로젝트를 Tomcat 서버에 배포하기
+		- Server 탭 > Tomcat v9.0 Server 우클릭 > Add and remove > Available의 프로젝트 항목들을 Configured로 Add > Finish
+		- 성공 시 Server 탭의 서버 아이콘 옆에 삼각형 목록 아이콘이 생긴다.
+
+	10. Tomcat 서버 start & stop
+		- Servers > Tomcat v9.0 Server 더블클릭 > Port > Port Name : Tomcat Admin Port에 Port Number 8005 지정 후 저장
+		- 아래쪽에서 Start the Server 버튼 클릭 -> Started, Synchronized 확인
