@@ -1,0 +1,23 @@
+CSS 박스모델
+	- 모든 HTML 엘리먼트(태그)가 화면에 표시될 때는 사각형의 박스처럼 다루어진다.
+	- 화면의 디자인, 레이아웃을 구성할 때 HTML을 박스의 형태로 다루게 되는데, 이를 CSS Box Model이라고 한다.
+	- Box Model의 구성
+		- content : 엘리먼트가 실제로 포함하고 있는 내용(텍스트, 이미지)
+		- padding : content와 border 사이의 여백
+		- border : 엘리먼트의 테두리
+		- margin : 엘리먼트의 바깥 여백, 다른 엘리먼트와의 경계
+	- BoxModel에서 box-sizing 설정하기
+		- box-sizing="content-box"일 때
+			* width로 설정한 너비가 content의 너비가 된다.
+			* 실제 엘리먼트의 너비
+				width 
+				+ margin-left  + margin-right 
+				+ padding-left + padding-right  
+				+ border-left  + border-right
+			* box-sizing 속성을 따로 정의하지 않을 때의 기본값은 content-box이다. 
+		- box-sizing="border-box"일 때
+			* width로 설정한 너비가 border+padding+content의 총 너비가 된다.
+			* 실제 엘리먼트의 너비
+				width
+				+ margin-left + margin-right
+			* 엘리먼트의 크기를 계산하거나 화면의 레이아웃을 구성할 때 간편하게 사용할 수 있다.

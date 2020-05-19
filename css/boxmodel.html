@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>boxmodel</title>
+    <style>
+        .container {
+            width: 700px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+        .container div {
+            display: inline-block;
+            background-color: lightgreen;
+        }
+        #box-1 div {
+            padding: 10px 20px 30px 40px;
+        }
+        #box-2 div {
+            border-top: 1px solid black;
+            border-right: 2px solid black;
+            border-left: 4px solid black;
+            border-bottom: 8px solid black;
+        }
+        #box-3 div {
+            padding: 10px;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+        #box-3 {
+            margin-left: -200px;
+        }
+        #box-3:hover {
+            margin-left: 0;
+        }
+        
+        #box-4 div {
+            box-sizing: content-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid black;
+            color: white;
+            background-color: red;
+        }
+        #box-5 div {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid black;
+            color: white;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>박스 모델</h1>
+    
+    <h3>padding 설정하기</h3>
+    <div id="box-1" class="container">
+        <div>안녕</div>
+        <div>안녕</div>
+        <div>안녕</div>
+    </div>
+    
+    <h3>border 설정하기</h3>
+    <div id="box-2" class="container">
+        <div>안녕</div>
+        <div>안녕</div>
+        <div>안녕</div>
+    </div>
+    
+    <h3>margin 설정하기</h3>
+    <div id="box-3" class="container">
+        <div>안녕</div>        
+        <div>안녕</div>        
+        <div>안녕</div>        
+    </div>
+    
+    <h3>box-sizing이 content-box인 경우</h3>
+    <div id="box-4" class="container">
+        <div>안녕</div>
+        <div>안녕</div>
+        <div>안녕</div>
+    </div>
+
+    <h3>box-sizing이 border-box인 경우</h3>
+    <div id="box-5" class="container">
+        <div>안녕</div>
+        <div>안녕</div>
+        <div>안녕</div>
+    </div>
+</body>
+</html>

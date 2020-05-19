@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>z-index</title>
+    <style>
+        #box {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+        #item-1 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            z-index: 10;
+        }
+        #item-2 {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 150px;
+            height: 150px;
+            background-color: orange;
+            z-index: 1;
+        }
+        #item-3 {
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            z-index: 10;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>z-index값 설정하기</h1>
+    
+    <div id="box">
+        <div id="item-1"></div>
+        <div id="item-2"></div>
+        <div id="item-3"></div>
+    </div>
+</body>
+</html>

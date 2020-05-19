@@ -1,0 +1,15 @@
+CSS Position
+	- CSS Position은 엘리먼트의 위치를 결정하는 CSS property이다.
+	- CSS Position의 값
+		- position="static";
+			* position 속성의 기본값
+			* 엘리먼트가 왼쪽에서 오른쪽방향으로, 위에서 아래 방향으로 배치된다.
+		- position="relative";
+			* static이었을 때의 위치를 기준으로 엘리먼트의 위치를 이동시킬 수 있다.
+			* 엘리먼트를 이동시킬 때는 이동을 원하는 엘리먼트의 top, right, bottom, left 속성에 픽셀을 지정하여 이동시킨다. 
+		- position="absolute";
+			* 부모 엘리먼트의 position 속성값이 relative, absolute, fixed 중 하나로 설정되어 있어야 한다.
+			* 부모 엘리먼트를 기준으로 엘리먼트의 위치를 이동시킬 수 있다.
+		- position="fixed";
+			* 엘리먼트의 위치를 고정시킨다.
+			* 네비게이션, 퀵메뉴, 배너광고 등을 고정시킬 때 사용한다.

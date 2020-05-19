@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>popup</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        #container {
+            width: 100%;
+            height: 300px;
+            background-color: yellow;
+            z-index: -1;
+        }
+        
+        #popup-container {
+            display: none;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: lightgray;
+            z-index: 10;
+        }
+        
+        #popup {
+            display: none;
+            background-color: white;
+            margin: 10px auto;
+            width: 300px;
+            height: 150px;
+            border: 2px solid gray;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>팝업</h1>
+        <p>
+            <button onclick="openpop()">팝업</button>
+        </p>
+    </div>
+    
+    <div id="popup-container">
+        <div id="popup">
+            <h3>팝업창</h3>
+            <p>확인버튼을 클릭하면 사라집니다.</p>
+            <p>
+                <button onclick="closepop()">확인</button>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        function openpop() {
+            document.querySelector("#popup-container").style.display = "block";
+            document.querySelector("#popup").style.display = "block";
+        }
+        function closepop() {
+            document.querySelector("#popup").style.display = "none";
+            document.querySelector("#popup-container").style.display = "none";
+        }
+    </script>
+</body>
+</html>
