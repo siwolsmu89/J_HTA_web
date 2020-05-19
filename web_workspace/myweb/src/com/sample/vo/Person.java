@@ -1,7 +1,6 @@
 package com.sample.vo;
 
 public class Person {
-	
 	private String name;
 	private String tel;
 	private int age;
