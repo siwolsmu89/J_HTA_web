@@ -116,7 +116,7 @@
 				<td>컨텍스트패스</td>
 				<td>-</td>
 				<td><%=contextPath %></td>
-				<td>String request.getContextPath()</td>
+				<td><strong style="color:red;">String request.getContextPath()</strong></td>
 			</tr>
 		</tbody>
 	</table>
