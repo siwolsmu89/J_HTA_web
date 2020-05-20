@@ -1,0 +1,43 @@
+요청메시지와 응답메시지
+	- 요청메시지 (클라이언트 -> 서버)
+		[요청메시지]
+	
+		[요청메시지 시작]
+		[요청메시지 헤더부] GET /myweb/basic/sample5.jsp HTTP/1.1										 <-- 요청라인 : (요청방식/url/프로토콜)
+					// 이하 브라우저가 알아서 작성하는 부분
+				    Host: localhost													 <-- 호스트
+				    Connection: keep-alive												 <-- 연결방식
+				    Cache-Control : max-age=0
+				    Upgrade-Insecure-REquests: 1
+				    User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/... Safari/.. 	 <-- 운영체제, 브라우저 정보 등
+				    Accept: text/html, application/xhtml+xml,application/xml;q=0.9,image/webp,image/.					 <-- 지원하는 데이터의 종류
+				    Accept-Encoding: gzip, deflate, br											 <-- 지원하는 압축방식
+				    Accept-Language: ko,en-Us;q=0.9,en;q=0.8;ko-KR;q=0.7								 <-- 브라우저의 언어 설정
+
+		[빈줄]
+		[요청메시지 바디부]
+					// GET 방식일때는 항상 바디부가 비어있음
+					// POST 방식일 때만 내용이 들어가 있음
+		
+		[요청메시지 끝]
+	
+	- 응답메시지 (서버 -> 클라이언트)
+		[응답메시지]
+	
+		[응답메시지 시작]
+		[응답메시지 헤더부] HTTP/1.1 200					<-- 응답라인(프로토콜/응답코드) * 응답코드는 200번대가 성공
+			 	    Content-Type: text/html;charset=UTF-8		<-- 컨텐츠타입 (JSP 맨윗줄에 적힌대로)
+				    Content-Length: 1577				<-- 컨텐츠 길이
+				    Date: Wed, 20 May 2020 01:48:43 GMT			<-- 날짜
+				    Keep-Alive: timeout-20				<-- 연결을 유지하는 시간
+				    Connection: keep-alive				<-- 연결방식
+		[빈줄]
+		[응답메시지 바디부] <!doctype html>			
+				    <html>						<-- 응답컨텐츠
+				    	<head>..</head>
+					...
+				    </html>
+		[응답메시지 끝]
+
+
+	* 헤더부는 첫 줄을 제외하면 브라우저가 자동으로 작성해주기 때문에 중요하지 않다.
