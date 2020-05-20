@@ -1,3 +1,5 @@
+<%@page import="com.sample.dao.BookDAO"%>
+<%@page import="com.sample.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +21,22 @@
 		int price = Integer.parseInt(request.getParameter("bookprice"));
 		int discountPrice = Integer.parseInt(request.getParameter("bookdiscountprice"));
 		int stock = Integer.parseInt(request.getParameter("bookstock"));
+		
+		Book book = new Book();
+		book.setTitle(title);
+		book.setWriter(writer);
+		book.setGenre(genre);
+		book.setPublisher(publisher);
+		book.setPrice(price);
+		book.setDiscountPrice(discountPrice);
+		book.setStock(stock);
+		
+		BookDAO bookDao = new BookDAO();
+		bookDao.insertBook(book);
 	%>
+	
+	<h1>책 등록 완료</h1>
+	<p>새로운 책 등록이 완료되었습니다.</p>
 	
 	<div>
 		<h3>등록할 책 정보</h3>
@@ -52,6 +69,6 @@
 			<dd><%=stock %></dd>
 		</dl>
 	</div>
-	
+
 </body>
 </html>

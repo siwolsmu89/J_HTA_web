@@ -25,8 +25,12 @@
 		<div>
 			<label>장르</label>
 			<select name="bookgenre">
-				<option value="literature">문학
-				<option value="others">비문학
+				<option value="소설">소설
+				<option value="시">시
+				<option value="수필">수필
+				<option value="희곡">희곡
+				<option value="고전문학">고전문학
+				<option value="비문학">쓸모없는 종이뭉치에 불과한 것
 			</select>
 		</div>
 		<div>
@@ -35,15 +39,15 @@
 		</div>
 		<div>
 			<label>가격</label>
-			<input type="text" name="bookprice" />
+			<input type="number" name="bookprice" />
 		</div>
 		<div>
 			<label>할인가격</label>
-			<input type="text" name="bookdiscountprice" />
+			<input type="number" name="bookdiscountprice" />
 		</div>
 		<div>
 			<label>입고수량</label>
-			<input type="text" name="bookstock" />
+			<input type="number" name="bookstock" />
 		</div>
 		<div>
 			<button type="submit">등록</button>
