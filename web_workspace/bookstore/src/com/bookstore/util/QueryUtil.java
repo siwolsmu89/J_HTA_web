@@ -1,7 +1,5 @@
 package com.bookstore.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public class QueryUtil {
@@ -11,8 +9,8 @@ public class QueryUtil {
 	
 	static {
 		try {
-			prop.load(new FileInputStream("src/com/bookstore/dao/query.properties"));
-		} catch (IOException e) {
+			prop.load(Class.forName("com.bookstore.util.QueryUtil").getResourceAsStream("query.properties"));
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
