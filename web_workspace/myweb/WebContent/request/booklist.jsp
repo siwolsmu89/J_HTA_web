@@ -19,8 +19,9 @@
 		int size = allBooks.size();
 		int index = 1;
 	%>
-	
-	<p>전체 <%=size %>건의 도서 정보 조회</p>
+	<div style="padding-left: 150px;">
+		<p>- 전체 <span style="color: red;"><%=size %>건</span>의 도서 정보 조회</p>
+	</div>
 	
 	<h3>전체 도서 정보</h3>
 	<div>
