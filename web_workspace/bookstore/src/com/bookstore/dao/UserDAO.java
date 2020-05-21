@@ -18,11 +18,11 @@ public class UserDAO {
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.getNewUsers"));
-		
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
 			User user = new User();
+			
 			user.setId(rs.getString("user_id"));
 			user.setName(rs.getString("user_name"));
 			user.setEmail(rs.getString("user_email"));
@@ -30,6 +30,7 @@ public class UserDAO {
 			
 			newUsers.add(user);
 		}
+		
 		rs.close();
 		pstmt.close();
 		connection.close();

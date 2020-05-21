@@ -10,72 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Bookstore</title>
-<style type="text/css">
-	.wrapper {
-		box-sizing: border-box;
-		width: 990px;
-		margin: 5px auto;
-	}
-	
-	.navi, .header, .body, .footer {
-		margin-top: 10px;
-	}
-	
-	.navi #navibar {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #333;
-	}
-	.navi #navibar li {
-		float: left;
-	}
-	.navi #navibar li a {
-		display: block;
-		color: white;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	.navi #navibar li a:hover {
-		background-color: #222;
-	}
-	
-	.table {
-		border-collapse: collapse;
-		width: 100%;
-	}
-	.table th, .table td {
-		padding: 8px;
-		text-align: left;
-	}
-	.table th {
-		border-bottom: 2px solid #555;
-	}
-	.table td {
-		border-bottom: 1px solid #ddd;
-	}
-	
-	.footer {
-		width: 100%;
-		margin-top: 25px;
-		background-color: #333;
-		color: white;
-		padding: 14px 16px;
-	}
-	
-</style>
+<link rel="stylesheet" type="text/css" href="css/bookstore.css">
 </head>
 <body>
 	<div class="wrapper">
 		<div class="navi">
-			<ul id="navibar">
-				<li><a href="home.jsp">홈</a></li>
-				<li><a href="">도서</a></li>
-				<li><a href="">사용자</a></li>
-				<li><a href="">주문</a></li>
-			</ul>
+			<%@ include file="common/navibar.jsp" %>
 		</div>
 		
 		<div class="header">
@@ -100,12 +40,12 @@
 							List<Book> newBooks = bookDao.getNewBooks();
 							for (Book book : newBooks) {
 						%>
-						<tr>
-							<td><%=book.getNo() %></td>
-							<td><%=book.getTitle() %></td>
-							<td><%=book.getWriter() %></td>
-							<td><%=book.getPrice() %></td>
-						</tr>
+							<tr>
+								<td><%=book.getNo() %></td>
+								<td><a href="book/detail.jsp?bookno=<%=book.getNo() %>"><%=book.getTitle() %></a></td>
+								<td><%=book.getWriter() %></td>
+								<td><%=book.getPrice() %></td>
+							</tr>
 						<%
 							}
 						%>
@@ -143,12 +83,7 @@
 				</table>
 			</div>
 		</div>
-		
-		<div class="footer">
-			<p>북스토어 주식회사</p>
-			<p>주소: 서울특별시 종로구 율곡로 10길 105 디아망빌딩 4층</p>
-			<p>전화번호: 070-1234-5678</p>
-		</div>
+		<%@ include file="common/footer.jsp" %>
 	</div>
 </body>
 </html>

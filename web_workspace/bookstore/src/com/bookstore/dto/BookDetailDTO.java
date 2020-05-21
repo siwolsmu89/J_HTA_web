@@ -1,22 +1,22 @@
-package com.bookstore.vo;
+package com.bookstore.dto;
 
 import java.util.Date;
 
-public class Book {
-	
+public class BookDetailDTO {
 	private int no;
 	private String title;
 	private String writer;
-	private String genre;
 	private String publisher;
+	private String genre;
+	private Date registeredDate;
+	private double point;
+	private int reviewCount;
 	private int price;
 	private int discountPrice;
-	private Date registeredDate;
-	private int stock;
-	private double point;
 	private int likes;
+	private int stock;
 	
-	public Book() {
+	public BookDetailDTO() {
 		
 	}
 
@@ -40,10 +40,18 @@ public class Book {
 		return writer;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setWriter(String write) {
+		this.writer = write;
 	}
 
+	public String getPublisher() {
+		return publisher;
+	}
+	
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	
 	public String getGenre() {
 		return genre;
 	}
@@ -52,12 +60,28 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public String getPublisher() {
-		return publisher;
+	public Date getRegisteredDate() {
+		return registeredDate;
 	}
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public void setRegisteredDate(Date registeredDate) {
+		this.registeredDate = registeredDate;
+	}
+
+	public double getPoint() {
+		return point;
+	}
+
+	public void setPoint(double point) {
+		this.point = point;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public int getPrice() {
@@ -76,12 +100,12 @@ public class Book {
 		this.discountPrice = discountPrice;
 	}
 
-	public Date getRegisteredDate() {
-		return registeredDate;
+	public int getLikes() {
+		return likes;
 	}
 
-	public void setRegisteredDate(Date registeredDate) {
-		this.registeredDate = registeredDate;
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 
 	public int getStock() {
@@ -91,21 +115,5 @@ public class Book {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-
-	public double getPoint() {
-		return point;
-	}
-
-	public void setPoint(double point) {
-		this.point = point;
-	}
-
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-
+	
 }
