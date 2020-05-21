@@ -1,0 +1,23 @@
+만들고 싶은 것 
+	<li><a href="item.jsp?pno=1818">정육</a></li>
+	<li><a href="item.jsp?pno=1831">닭가슴살</a></li>
+	<li><a href="item.jsp?pno=1800">우유</a></li>
+	<li><a href="item.jsp?pno=1823">콩가루</a></li>
+
+상품목록 조회 페이지에서 쿼리스트링 링크 만들기
+	- 제품목록 리스트를 가져온다.
+	- for문을 사용하여 리스트에 있는 제품을 꺼내온다.
+	- 꺼내온 제품 정보를 활용해 쿼리스트링이 포함된 링크를 생성한다.
+	<%
+		List<Product> products = productDao.getAllProducts();
+	%>
+	
+	<ul>
+	<%
+		for (Product p : products) {
+	%>
+		<li><a href="item.jsp?pno=<%=p.getNo() %>"><%=product.getName() %></a></li>
+	<%
+		}
+	%>
+	</ul>
