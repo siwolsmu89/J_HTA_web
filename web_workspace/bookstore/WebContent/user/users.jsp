@@ -67,7 +67,7 @@
 				</table>
 			</div>
 			<div class="text-right">
-				<button type="button"><a href="userform.jsp">신규</a></button>
+				<button type="button"><a href="form.jsp"><strong>신규 등록</strong></a></button>
 			</div>
 		</div>
 		

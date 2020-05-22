@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>user/userform</title>
+<title>user/form</title>
 <link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
 </head>
 <body>
@@ -20,16 +20,20 @@
 		
 		<div class="body">
 			<h3>사용자 등록 폼</h3>
-			<form class="form-group" action="adduser.jsp" method="post">
-				<div>
+			<form action="add.jsp" method="post">
+				<div class="form-group">
 					<label>ID</label>
 					<input type="text" name="id" />
 				</div>
-				<div>
+				<div class="form-group">
+					<label>비밀번호</label>
+					<input type="password" name="password" />
+				</div>
+				<div class="form-group">
 					<label>이름</label>
 					<input type="text" name="name" />
 				</div>
-				<div>
+				<div class="form-group">
 					<label>E-mail</label>
 					<input type="text" name="email" />
 				</div>

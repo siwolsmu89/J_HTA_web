@@ -64,4 +64,19 @@ public class UserDAO {
 		
 		return allUsers;
 	}
+	
+	public void addUser(User user) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.addUser"));
+		pstmt.setString(1, user.getId());
+		pstmt.setString(2, user.getPassword());
+		pstmt.setString(3, user.getName());
+		pstmt.setString(4, user.getEmail());
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
 }
