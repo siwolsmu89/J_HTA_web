@@ -62,7 +62,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div style="margin: 20px; text-align: right;">
+			<div class="text-right">
 				<button type="button"><a href="bookform.jsp">신규</a></button>
 			</div>
 		</div>

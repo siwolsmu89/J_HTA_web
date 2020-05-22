@@ -23,13 +23,27 @@
 		<div class="body">
 			<div>
 				<h3>회원조회</h3>
-			</div>
-			
-			<div>
+				<select>
+					<option />
+				</select>
+				
 				<h3>주문내역</h3>
+				<table class="table bordered">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			
-			<div>
+			<div class="text-right">
 				<button type="button"><a href="http://localhost/bookstore/review/reviewform.jsp">리뷰쓰기</a></button>
 			</div>
 		</div>

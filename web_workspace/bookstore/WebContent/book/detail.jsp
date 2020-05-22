@@ -70,7 +70,9 @@
 							<td><%=NumberUtil.numberWithComma(book.getStock()) %></td>
 						</tr>
 				</table>
-				<div style="text-align: right;">
+				
+				<div class="text-right">
+					<button type="button"><a href="/bookstore/book/books.jsp">전체 목록으로</a></button>
 					<button type="button"><a href="../order/orders.jsp">주문</a></button>
 				</div>
 			</div>

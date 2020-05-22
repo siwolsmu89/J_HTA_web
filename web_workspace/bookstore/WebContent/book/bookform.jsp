@@ -59,7 +59,7 @@
 					<label>수량</label>
 					<input type="number" name="stock" />
 				</div>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<button type="submit">등록</button>
 				</div>
 			</form>
