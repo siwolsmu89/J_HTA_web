@@ -29,8 +29,9 @@
 					<input type="text" name="writer" />
 				</div>
 				<div>
-					<label>장르</label>
-					<select name="genre">
+					<label>장르</label> 
+					<br />
+					<select style="width:50%; height:45px;" name="genre">
 						<option value="소설">소설</option>
 						<option value="시">시</option>
 						<option value="수필">수필</option>
@@ -55,7 +56,7 @@
 					<label>수량</label>
 					<input type="number" name="stock" />
 				</div>
-				<div>
+				<div style="text-align: right;">
 					<button type="submit">등록</button>
 				</div>
 			</form>

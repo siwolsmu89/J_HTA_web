@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.NumberUtil"%>
 <%@page import="com.bookstore.dto.ReviewDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.dto.BookDetailDTO"%>
@@ -55,26 +56,29 @@
 						</tr>
 						<tr>
 							<th>가격</th>
-							<td><%=book.getPrice() %></td>
+							<td><%=NumberUtil.numberWithComma(book.getPrice())+" 원" %></td>
 							<th>할인가격</th>
-							<td><%=book.getDiscountPrice() %></td>
+							<td><%=NumberUtil.numberWithComma(book.getDiscountPrice())+" 원" %></td>
 						</tr>
 						<tr>
 							<th>추천수</th>
-							<td><%=book.getLikes() %></td>
+							<td><%=NumberUtil.numberWithComma(book.getLikes()) %></td>
 							<th>재고</th>
-							<td><%=book.getStock() %></td>
+							<td><%=NumberUtil.numberWithComma(book.getStock()) %></td>
 						</tr>
 				</table>
+				<div style="text-align: right;">
+					<button type="button"><a href="../order/order.jsp">주문</a></button>
+				</div>
 			</div>
 			
 			<div>
 				<h3>이 책의 리뷰</h3>
 				<table class="table">
+					<% 
+						for (ReviewDTO review : reviews) {
+					%>
 					<tbody>
-						<% 
-							for (ReviewDTO review : reviews) {
-						%>
 						<tr>
 							<th>작성자</th>
 							<td><%=review.getUserName() %></td>
@@ -86,11 +90,11 @@
 						<tr>
 							<td rowspan="3" colspan="6"><%=review.getContent() %></td>
 						</tr>
-						<%
-							}
-						
-						%>
 					</tbody>
+					<%
+						}
+					
+					%>
 				</table>
 			</div>
 		</div>
