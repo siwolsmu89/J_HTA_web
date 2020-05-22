@@ -7,12 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>book/books</title>
 <link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
 </head>
 <body>
 	<div class="wrapper">
 		<div class="navi">
+			<%
+				String position = "book";
+			%>
 			<%@ include file="../common/navibar.jsp" %>		
 		</div>
 		
@@ -31,15 +34,8 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>작가</th>
-							<th>장르</th>
-							<th>출판사</th>
+							<th>저자</th>
 							<th>가격</th>
-							<th>할인가격</th>
-							<th>평점</th>
-							<th>추천수</th>
-							<th>재고</th>
-							<th>등록일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,23 +45,16 @@
 						%>
 						<tr>
 							<td><%=book.getNo() %></td>
-							<td><%=book.getTitle() %></td>
+							<td><a href="/bookstore/book/detail.jsp?bookno=<%=book.getNo() %>"><%=book.getTitle() %></a></td>
 							<td><%=book.getWriter() %></td>
-							<td><%=book.getGenre() %></td>
-							<td><%=book.getPublisher() %></td>
 							<td><%=book.getPrice() %></td>
-							<td><%=book.getDiscountPrice() %></td>
-							<td><%=book.getPoint() %></td>
-							<td><%=book.getLikes() %></td>
-							<td><%=book.getStock() %></td>
-							<td><%=book.getRegisteredDate() %></td>
 						</tr>
 						<% 
 								}
 							} else {
 						%>
 						<tr>
-							<td colspan="11">현재까지 등록된 책이 없습니다.</td>
+							<td colspan="4">현재까지 등록된 책이 없습니다.</td>
 						</tr>
 						<%							
 							} 
@@ -73,7 +62,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div style="margin-top: 20px; text-align: right;">
+			<div style="margin: 20px; text-align: right;">
 				<button type="button"><a href="bookform.jsp">신규</a></button>
 			</div>
 		</div>

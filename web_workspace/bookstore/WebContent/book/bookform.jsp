@@ -10,6 +10,9 @@
 <body>
 	<div class="wrapper">
 		<div class="navi">
+			<%
+				String position = "book";
+			%>
 			<%@ include file="../common/navibar.jsp" %>
 		</div>
 		

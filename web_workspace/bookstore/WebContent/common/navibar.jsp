@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <ul id="navibar">
-	<li><a href="">홈</a></li>
-	<li><a href="">도서</a></li>
-	<li><a href="">사용자</a></li>
-	<li><a href="">주문</a></li>
+	<li class="<%="home".equals(position) ? "active" : ""%>"><a href="/bookstore/home.jsp">홈</a></li>
+	<li class="<%="book".equals(position) ? "active" : ""%>"><a href="/bookstore/book/books.jsp">도서</a></li>
+	<li class="<%="user".equals(position) ? "active" : ""%>"><a href="/bookstore/user/users.jsp">사용자</a></li>
+	<li class="<%="order".equals(position) ? "active" : ""%>"><a href="/bookstore/order/orders.jsp">주문</a></li>
 </ul>

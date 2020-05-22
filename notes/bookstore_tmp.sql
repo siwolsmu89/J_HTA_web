@@ -29,7 +29,7 @@ WHERE book_no = 10011;
 INSERT INTO sample_book_reviews 
     (review_no, review_point, review_content, review_registered_date, book_no, user_id)
 VALUES 
-    (sample_review_seq.NEXTVAL, 1, 'aaa', SYSDATE, 10061, 'kimmi');
+    (sample_review_seq.NEXTVAL, 5, '엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기엄청 길게 리뷰 써보기', SYSDATE, 10061, 'JasikZasik');
     
     commit;
     

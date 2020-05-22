@@ -15,6 +15,9 @@
 <body>
 	<div class="wrapper">
 		<div class="navi">
+			<%
+				String position = "home";
+			%>
 			<%@ include file="common/navibar.jsp" %>
 		</div>
 		
@@ -42,7 +45,7 @@
 						%>
 							<tr>
 								<td><%=book.getNo() %></td>
-								<td><a href="book/detail.jsp?bookno=<%=book.getNo() %>"><%=book.getTitle() %></a></td>
+								<td><a href="/bookstore/book/detail.jsp?bookno=<%=book.getNo() %>"><%=book.getTitle() %></a></td>
 								<td><%=book.getWriter() %></td>
 								<td><%=book.getPrice() %></td>
 							</tr>

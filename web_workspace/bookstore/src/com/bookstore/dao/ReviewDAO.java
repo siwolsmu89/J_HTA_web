@@ -18,7 +18,7 @@ public class ReviewDAO {
 		List<ReviewDTO> reviews = new ArrayList<ReviewDTO>();
 		
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewByNo"));
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewByBookNo"));
 		pstmt.setInt(1, bookNo);
 		ResultSet rs = pstmt.executeQuery();
 		

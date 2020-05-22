@@ -18,6 +18,9 @@
 <body>
 	<div class="wrapper">
 		<div class="navi">
+			<%
+				String position = "book";
+			%>
 			<%@ include file="../common/navibar.jsp" %>
 		</div>
 		
@@ -37,7 +40,7 @@
 					List<ReviewDTO> reviews = reviewDao.getReviewsByBookNo(bookNo);
 				%>
 				
-				<table class="table">
+				<table class="table bordered">
 						<tr>
 							<th>제목</th>
 							<td colspan="3"><%=book.getTitle() %></td>
@@ -68,15 +71,24 @@
 						</tr>
 				</table>
 				<div style="text-align: right;">
-					<button type="button"><a href="../order/order.jsp">주문</a></button>
+					<button type="button"><a href="../order/orders.jsp">주문</a></button>
 				</div>
 			</div>
 			
 			<div>
-				<h3>이 책의 리뷰</h3>
-				<table class="table">
+				<h3>이 책의 리뷰 (<%=reviews.size() %>)</h3>
+				<table class="table bordered">
 					<% 
-						for (ReviewDTO review : reviews) {
+						if (reviews.isEmpty()) {
+					%>
+					<tbody>
+						<tr>
+							<td colspan="6">이 책에 등록된 리뷰가 아직 없습니다.</td>
+						</tr>
+					</tbody>
+					<%
+						} else {
+							for (ReviewDTO review : reviews) {
 					%>
 					<tbody>
 						<tr>
@@ -92,8 +104,8 @@
 						</tr>
 					</tbody>
 					<%
+							}
 						}
-					
 					%>
 				</table>
 			</div>
