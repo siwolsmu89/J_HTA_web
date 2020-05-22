@@ -37,3 +37,4 @@ VALUES
        			 		 (SELECT user_name FROM sample_book_users WHERE user_id = R.user_id) as user_name 
 				  FROM sample_book_reviews R 
 				  WHERE book_no =10061;
+                  

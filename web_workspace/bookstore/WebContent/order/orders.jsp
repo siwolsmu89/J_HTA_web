@@ -1,3 +1,9 @@
+<%@page import="com.bookstore.dto.OrderDTO"%>
+<%@page import="com.bookstore.vo.Order"%>
+<%@page import="com.bookstore.dao.OrderDAO"%>
+<%@page import="com.bookstore.vo.User"%>
+<%@page import="java.util.List"%>
+<%@page import="com.bookstore.dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,31 +26,96 @@
 			<h1>주문</h1>
 		</div>
 		
+		<%
+			UserDAO userDao = new UserDAO();
+			List<User> allUsers = userDao.getAllUsers();
+		%>
+		
 		<div class="body">
 			<div>
 				<h3>회원조회</h3>
-				<select>
-					<option />
-				</select>
+					<form>
+						<div class="form-group">
+						<%
+							if (!allUsers.isEmpty()) {
+						%> 
+							<select name="userid">
+							<option selected disabled> -- 회원명(회원아이디) 선택 -- </option>
+						<%
+								for (User user : allUsers) {	
+									String id = user.getId();
+									String name = user.getName();
+						%>
+							<option value=<%=id %>><%=name %> (<%=id %>)</option>
+						<%
+								}
+						%>
+							</select>
+						<%
+							} else {
+						%>
+							<p>등록된 사용자가 없습니다.</p>
+						<%
+							}
+						%>
+						</div>
+						<div class="text-right">
+							<button type="submit">조회</button>
+						</div>
+					</form>
 				
-				<h3>주문내역</h3>
+				<%
+					String userId = request.getParameter("userid");
+					if (userId != null) {
+				%>
+				<h3>"<%=userId %>" 회원님의 주문내역</h3>
+				
 				<table class="table bordered">
 					<thead>
 						<tr>
-							<th></th>
+							<th>주문번호</th>
+							<th>도서명</th>
+							<th>도서가격</th>
+							<th>주문수량</th>
+							<th>주문일자</th>
+							<th>리뷰작성</th>
 						</tr>
 					</thead>
-					
 					<tbody>
+				<%
+						OrderDAO orderDao = new OrderDAO();
+						List<OrderDTO> orders = orderDao.getOrdersById(userId);
+						if (!orders.isEmpty()) {
+							for (OrderDTO order : orders) {
+				%>
 						<tr>
-							<td></td>
+							<td><%=order.getNo() %></td>
+							<td><%=order.getBookTitle() %></td>
+							<td><%=order.getPrice() %></td>
+							<td><%=order.getAmount() %></td>
+							<td><%=order.getRegisteredDate() %></td>
+							<td>
+								<button type="button"><a href="/bookstore/review/reviewform.jsp?bookno=<%=order.getBookNo()%>">리뷰작성</a></button>
+							</td>
 						</tr>
+				<% 
+							}
+						} else {
+				%>
+						<tr>
+							<td colspan="6">주문 내역이 없습니다.</td>
+				<%
+						}  
+				%>
 					</tbody>
 				</table>
-			</div>
-			
-			<div class="text-right">
-				<button type="button"><a href="http://localhost/bookstore/review/reviewform.jsp">리뷰쓰기</a></button>
+				<%			
+					} else {
+				%>
+					<p> 조회를 원하시는 회원 아이디를 선택해주세요 </p>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		

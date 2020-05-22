@@ -70,10 +70,30 @@
 							<td><%=NumberUtil.numberWithComma(book.getStock()) %></td>
 						</tr>
 				</table>
+				<div>
+					<form action="/bookstore/order/form.jsp" method="post">
+						<input type="hidden" name="bookno" value=<%=book.getNo() %> />
+						<div class="form-group">
+							<input type="number" name="amount" />				
+						</div>
+						<div class="form-group text-right">
+						<% 
+							if (book.getStock()>0) {
+						%>
+							<button type="submit">주문</button>
+						<%
+							} else {
+						%>
+							<button type="submit" disabled>주문</button>
+						<%
+							}
+						%>
+						</div>
+					</form>				
+				</div>
 				
 				<div class="text-right">
 					<button type="button"><a href="/bookstore/book/books.jsp">전체 목록으로</a></button>
-					<button type="button"><a href="../order/orders.jsp">주문</a></button>
 				</div>
 			</div>
 			

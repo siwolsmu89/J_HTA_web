@@ -36,6 +36,7 @@
 							<th>제목</th>
 							<th>저자</th>
 							<th>가격</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,6 +49,19 @@
 							<td><a href="/bookstore/book/detail.jsp?bookno=<%=book.getNo() %>"><%=book.getTitle() %></a></td>
 							<td><%=book.getWriter() %></td>
 							<td><%=book.getPrice() %></td>
+							<td>
+							<% 
+									if (book.getStock()>0) {
+							%>
+										<a href="/bookstore/order/form.jsp?bookno=<%=book.getNo()%>&amount=1">바로구매</a>
+							<%
+									} else {
+							%>
+										<span style="color: crimson">재고없음</span>
+							<%
+									}
+							%>
+							</td>
 						</tr>
 						<% 
 								}
