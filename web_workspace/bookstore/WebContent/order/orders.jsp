@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.dao.ReviewDAO"%>
 <%@page import="com.bookstore.dto.OrderDTO"%>
 <%@page import="com.bookstore.vo.Order"%>
 <%@page import="com.bookstore.dao.OrderDAO"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>order/order</title>
+<title>order/orders</title>
 <link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
 </head>
 <body>
@@ -46,7 +47,7 @@
 									String id = user.getId();
 									String name = user.getName();
 						%>
-							<option value=<%=id %>><%=name %> (<%=id %>)</option>
+							<option value=<%=id %>><%=name %> (<%=id %>) </option>
 						<%
 								}
 						%>
@@ -87,6 +88,8 @@
 						List<OrderDTO> orders = orderDao.getOrdersById(userId);
 						if (!orders.isEmpty()) {
 							for (OrderDTO order : orders) {
+								ReviewDAO reviewDao = new ReviewDAO();
+								boolean isExist = reviewDao.isReviewExist(order.getBookNo(), order.getUserId());
 				%>
 						<tr>
 							<td><%=order.getNo() %></td>
@@ -94,11 +97,21 @@
 							<td><%=order.getPrice() %></td>
 							<td><%=order.getAmount() %></td>
 							<td><%=order.getRegisteredDate() %></td>
+				<%
+								if (isExist) {
+				%>
 							<td>
-								<button type="button"><a href="/bookstore/review/reviewform.jsp?bookno=<%=order.getBookNo()%>">리뷰작성</a></button>
+								<button type="button" disabled style="color: crimson;">리뷰작성</button>
+							</td>				
+				<%					
+								} else {
+				%>			
+							<td>
+								<button type="button"><a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>">리뷰작성</a></button>
 							</td>
 						</tr>
 				<% 
+								}
 							}
 						} else {
 				%>

@@ -1,0 +1,22 @@
+바로구매
+	- 요청 흐름
+		book/list.jsp -> order/form.jsp
+	- 요청 URL
+		order/form.jsp?bookno=책번호&amount=수량
+	- 요청처리
+		order/form.jsp
+			1. 요청파라미터 조회
+				bookno, amount 획득 : request.getParameter() 메소드 사용
+			2. 책정보 조회
+				BookDetailDTO 획득 : 1에서 획득한 bookno로 DB 조회
+			3. 주문하는 책 정보 표시
+				표에 책 정보 표시
+			4. 주문정보 폼 구성 (input)
+				책번호	 (type="hidden")
+				주문가격 (type="hidden") : 실질적으로 전달되는 주문가격
+				주문수량 (type="hidden") : 실질적으로 전달되는 주문수량
+				사용자	 (type="text")
+				주문가격 (type="text" disabled) : 'x,xxx 원'의 형태로 표시된다.
+				주문수량 (type="text" disabled) : 'x 권'의 형태로 표시된다.
+				* disabled 상태인 것들은 서버로 제출되지 않는다.
+			5. 책번호, 가격, 구매수량, 사용자아이디를 order/form.jsp로 제출

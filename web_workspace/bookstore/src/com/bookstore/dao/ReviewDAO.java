@@ -39,4 +39,22 @@ public class ReviewDAO {
 		
 		return reviews;
 	}
+	
+	public boolean isReviewExist(int bookNo, String userId) throws SQLException {
+		boolean isExist = false;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewByBookNo"));
+		pstmt.setInt(1, bookNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			if (userId.equals(rs.getString("user_id"))) {
+				isExist = true;
+				break;
+			}
+		}
+		
+		return isExist;
+	}
 }

@@ -73,18 +73,19 @@
 				<div>
 					<form action="/bookstore/order/form.jsp" method="post">
 						<input type="hidden" name="bookno" value=<%=book.getNo() %> />
-						<div class="form-group">
-							<input type="number" name="amount" />				
-						</div>
-						<div class="form-group text-right">
+						<div class="form-group" style="display:inline;">
 						<% 
 							if (book.getStock()>0) {
 						%>
-							<button type="submit">주문</button>
+							<label>구매수량</label>
+							<input type="number" name="amount" value=1 min=1 max=<%=book.getStock() %> style="width: 50px;" /> 권				
+							<button type="submit">주문하기</button>
 						<%
 							} else {
 						%>
-							<button type="submit" disabled>주문</button>
+							<label>구매수량</label>
+							<input type="number" name="amount" value=0 style="width: 50px;" disabled /> 권				
+							<button type="submit" disabled style="color: crimson;">주문하기</button>
 						<%
 							}
 						%>

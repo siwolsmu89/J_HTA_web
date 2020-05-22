@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>book/bookform</title>
+<title>book/form</title>
 <link rel="stylesheet" type="text/css" href="../css/bookstore.css" >
 </head>
 <body>
