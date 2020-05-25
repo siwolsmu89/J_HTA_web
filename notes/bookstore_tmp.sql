@@ -43,4 +43,15 @@ VALUES
 SELECT review_no, review_point, review_content, review_registered_date, user_id 
 						  FROM sample_book_reviews 
 						  WHERE user_id = 'kimmi' 
-						  ORDER BY review_no DESC
+						  ORDER BY review_no DESC;
+                          
+UPDATE sample_book_reviews 
+SET review_point = 3, 
+	review_content = '수정하기 테스트' 
+WHERE book_no = 10012 
+AND user_id = 'siwol_smu';
+
+commit;
+
+DELETE FROM sample_book_reviews
+WHERE book_no = 10012 AND user_id = 'siwol_smu';

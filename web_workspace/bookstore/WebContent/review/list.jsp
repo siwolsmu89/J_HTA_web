@@ -64,6 +64,10 @@
 							<td rowspan="3" colspan="6"><%=review.getContent() %></td>
 						</tr>
 				</table>
+				<div class="text-right">
+					<button type="button"><a href="form2.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>&point=<%=review.getPoint() %>">리뷰수정</a></button>
+					<button type="button"><a href="delete.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>">리뷰삭제</a></button>
+				</div>
 				<%
 						}
 					}

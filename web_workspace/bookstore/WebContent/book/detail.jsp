@@ -116,7 +116,7 @@
 					<tbody>
 						<tr>
 							<th>작성자</th>
-							<td><%=review.getUserName() %></td>
+							<td><a href="../review/list.jsp?userid=<%=review.getUserId() %>"><%=review.getUserName() %></a></td>
 							<th>평점</th>
 							<td><%=review.getPoint() %></td>
 							<th>작성일</th>

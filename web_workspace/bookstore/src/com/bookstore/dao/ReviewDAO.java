@@ -27,6 +27,7 @@ public class ReviewDAO {
 			
 			review.setNo(rs.getInt("review_no"));
 			review.setUserName(rs.getString("user_name"));
+			review.setUserId(rs.getString("user_id"));
 			review.setPoint(rs.getInt("review_point"));
 			review.setContent(rs.getString("review_content"));
 			review.setRegisteredDate(rs.getDate("review_registered_date"));
@@ -93,6 +94,30 @@ public class ReviewDAO {
 		pstmt.setString(2, review.getUserId());
 		pstmt.setString(3, review.getContent());
 		pstmt.setInt(4, review.getPoint());
+		
+		pstmt.executeUpdate();
+		pstmt.close();
+		connection.close();
+	}
+	
+	public void updateReview(Review review) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.updateReview"));
+		pstmt.setInt(1, review.getPoint());
+		pstmt.setString(2, review.getContent());
+		pstmt.setInt(3, review.getBookNo());
+		pstmt.setString(4, review.getUserId());
+		
+		pstmt.executeUpdate();
+		pstmt.close();
+		connection.close();
+	}
+	
+	public void deleteReview(int bookNo, String userId) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.deleteReview"));
+		pstmt.setInt(1, bookNo);
+		pstmt.setString(2, userId);
 		
 		pstmt.executeUpdate();
 		pstmt.close();
