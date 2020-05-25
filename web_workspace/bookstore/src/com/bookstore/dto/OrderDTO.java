@@ -8,6 +8,7 @@ public class OrderDTO {
 	private int bookNo;
 	private String bookTitle;
 	private String userId;
+	private String userName;
 	private int price;
 	private int amount;
 	private Date registeredDate;
@@ -47,6 +48,14 @@ public class OrderDTO {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public int getPrice() {

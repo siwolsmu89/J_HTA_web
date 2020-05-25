@@ -62,6 +62,7 @@
 						%>
 						</div>
 						<div class="text-right">
+							<a href="all.jsp"><button type="button">전체목록</button></a>
 							<button type="submit">조회</button>
 						</div>
 					</form>
@@ -83,7 +84,8 @@
 							<th>주문수량</th>
 							<th>결제금액</th>
 							<th>주문일자</th>
-							<th>리뷰작성</th>
+							<th>리뷰</th>
+							<th>추천</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -105,22 +107,32 @@
 								if (order.getReviewNo() != -1) {
 				%>
 							<td>
-								<button type="button" disabled style="color: crimson;">작성완료</button>
+								<button type="button" disabled>완료</button>
 							</td>				
 				<%					
 								} else {
 				%>			
 							<td>
-								<a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>"><button type="button">리뷰작성</button></a>
+								<a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>"><button type="button" style="color: red;">작성</button></a>
 							</td>
 						</tr>
 				<% 
 								}
+							   if (!order.isLiked()) {
+								   // 이거부터 계속하면됨
+				%>
+								   <td>추천수</td>
+				<%			   } else {
+				%>
+									<td>추천내역이 없습니다</td>
+				<%
+							   }
+				
 							}
 						} else {
 				%>		
 						<tr>
-							<td colspan="7">주문 내역이 없습니다.</td>
+							<td colspan="8">주문 내역이 없습니다.</td>
 				<%
 						}  
 				%>

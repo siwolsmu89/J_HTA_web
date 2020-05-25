@@ -10,10 +10,14 @@
 <head>
 <meta charset="UTF-8">
 <title>order/all</title>
+<link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
 </head>
 <body>
 	<div class="wrapper">
 		<div class="navi">
+			<%
+				String position = "order";
+			%>
 			<%@ include file="../common/navibar.jsp" %>
 		</div>
 		
@@ -35,7 +39,6 @@
 							<th>주문수량</th>
 							<th>결제금액</th>
 							<th>주문일자</th>
-							<th>리뷰작성</th>
 						</tr>
 					</thead>
 					
@@ -49,27 +52,13 @@
 				%>
 						<tr>
 							<td><%=order.getNo() %></td>
-							<td><%=order.getUserName() %></td>
+							<td><a href="../order/list.jsp?userid=<%=order.getUserId() %>"><%=order.getUserName() %></a></td>
 							<td><a href="../book/detail.jsp?bookno=<%=order.getBookNo() %>"><%=order.getBookTitle() %></a></td>
 							<td><%=NumberUtil.numberWithComma(order.getPrice()) %> 원</td>
 							<td><%=NumberUtil.numberWithComma(order.getAmount()) %> 권</td>
 							<td><%=NumberUtil.numberWithComma(order.getPrice() * order.getAmount()) %> 원</td>
 							<td><%=order.getRegisteredDate() %></td>
-				<%
-								if (order.getReviewNo() != -1) {
-				%>
-							<td>
-								<button type="button" disabled style="color: crimson;">작성완료</button>
-							</td>				
-				<%					
-								} else {
-				%>			
-							<td>
-								<a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>"><button type="button">리뷰작성</button></a>
-							</td>
-						</tr>
 				<% 
-								}
 							}
 						} else {
 				%>		
