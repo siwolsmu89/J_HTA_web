@@ -30,15 +30,16 @@
 			<form action="add.jsp" method="post">
 				<div class="form-group">
 					<label>책 번호</label>
-					<input type="text" name="bookno" value="<%=bookNo %>" disabled>
+					<input type="text" value="<%=bookNo %>" disabled />
 				</div>
 				<div class="form-group">
 					<label>작성자 ID</label>
-					<input type="text" name="userid" value="<%=userId %>" disabled>
+					<input type="text" value="<%=userId %>" disabled />
 				</div>
 				<div class="form-group">
 					<label>평점</label>
 					<select name="point">
+						<option selected disabled>-- 평점을 선택하세요 --</option>
 						<option value="5">5점</option>
 						<option value="4">4점</option>
 						<option value="3">3점</option>
@@ -50,6 +51,10 @@
 				<div class="form-group">
 					<label>리뷰 내용</label>
 					<textarea name="content" style="height: 150px;" placeholder="리뷰 작성에 참여해주셔서 감사합니다."></textarea>
+				</div>
+				<div>
+					<input type="hidden" name="bookno" value="<%=bookNo %>" />
+					<input type="hidden" name="userid" value="<%=userId %>" />
 				</div>
 				<div class="form-group text-right">
 					<button type="submit">리뷰 등록</button>

@@ -38,3 +38,9 @@ VALUES
 				  FROM sample_book_reviews R 
 				  WHERE book_no =10061;
                   
+
+
+SELECT review_no, review_point, review_content, review_registered_date, user_id 
+						  FROM sample_book_reviews 
+						  WHERE user_id = 'kimmi' 
+						  ORDER BY review_no DESC

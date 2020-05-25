@@ -1,3 +1,7 @@
+<%@page import="com.bookstore.dto.OrderDTO"%>
+<%@page import="com.bookstore.dao.OrderDAO"%>
+<%@page import="com.bookstore.dto.ReviewDTO"%>
+<%@page import="com.bookstore.dao.ReviewDAO"%>
 <%@page import="com.bookstore.dao.UserDAO"%>
 <%@page import="com.bookstore.vo.User"%>
 <%@page import="java.util.List"%>
@@ -26,34 +30,60 @@
 		<%
 			UserDAO userDao = new UserDAO();
 			List<User> allUsers = userDao.getAllUsers();
+			OrderDAO orderDao = new OrderDAO();
 		%>
 		
 		<div class="body">
 			<div>
-				<h3>사용자 리스트</h3>
+				<h3>전체 사용자 목록</h3>
 				<table class="table">
 					<thead>
 						<tr>
 							<th>ID</th>
 							<th>이름</th>
 							<th>이메일</th>
-							<th>포인트</th>
-							<th>등록일</th>
+							<th>누적포인트</th>
+							<th>가입일</th>
+							<th>리뷰보기</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							if (!allUsers.isEmpty()) {
 								for (User user : allUsers) {
+									
 						%>
 							<tr>
+						<%
+										List<OrderDTO> orders = orderDao.getOrdersById(user.getId());
+										if (!orders.isEmpty()) {
+						%>
+								<td><a href="../order/list.jsp?userid=<%=user.getId() %>"><%=user.getId() %></a></td>
+								<td><a href="../order/list.jsp?userid=<%=user.getId() %>"><%=user.getName() %></a></td>
+						<%
+										} else {
+						%>
 								<td><%=user.getId() %></td>
 								<td><%=user.getName() %></td>
+						<% 
+										}
+						%>
 								<td><%=user.getEmail() %></td>
 								<td><%=user.getPoint() %></td>
 								<td><%=user.getRegisteredDate() %></td>
+						<%
+									ReviewDAO reviewDao = new ReviewDAO();
+									List<ReviewDTO> reviews = reviewDao.getReviewsByUserId(user.getId());
+									if (!reviews.isEmpty()){
+						%>
+								<td><a href="../review/list.jsp?userid=<%=user.getId() %>"><button type="button">리뷰 (<%=reviews.size() %>)</button></a></td>
+						<%
+									} else {
+						%>
+								<td><button type="button" style="color: red;" disabled>리뷰 (0)</button></td>
 							</tr>								
 						<%			
+									}
 								}
 							} else {
 						%>

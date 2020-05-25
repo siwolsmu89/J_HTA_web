@@ -17,5 +17,5 @@
 	OrderDAO orderDao = new OrderDAO();
 	orderDao.addOrder(order);
 	
-	response.sendRedirect("/bookstore/order/completed.jsp");
+	response.sendRedirect("/bookstore/order/completed.jsp?userid="+userId);
 %>

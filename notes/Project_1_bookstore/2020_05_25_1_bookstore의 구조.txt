@@ -1,0 +1,98 @@
+홈화면
+	요청 URL
+		/bookstore/home.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행 작업
+		가장 최근에 등록된 책과 가장 최근에 가입한 사용자를 조회한 후, HTML 컨텐츠 응답을 제공
+
+도서 상세정보 화면
+	요청 URL
+		/bookstore/book/detail.jsp?bookno=책번호
+	요청방식
+		GET
+	요청파라미터
+		bookno
+	jsp의 수행 작업
+		요청파라미터로 전달된 책 번호 획득
+		책 번호에 해당하는 책의 상세 정보와 책 번호에 대한 리뷰 정보를 조회한 후 HTML 컨텐츠 응답을 제공
+
+
+도서목록 화면
+	요청 URL
+		/bookstore/book/list.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행 작업
+		모든 책정보를 책번호의 역순으로 조회해서 HTML 컨텐츠 응답을 제공
+
+새 책 등록화면
+	요청 URL
+		/bookstore/book/form.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행작업
+		입력폼 HTML컨텐츠 응답을 제공
+
+책 등록 요청
+	요청 URL
+		/bookstore/book/register.jsp
+	요청방식
+		POST
+	요청파라미터
+		title, writer, genre, publisher, price, discountprice, stock
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		Book 객체를 생성해서 책정보 담기
+		BookDao의 insertBook(Book book)을 실행해서 DB에 책정보 저장
+		재요청할 URL(list.jsp)을 응답으로 제공
+
+바로구매 요청
+	요청 URL
+		/bookstore/order/form.jsp?bookno=책번호&amount=1
+	요청방식
+		GET
+	요청파라미터
+		bookno, amount
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		책정보를 조회한 후, 주문할 책에 대한 정보와 구매자, 구매가격, 구매수량, 결제하기 버튼 등이 포함된 주문하기 폼을 HTML 컨텐츠로 제공
+
+결제요청
+	요청 URL
+		/bookstore/order/order.jsp
+	요청방식
+		POST
+	요청파라미터
+		userid, bookno, price, amount
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		Order 객체 생성, 주문 정보 저장
+		재요청할 URL("completed.jsp")을 응답으로 제공
+
+사용자 리스트화면 요청
+	요청 URL
+		/bookstore/user/list.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행 작업
+		모든 사용자 정보를 조회한 후 HTML컨텐츠 화면 응답
+
+사용자 주문내역 화면 요청
+	요청 URL
+		/bookstore/order/list.jsp?userid=사용자아이디
+	요청방식
+		GET
+	요청파라미터
+		userid
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		사용자 아이디에 해당하는 사용자의 정보와 모든 주문내역을 역순으로 조회해서 HTML 컨텐츠 응답

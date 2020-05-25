@@ -94,7 +94,7 @@
 				</div>
 				
 				<div class="text-right">
-					<button type="button"><a href="/bookstore/book/books.jsp">전체 목록으로</a></button>
+					<button type="button"><a href="/bookstore/book/list.jsp">전체 목록으로</a></button>
 				</div>
 			</div>
 			

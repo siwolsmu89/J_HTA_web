@@ -5,13 +5,42 @@ import java.util.Date;
 public class ReviewDTO {
 
 	private int no;
+	private String userId;
 	private String userName;
+	private int bookNo;
+	private String bookTitle;
 	private int point;
 	private String content;
 	private Date registeredDate;
 	
 	public ReviewDTO() {
 		
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getBookNo() {
+		return bookNo;
+	}
+
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
+	}
+
+	public String getBookTitle() {
+		return bookTitle;
+	}
+
+
+
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
 
 	public int getNo() {

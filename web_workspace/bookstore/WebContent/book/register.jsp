@@ -25,5 +25,5 @@
 	BookDAO bookDao = new BookDAO();
 	bookDao.addNewBook(book);
 	
-	response.sendRedirect("/bookstore/book/books.jsp");
+	response.sendRedirect("/bookstore/book/list.jsp");
 %>

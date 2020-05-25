@@ -53,7 +53,7 @@
 			</div>
 			
 			<div class="well">
-				<form action="add.jsp" method="post">
+				<form action="order.jsp" method="post">
 					<div class="form-group">
 						<label>주문자ID</label>
 						<input type="text" name="userid" />

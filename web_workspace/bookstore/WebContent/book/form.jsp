@@ -23,7 +23,7 @@
 		<div class="body">
 			<h3>신규등록할 도서의 정보를 입력하세요</h3>
 			<div class="well">
-				<form action="add.jsp" method="post">
+				<form action="register.jsp" method="post">
 					<div  class="form-group">
 						<label>제목</label>
 						<input type="text" name="title" />

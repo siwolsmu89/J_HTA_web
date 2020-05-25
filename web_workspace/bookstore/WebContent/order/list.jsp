@@ -34,7 +34,7 @@
 		
 		<div class="body">
 			<div>
-				<h3>회원조회</h3>
+				<h3>회원별 주문 목록</h3>
 					<form>
 						<div class="form-group">
 						<%
@@ -68,8 +68,10 @@
 				<%
 					String userId = request.getParameter("userid");
 					if (userId != null) {
+						User user = userDao.getUserById(userId);
 				%>
-				<h3>"<%=userId %>" 회원님의 주문내역</h3>
+				<h3>[<%=user.getName() %>] 회원님의 주문내역</h3>
+				<p>누적포인트 : <strong><%=user.getPoint() %></strong> 점</p>
 				
 				<table class="table bordered">
 					<thead>
@@ -78,6 +80,7 @@
 							<th>도서명</th>
 							<th>도서가격</th>
 							<th>주문수량</th>
+							<th>결제금액</th>
 							<th>주문일자</th>
 							<th>리뷰작성</th>
 						</tr>
@@ -93,9 +96,10 @@
 				%>
 						<tr>
 							<td><%=order.getNo() %></td>
-							<td><%=order.getBookTitle() %></td>
+							<td><a href="../book/detail.jsp?bookno=<%=order.getBookNo() %>"><%=order.getBookTitle() %></a></td>
 							<td><%=order.getPrice() %></td>
 							<td><%=order.getAmount() %></td>
+							<td><%=order.getAmount() * order.getPrice() %></td>
 							<td><%=order.getRegisteredDate() %></td>
 				<%
 								if (isExist) {
@@ -116,7 +120,7 @@
 						} else {
 				%>
 						<tr>
-							<td colspan="6">주문 내역이 없습니다.</td>
+							<td colspan="7">주문 내역이 없습니다.</td>
 				<%
 						}  
 				%>

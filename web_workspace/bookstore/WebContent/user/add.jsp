@@ -19,5 +19,5 @@
 	UserDAO userDao = new UserDAO();
 	userDao.addUser(user);
 
-	response.sendRedirect("/bookstore/user/users.jsp");
+	response.sendRedirect("/bookstore/user/list.jsp");
 %>
