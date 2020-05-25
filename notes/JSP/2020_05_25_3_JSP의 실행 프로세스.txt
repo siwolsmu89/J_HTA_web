@@ -1,0 +1,24 @@
+JSP의 실행 프로세스
+	1. 브라우저의 주소창에 http://localhost/bookstore/home.jsp를 입력한다.
+	2. 브라우저는 주소창에 입력된 URL을 요청URL로 가지는 요청메시지를 생성한다.
+	3. 브라우저는 서버와 연결을 시도하고, 연결이 완료되면 요청메시지를 서버로 보낸다.
+	4. 서버는 요청메시지를 받으면 즉시 요청객체(HttpServletRequest)와 응답객체(HttpServletResponse)를 생성한다.
+	5. 서버는 요청메시지를 분석해서
+		요청정보(요청방식, 요청URL, 프로토콜버전),
+		요청헤더정보(클라이언트 정보),
+		요청파라미터 정보(클라이언트가 서버로 보내는 데이터)를 요청객체에 저장한다.
+	6. 서버는 home.jsp를 home_jsp.java로 변환한다.
+	   public class home_jsp extends JspBase {
+		public void _jspInit() { ... }
+		public void _jspDestroy() { ... }
+		public void _jspService(HttpServletRequest request, HttpServletResponse response) {
+			// JSP 기본객체를 초기화하는 수행문;
+			// JSP 파일을 자바로 변환하는 코드;
+		}
+	   }
+	7. 서버는 home_jsp.java를 home_jsp.class로 컴파일한다.
+	8. 서버는 home_jsp.class를 메모리로 로딩해서 객체를 생성한다.
+	9. 서버는 _jspService(request, response) 메소드를 호출한다.
+	   4번에서 생성한 요청객체와 응답객체를 _jspService의 request와 response에 전달한다.
+	10. _jspService(request, response) 메소드가 실행된다.
+	    JSP 파일의 스크립틀릿에 정의한 자바코드가 수행되고, JSP의 HTML 코드가 클라이언트로 전송된다.

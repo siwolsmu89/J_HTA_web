@@ -11,6 +11,7 @@ public class OrderDTO {
 	private int price;
 	private int amount;
 	private Date registeredDate;
+	private int reviewNo;
 	
 	public OrderDTO() {
 		
@@ -70,6 +71,14 @@ public class OrderDTO {
 
 	public void setRegisteredDate(Date registeredDate) {
 		this.registeredDate = registeredDate;
+	}
+
+	public int getReviewNo() {
+		return reviewNo;
+	}
+
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
 	}
 	
 }

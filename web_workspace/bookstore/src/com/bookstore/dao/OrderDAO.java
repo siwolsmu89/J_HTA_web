@@ -13,7 +13,7 @@ import com.bookstore.util.QueryUtil;
 import com.bookstore.vo.Order;
 
 public class OrderDAO {
-
+	
 	public List<OrderDTO> getOrdersById(String userId) throws SQLException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 		
@@ -32,6 +32,7 @@ public class OrderDAO {
 			order.setPrice(rs.getInt("order_price"));
 			order.setAmount(rs.getInt("order_amount"));
 			order.setRegisteredDate(rs.getDate("order_registered_date"));
+			order.setReviewNo(rs.getInt("review_no"));
 			
 			orders.add(order);
 		}

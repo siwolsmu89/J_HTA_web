@@ -93,7 +93,6 @@
 						if (!orders.isEmpty()) {
 							for (OrderDTO order : orders) {
 								ReviewDAO reviewDao = new ReviewDAO();
-								boolean isExist = reviewDao.isReviewExist(order.getBookNo(), order.getUserId());
 				%>
 						<tr>
 							<td><%=order.getNo() %></td>
@@ -103,10 +102,10 @@
 							<td><%=NumberUtil.numberWithComma(order.getPrice() * order.getAmount()) %> 원</td>
 							<td><%=order.getRegisteredDate() %></td>
 				<%
-								if (isExist) {
+								if (order.getReviewNo() != -1) {
 				%>
 							<td>
-								<button type="button" disabled style="color: crimson;">리뷰작성</button>
+								<button type="button" disabled style="color: crimson;">작성완료</button>
 							</td>				
 				<%					
 								} else {
@@ -119,7 +118,7 @@
 								}
 							}
 						} else {
-				%>
+				%>		
 						<tr>
 							<td colspan="7">주문 내역이 없습니다.</td>
 				<%

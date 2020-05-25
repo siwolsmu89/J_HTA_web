@@ -55,3 +55,16 @@ commit;
 
 DELETE FROM sample_book_reviews
 WHERE book_no = 10012 AND user_id = 'siwol_smu';
+
+SELECT order_no, user_id, book_no, order_price, order_amount, order_registered_date, 
+       (SELECT book_title FROM sample_books WHERE book_no = O.book_no) AS book_title, 
+       NVL((SELECT review_no FROM sample_book_reviews WHERE book_no = O.book_no AND user_id = O.user_id),-1) AS review_no 
+FROM sample_book_orders O 
+WHERE user_id = 'kimmi'
+ORDER BY order_no DESC;
+                    
+SELECT O.order_no, O.user_id, O.book_no, B.book_title, R.review_no
+FROM sample_book_orders O, sample_books B, sample_book_reviews R
+WHERE O.book_no = B.book_no
+AND R.book_no = O.book_no
+AND O.user_id = 'kimmi';
