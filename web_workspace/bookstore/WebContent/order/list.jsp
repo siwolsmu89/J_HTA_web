@@ -113,22 +113,26 @@
 								} else {
 				%>			
 							<td>
-								<a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>"><button type="button" style="color: red;">작성</button></a>
+								<a href="/bookstore/review/form.jsp?bookno=<%=order.getBookNo()%>&userid=<%=order.getUserId()%>"><button type="button">작성</button></a>
 							</td>
-						</tr>
 				<% 
 								}
-							   if (!order.isLiked()) {
-								   // 이거부터 계속하면됨
+				
+							   int likes = order.getLike();
+							   if (likes!=0) {
 				%>
-								   <td>추천수</td>
+								   <td><button type="button" disabled>완료</button></td>
+								   
 				<%			   } else {
 				%>
-									<td>추천내역이 없습니다</td>
+									<td><a href="../book/like.jsp?bookno=<%=order.getBookNo() %>&userid=<%=order.getUserId() %>"><button type="button">추천</button></a></td>
 				<%
 							   }
 				
 							}
+				%>
+						</tr>
+				<%			
 						} else {
 				%>		
 						<tr>

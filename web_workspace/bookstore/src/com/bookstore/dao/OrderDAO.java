@@ -33,6 +33,7 @@ public class OrderDAO {
 			order.setAmount(rs.getInt("order_amount"));
 			order.setRegisteredDate(rs.getDate("order_registered_date"));
 			order.setReviewNo(rs.getInt("review_no"));
+			order.setLike(rs.getInt("my_like"));
 			
 			orders.add(order);
 		}
@@ -63,6 +64,7 @@ public class OrderDAO {
 			order.setAmount(rs.getInt("order_amount"));
 			order.setRegisteredDate(rs.getDate("order_registered_date"));
 			order.setReviewNo(rs.getInt("review_no"));
+			order.setLike(rs.getInt("my_like"));
 			
 			orders.add(order);
 		}

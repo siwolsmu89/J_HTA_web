@@ -13,6 +13,7 @@ public class OrderDTO {
 	private int amount;
 	private Date registeredDate;
 	private int reviewNo;
+	private int like;
 	
 	public OrderDTO() {
 		
@@ -88,6 +89,14 @@ public class OrderDTO {
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
+	}
+
+	public int getLike() {
+		return like;
+	}
+
+	public void setLike(int like) {
+		this.like = like;
 	}
 	
 }
