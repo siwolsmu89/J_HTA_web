@@ -19,7 +19,6 @@
 		요청파라미터로 전달된 책 번호 획득
 		책 번호에 해당하는 책의 상세 정보와 책 번호에 대한 리뷰 정보를 조회한 후 HTML 컨텐츠 응답을 제공
 
-
 도서목록 화면
 	요청 URL
 		/bookstore/book/list.jsp
@@ -121,3 +120,96 @@
 		Review 객체를 생성해서 리뷰정보 담기
 		ReviewDao의 insertReview(Review review)를 실행해서 리뷰정보를 DB에 저장
 		재요청할 URL("../book/detail.jsp?bookno=책번호")을 응답으로 제공
+
+
+--05/25 과제 요구사항--
+
+모든 주문내역 조회 요청
+	요청 URL
+		/bookstore/order/all.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행작업
+		모든 주문내역정보를 조회해서 HTML 컨텐츠 응답으로 제공
+		(주문번호, 사용자명, 제목, 주문가격, 구매수량, 결제금액, 주문날짜)
+
+추천하기 요청
+	요청URL
+		/bookstore/book/like.jsp?bookno-책번호&userid=사용자아이디
+	요청방식
+		GET
+	요청파라미터
+		bookno, userid
+	jsp의 수행작업
+		요청파라미터 정보 획득
+		Like 객체 생성하고 추천정보 저장
+		LikeDAO의 insertLike(Like like) 실행해서 추천정보 저장하기
+		재요청할 URL("../book/detail.jsp?bookno=책번호")을 응답으로 제공
+		
+
+자유게시판
+	테이블
+		sample_book_boards
+			board_no,			글번호
+			board_title,			제목
+			board_writer,			작성자
+			board_content,			내용
+			board_password,			비밀번호(수정, 삭제시 필요)
+			board_hit,			조회수
+			board_registered_date		등록일
+		sample_book_board_replys
+			reply_no,			댓글번호
+			reply_writer,			작성자
+			reply_content,			내용
+			reply_password,			비밀번호
+			reply_registered_date,		등록일
+			board_no			댓글이 달린 게시글 번호
+
+모든 게시글 요청
+	요청 URL
+		/bookstore/board/list.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행작업
+		모든 게시글 정보를 게시글번호의 역순으로 조회해서 HTML 컨텐츠 응답으로 제공
+		(글번호, 제목, 작성자, 조회수, 등록일을 출력)
+
+게시글 등록화면 요청
+	요청 URL
+		/bookstore/board/form.jsp
+	요청방식
+		GET
+	요청파라미터
+		없음
+	jsp의 수행작업
+		제목, 작성자, 내용, 글비밀번호를 입력하는 입력폼(비밀번호는 숫자 4자리로 제한)을 HTML 응답으로 제공
+
+게시글 등록 요청
+	요청 URL
+		/bookstore/board/register.jsp
+	요청방식
+		POST
+	요청파라미터
+		title, writer, content, password
+	jsp의 수행작업
+		요청파라미터 획득
+		Board 객체 생성 후, 게시글 정보를 저장
+		BoardDao의 insertBoard(Board board) 메소드를 실행해서 DB에 저장
+		재요청할 URL("list.jsp")을 응답으로 제공
+		
+게시글 상세정보 요청
+	요청 URL
+		/bookstore/board/detail.jsp?boardno=글번호 (게시글 목록에서 제목을 누를 때 링크 실행)
+	요청방식
+		GET
+	요청파라미터
+		boardno
+	jsp의 수행작업
+		요청파라미터 획득
+		획득된 글번호에 해당하는 게시글 정보 조회  --> Board
+		획득된 글번호의 게시글과 관련된 댓글 전부 조회 --> List<Reply>
+		HTML 컨텐츠 응답 제공 (Book 상세정보 화면과 같은 모양으로 구성)

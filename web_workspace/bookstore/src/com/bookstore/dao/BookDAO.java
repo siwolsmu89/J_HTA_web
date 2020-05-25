@@ -93,6 +93,7 @@ public class BookDAO {
 			book.setStock(rs.getInt("book_stock"));
 			book.setPoint(rs.getDouble("book_point"));
 			book.setLikes(rs.getInt("book_likes"));
+			book.setReviewCount(rs.getInt("review_count"));
 		}
 		
 		rs.close();

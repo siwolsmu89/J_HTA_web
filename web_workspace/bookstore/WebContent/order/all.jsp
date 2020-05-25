@@ -1,26 +1,19 @@
 <%@page import="com.bookstore.util.NumberUtil"%>
 <%@page import="com.bookstore.dao.ReviewDAO"%>
 <%@page import="com.bookstore.dto.OrderDTO"%>
-<%@page import="com.bookstore.vo.Order"%>
-<%@page import="com.bookstore.dao.OrderDAO"%>
-<%@page import="com.bookstore.vo.User"%>
 <%@page import="java.util.List"%>
-<%@page import="com.bookstore.dao.UserDAO"%>
+<%@page import="com.bookstore.dao.OrderDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>order/orders</title>
-<link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
+<title>order/all</title>
 </head>
 <body>
 	<div class="wrapper">
 		<div class="navi">
-			<%
-				String position = "order";
-			%>
 			<%@ include file="../common/navibar.jsp" %>
 		</div>
 		
@@ -28,56 +21,15 @@
 			<h1>주문</h1>
 		</div>
 		
-		<%
-			UserDAO userDao = new UserDAO();
-			List<User> allUsers = userDao.getAllUsers();
-		%>
-		
 		<div class="body">
 			<div>
-				<h3>회원별 주문 목록</h3>
-					<form>
-						<div class="form-group">
-						<%
-							if (!allUsers.isEmpty()) {
-						%> 
-							<select name="userid">
-							<option selected disabled> -- 회원명(회원아이디) 선택 -- </option>
-						<%
-								for (User user : allUsers) {	
-									String id = user.getId();
-									String name = user.getName();
-						%>
-							<option value=<%=id %>><%=name %> (<%=id %>) </option>
-						<%
-								}
-						%>
-							</select>
-						<%
-							} else {
-						%>
-							<p>등록된 사용자가 없습니다.</p>
-						<%
-							}
-						%>
-						</div>
-						<div class="text-right">
-							<button type="submit">조회</button>
-						</div>
-					</form>
-				
-				<%
-					String userId = request.getParameter("userid");
-					if (userId != null) {
-						User user = userDao.getUserById(userId);
-				%>
-				<h3>[<%=user.getName() %>] 회원님의 주문내역</h3>
-				<p>누적포인트 : <strong><%=user.getPoint() %></strong> 점</p>
+				<h3>모든 주문 정보</h3>
 				
 				<table class="table bordered">
 					<thead>
 						<tr>
 							<th>주문번호</th>
+							<th>사용자명</th>
 							<th>도서명</th>
 							<th>도서가격</th>
 							<th>주문수량</th>
@@ -86,16 +38,18 @@
 							<th>리뷰작성</th>
 						</tr>
 					</thead>
-					<tbody>
+					
+						<tbody>
 				<%
 						OrderDAO orderDao = new OrderDAO();
-						List<OrderDTO> orders = orderDao.getOrdersById(userId);
+						List<OrderDTO> orders = orderDao.getAllOrders();
 						if (!orders.isEmpty()) {
 							for (OrderDTO order : orders) {
 								ReviewDAO reviewDao = new ReviewDAO();
 				%>
 						<tr>
 							<td><%=order.getNo() %></td>
+							<td><%=order.getUserName() %></td>
 							<td><a href="../book/detail.jsp?bookno=<%=order.getBookNo() %>"><%=order.getBookTitle() %></a></td>
 							<td><%=NumberUtil.numberWithComma(order.getPrice()) %> 원</td>
 							<td><%=NumberUtil.numberWithComma(order.getAmount()) %> 권</td>
@@ -126,13 +80,6 @@
 				%>
 					</tbody>
 				</table>
-				<%			
-					} else {
-				%>
-					<p> 조회를 원하시는 회원 아이디를 선택해주세요 </p>
-				<%
-					}
-				%>
 			</div>
 		</div>
 		

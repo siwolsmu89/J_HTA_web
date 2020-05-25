@@ -3,6 +3,7 @@ package com.bookstore.vo;
 import java.util.Date;
 
 public class Review {
+	
 	private int no;
 	private String content;
 	private int point;

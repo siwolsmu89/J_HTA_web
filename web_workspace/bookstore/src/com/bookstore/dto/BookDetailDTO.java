@@ -3,6 +3,7 @@ package com.bookstore.dto;
 import java.util.Date;
 
 public class BookDetailDTO {
+
 	private int no;
 	private String title;
 	private String writer;

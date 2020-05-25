@@ -36,6 +36,7 @@ public class OrderDAO {
 			
 			orders.add(order);
 		}
+		
 		rs.close();
 		pstmt.close();
 		connection.close();

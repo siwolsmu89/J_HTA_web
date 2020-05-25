@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.dao.BookDAO"%>
 <%@page import="com.bookstore.dao.ReviewDAO"%>
 <%@page import="com.bookstore.vo.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,6 +19,9 @@
 	
 	ReviewDAO reviewDao = new ReviewDAO();
 	reviewDao.updateReview(review);
+	
+	BookDAO bookDao = new BookDAO();
+	// bookDao.updatePoint();
 	
 	String redirect = "../book/detail.jsp?bookno=" + bookNo;
 	response.sendRedirect(redirect);

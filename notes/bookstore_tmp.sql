@@ -63,8 +63,19 @@ FROM sample_book_orders O
 WHERE user_id = 'kimmi'
 ORDER BY order_no DESC;
                     
-SELECT O.order_no, O.user_id, O.book_no, B.book_title, R.review_no
+-- 위의 방법과 결과는 같음 : 포괄조인을 사용해서 가져오기
+SELECT O.order_no, O.user_id, O.book_no, B.book_title, NVL(R.review_no, -1)
 FROM sample_book_orders O, sample_books B, sample_book_reviews R
 WHERE O.book_no = B.book_no
-AND R.book_no = O.book_no
+AND O.book_no = R.book_no(+)
 AND O.user_id = 'kimmi';
+
+SELECT O.order_no, O.user_id, O.book_no, B.book_title, NVL2(R.review_no, 'Y', 'N') AS REVIEW_EXIST
+FROM sample_book_orders O, sample_books B, sample_book_reviews R
+WHERE O.book_no = B.book_no
+AND O.book_no = R.book_no(+)
+AND O.user_id = 'kimmi';
+
+UPDATE sample_book_reviews
+    SET review_point=0
+WHERE book_no = 10100 AND user_id='Neena';
