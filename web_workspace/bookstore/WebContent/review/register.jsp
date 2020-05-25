@@ -19,6 +19,6 @@
 	ReviewDAO reviewDao = new ReviewDAO();
 	reviewDao.addReview(review);
 	
-	String redirect = "list.jsp?userid=" + userId;
+	String redirect = "../book/detail.jsp?bookno=" + bookNo;
 	response.sendRedirect(redirect);
 %>

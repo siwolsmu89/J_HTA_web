@@ -96,3 +96,28 @@
 	jsp의 수행 작업
 		요청파라미터 정보 획득
 		사용자 아이디에 해당하는 사용자의 정보와 모든 주문내역을 역순으로 조회해서 HTML 컨텐츠 응답
+
+리뷰쓰기 화면 요청
+	요청 URL
+		/bookstore/review/form.jsp?userid=사용자아이디&bookno=책번호
+	요청방식
+		GET
+	요청파라미터
+		userid, bookno
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		책번호에 해당하는 책정보 조회
+		리뷰쓰기 입력폼 HTML 컨텐츠를 응답으로 제공
+
+리뷰등록 요청
+	요청 URL 
+		/bookstore/review/register.jsp
+	요청방식
+		POST
+	요청파라미터
+		bookno, userid, point, content
+	jsp의 수행 작업
+		요청파라미터 정보 획득
+		Review 객체를 생성해서 리뷰정보 담기
+		ReviewDao의 insertReview(Review review)를 실행해서 리뷰정보를 DB에 저장
+		재요청할 URL("../book/detail.jsp?bookno=책번호")을 응답으로 제공

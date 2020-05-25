@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.NumberUtil"%>
 <%@page import="com.bookstore.dao.ReviewDAO"%>
 <%@page import="com.bookstore.dto.OrderDTO"%>
 <%@page import="com.bookstore.vo.Order"%>
@@ -97,9 +98,9 @@
 						<tr>
 							<td><%=order.getNo() %></td>
 							<td><a href="../book/detail.jsp?bookno=<%=order.getBookNo() %>"><%=order.getBookTitle() %></a></td>
-							<td><%=order.getPrice() %></td>
-							<td><%=order.getAmount() %></td>
-							<td><%=order.getAmount() * order.getPrice() %></td>
+							<td><%=NumberUtil.numberWithComma(order.getPrice()) %> 원</td>
+							<td><%=NumberUtil.numberWithComma(order.getAmount()) %> 권</td>
+							<td><%=NumberUtil.numberWithComma(order.getPrice() * order.getAmount()) %> 원</td>
 							<td><%=order.getRegisteredDate() %></td>
 				<%
 								if (isExist) {
