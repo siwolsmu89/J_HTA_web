@@ -64,20 +64,85 @@ public class BoardDAO {
 		return allBoards;
 	}
 	
-	public List<Board> getBoardsBySearch(String condition, String keyword) throws SQLException {
+	public List<Board> getBoardsByWriter(String keyword) throws SQLException {
 		List<Board> boards = new ArrayList<Board>();
 		
 		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsByWriter"));
+		pstmt.setString(1, keyword);
+		ResultSet rs = pstmt.executeQuery();
 		
-		String sql = "";
-		if("writer".equals(condition)) {
-			sql = QueryUtil.getSQL("board.getBoardsByWriter");
-		} else if ("title".equals(condition)) {
-			sql = QueryUtil.getSQL("board.getBoardsByTitle");
-		} else if("content".equals(condition)) {
-			sql = QueryUtil.getSQL("board.getBoardsByContent");
+		while(rs.next()) {
+			Board board = new Board();
+			
+			boolean isDeleted;
+			if ("Y".equals(rs.getString("board_del_yn"))) {
+				isDeleted = true;
+			} else {
+				isDeleted = false;
+			}
+			
+			board.setNo(rs.getInt("board_no"));
+			board.setTitle(rs.getString("board_title"));
+			board.setWriter(rs.getString("board_writer"));
+			board.setPassword(rs.getString("board_password"));
+			board.setContent(rs.getString("board_content"));
+			board.setHit(rs.getInt("board_hit"));
+			board.setRegisteredDate(rs.getDate("board_registered_date"));
+			board.setDeleted(isDeleted);
+			
+			boards.add(board);
 		}
-		PreparedStatement pstmt = connection.prepareStatement(sql);
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+
+		return boards;
+	}
+	
+	public List<Board> getBoardsByTitle(String keyword) throws SQLException {
+		List<Board> boards = new ArrayList<Board>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsByTitle"));
+		pstmt.setString(1, keyword);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			Board board = new Board();
+			
+			boolean isDeleted;
+			if ("Y".equals(rs.getString("board_del_yn"))) {
+				isDeleted = true;
+			} else {
+				isDeleted = false;
+			}
+			
+			board.setNo(rs.getInt("board_no"));
+			board.setTitle(rs.getString("board_title"));
+			board.setWriter(rs.getString("board_writer"));
+			board.setPassword(rs.getString("board_password"));
+			board.setContent(rs.getString("board_content"));
+			board.setHit(rs.getInt("board_hit"));
+			board.setRegisteredDate(rs.getDate("board_registered_date"));
+			board.setDeleted(isDeleted);
+			
+			boards.add(board);
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+
+		return boards;
+	}
+	
+	public List<Board> getBoardsByContent(String keyword) throws SQLException {
+		List<Board> boards = new ArrayList<Board>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsByContent"));
 		pstmt.setString(1, keyword);
 		ResultSet rs = pstmt.executeQuery();
 		

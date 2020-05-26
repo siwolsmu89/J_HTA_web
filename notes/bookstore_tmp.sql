@@ -118,7 +118,7 @@ WHERE O.book_no = B.book_no
 ORDER BY order_no DESC;
 
 
-SELECT board_no, board_title, board_writer, board_password, board_content, board_hit, board_del_yn, board_registered_date
-FROM sample_book_boards
-WHERE board_writer LIKE '%' || '±è' || '%'
-ORDER BY board_no DESC;
+SELECT board_no, board_title, board_writer, board_password, board_content, board_hit, board_del_yn, board_registered_date 
+FROM sample_book_boards 
+WHERE board_title LIKE '%' || '' || '%' 
+ORDER BY board_no DESC;		

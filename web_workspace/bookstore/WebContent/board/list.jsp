@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.bookstore.util.StringUtil"%>
 <%@page import="com.bookstore.vo.Board"%>
 <%@page import="java.util.List"%>
@@ -40,12 +41,16 @@
 					BoardDAO boardDao = new BoardDAO();
 					String condition = StringUtil.nullToBlank(request.getParameter("searchCondition"));
 					String keyword = StringUtil.nullToBlank(request.getParameter("searchKeyword"));
-					
+
 					List<Board> boards;
-					if (("".equals(condition))||("".equals(keyword))) {
-						boards = boardDao.getAllBoards();
+					if ("writer".equals(condition)) {
+						boards = boardDao.getBoardsByWriter(keyword);
+					} else if ("title".equals(condition)) {
+						boards = boardDao.getBoardsByTitle(keyword);
+					} else if ("content".equals(condition)) {
+						boards = boardDao.getBoardsByContent(keyword);
 					} else {
-						boards = boardDao.getBoardsBySearch(condition, keyword);
+						boards = boardDao.getAllBoards();
 					}
 				%>
 					<tbody>
