@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.dao.BoardDAO"%>
 <%@page import="com.bookstore.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

@@ -34,7 +34,7 @@
 					</div>
 					<div  class="form-group">
 						<label>비밀번호</label>
-						<input type="password" name="password" />
+						<input type="password" name="password" maxlength="4" />
 					</div>
 					<div class="form-group">
 						<label>내용</label>

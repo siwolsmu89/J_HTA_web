@@ -45,6 +45,39 @@ public class OrderDAO {
 		return orders;
 	}
 	
+	public List<OrderDTO> getOrdersByGenre(String genre) throws SQLException {
+		List<OrderDTO> orders = new ArrayList<OrderDTO>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("order.getOrdersByGenre"));
+		pstmt.setString(1, genre);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			OrderDTO order = new OrderDTO();
+			
+			order.setNo(rs.getInt("order_no"));
+			order.setBookNo(rs.getInt("book_no"));
+			order.setBookTitle(rs.getString("book_title"));
+			order.setUserId(rs.getString("user_id"));
+			order.setUserName(rs.getString("user_name"));
+			order.setPrice(rs.getInt("order_price"));
+			order.setAmount(rs.getInt("order_amount"));
+			order.setRegisteredDate(rs.getDate("order_registered_date"));
+			order.setReviewNo(rs.getInt("review_no"));
+			order.setLike(rs.getInt("my_like"));
+			
+			orders.add(order);
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return orders;
+	}
+	
+	
 	public List<OrderDTO> getOrdersById(String userId) throws SQLException {
 		List<OrderDTO> orders = new ArrayList<OrderDTO>();
 		

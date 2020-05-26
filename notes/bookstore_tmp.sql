@@ -79,3 +79,40 @@ AND O.user_id = 'kimmi';
 UPDATE sample_book_reviews
     SET review_point=0
 WHERE book_no = 10100 AND user_id='Neena';
+
+
+CREATE TABLE sample_book_boards (
+    board_no                NUMBER(5,0)     PRIMARY KEY,
+    board_title             VARCHAR2(250)   NOT NULL,
+    board_writer            VARCHAR2(100)   NOT NULL,
+    board_content           CLOB            NOT NULL,
+    board_password          NUMBER(4,0)     NOT NULL,
+    board_hit               NUMBER(3,0)     DEFAULT 0,
+    board_del_yn            CHAR            DEFAULT 'N' 
+                            CONSTRAINT board_del_yn CHECK(board_del_yn IN ('Y', 'N')),
+    board_registered_date   DATE            DEFAULT SYSDATE 
+);
+
+CREATE SEQUENCE sample_board_seq START WITH 1 NOCACHE;
+
+CREATE TABLE sample_book_replys (
+    reply_no                NUMBER(3,0)     PRIMARY KEY,
+    reply_writer            VARCHAR2(100)   NOT NULL,
+    reply_content           CLOB            NOT NULL,  
+    reply_password          NUMBER(4,0)     NOT NULL,
+    reply_registered_date   DATE            DEFAULT SYSDATE,
+    board_no                NUMBER(5,0)     REFERENCES sample_book_boards (board_no) 
+);
+
+CREATE SEQUENCE sample_reply_seq START WITH 1 NOCACHE;
+
+
+SELECT O.order_no, O.user_id, O.book_no, O.order_price, O.order_amount, O.order_registered_date, 
+       (SELECT book_title FROM sample_books WHERE book_no = O.book_no) AS book_title, 
+       NVL2((SELECT user_id FROM sample_book_likes WHERE book_no = O.book_no AND user_id = O.user_id), 1, 0) AS my_like, 
+       NVL((SELECT review_no FROM sample_book_reviews WHERE book_no = O.book_no AND user_id = O.user_id), -1) AS review_no, 
+       (SELECT user_name FROM sample_book_users WHERE user_id = O.user_id) AS user_name 
+FROM sample_book_orders O, sample_books B
+WHERE O.book_no = B.book_no
+      AND B.book_genre = ? 
+ORDER BY order_no DESC

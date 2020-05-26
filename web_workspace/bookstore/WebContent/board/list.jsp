@@ -1,3 +1,6 @@
+<%@page import="com.bookstore.vo.Board"%>
+<%@page import="java.util.List"%>
+<%@page import="com.bookstore.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,14 +35,42 @@
 							<th>등록일</th>
 						</tr>
 					</thead>
+				<%
+					BoardDAO boardDao = new BoardDAO();
+					List<Board> boards = boardDao.getAllBoards();
+				%>
 					<tbody>
+				<%
+					if (!boards.isEmpty()) {
+						for (Board board : boards) {
+				%>
 						<tr>
-							<td>1</td>
-							<td><a href="detail.jsp?boardno=<%=1%>">게시글임시</a></td>
-							<td>임시인</td>
-							<td>1건</td>
-							<td>2020-05-26</td>
+							<td><%=board.getNo() %></td>
+				<%
+							if(!board.isDeleted()) { 
+				%>
+							<td><a href="detail.jsp?boardno=<%=board.getNo() %>"><%=board.getTitle() %></a></td>
+							<td><%=board.getWriter() %></td>
+							<td><%=board.getHit() %></td>
+							<td><%=board.getRegisteredDate() %></td>
+				<%	
+							} else {
+				%>
+							<td colspan="4" style="text-decoration: line-through;">삭제된 글입니다.</td>
+				<%	
+							}
+				%>
 						</tr>
+				<%
+						}
+					} else {
+				%>
+						<tr>
+							<td colspan="5">작성된 글이 없습니다.</td>
+						</tr>
+				<%
+					}
+				%>
 					</tbody>
 				</table>
 			</div>
