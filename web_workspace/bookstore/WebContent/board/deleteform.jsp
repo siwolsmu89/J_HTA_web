@@ -37,7 +37,7 @@
 		%>
 		
 		<div class="body">
-			<h3>글 수정하기</h3>
+			<h3>글 삭제하기</h3>
 			<div class="well">
 				<form action="delete.jsp" method="post">
 					<div  class="form-group">
@@ -50,7 +50,7 @@
 					</div>
 					<div  class="form-group">
 						<label>비밀번호</label>
-						<input type="password" name="input" maxlength="4" />
+						<input type="password" name="input" maxlength="4" placeholder="글 삭제입니다. 신중하게 확인하고 비밀번호를 입력하세요." />
 					</div>
 					<div class="form-group">
 						<label>내용</label>

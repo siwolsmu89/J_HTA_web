@@ -19,7 +19,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.addBoard"));
 		pstmt.setString(1, board.getTitle());
 		pstmt.setString(2, board.getWriter());
-		pstmt.setInt(3, NumberUtil.stringToInt(board.getPassword()));
+		pstmt.setString(3, board.getPassword());
 		pstmt.setString(4, board.getContent());
 		
 		pstmt.executeUpdate();
@@ -45,17 +45,6 @@ public class BoardDAO {
 		pstmt.setInt(5, board.getHit());
 		pstmt.setString(6, isDeleted);
 		pstmt.setInt(7, board.getNo());
-		
-		pstmt.executeUpdate();
-		
-		pstmt.close();
-		connection.close();
-	}
-	
-	public void deleteBoard(int boardNo) throws SQLException {
-		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.deleteBoard"));
-		pstmt.setInt(1, boardNo);
 		
 		pstmt.executeUpdate();
 		

@@ -28,6 +28,8 @@
 			int boardNo = NumberUtil.stringToInt(request.getParameter("boardno"));
 			BoardDAO boardDao = new BoardDAO();
 			Board board = boardDao.getBoardByNo(boardNo);
+			ReplyDAO replyDao = new ReplyDAO();
+			List<Reply> replys = replyDao.getReplysByBoardNo(boardNo);
 		%>
 		<div class="body">
 			<div>
@@ -54,7 +56,7 @@
 							<th>조회수</th>
 							<td><%=board.getHit() %></td>
 							<th>댓글수</th>
-							<td></td>
+							<td><%=replys.size() %></td>
 						</tr>
 						<tr>
 							<th>내용</th>
@@ -82,8 +84,6 @@
 						<col width="40%">
 					</colgroup>
 			<%
-				ReplyDAO replyDao = new ReplyDAO();
-				List<Reply> replys = replyDao.getReplysByBoardNo(boardNo); 
 				if (!replys.isEmpty()) {
 					for (Reply reply : replys) {
 			%>

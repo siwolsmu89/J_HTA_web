@@ -57,7 +57,7 @@
 						</tr>
 					</thead>
 				<%
-					BoardDAO boardDao = new BoardDAO();
+					BoardDAO boardDao = new BoardDAO(); 
 					String condition = StringUtil.nullToBlank(request.getParameter("searchCondition"));
 					String keyword = StringUtil.nullToBlank(request.getParameter("searchKeyword"));
 
@@ -82,7 +82,7 @@
 				<%
 							if(!board.isDeleted()) { 
 				%>
-							<td><a href="detail.jsp?boardno=<%=board.getNo() %>"><%=board.getTitle() %></a></td>
+							<td><a href="hit.jsp?boardno=<%=board.getNo() %>"><%=board.getTitle() %></a></td>
 							<td><%=board.getWriter() %></td>
 							<td><%=board.getHit() %></td>
 							<td><%=board.getRegisteredDate() %></td>
@@ -115,11 +115,11 @@
 				<form method="get" action="list.jsp">
 					<label>검색조건</label>
 					<select name="searchCondition" >
-						<option value="title">제목</option>
-						<option value="writer">작성자</option>
-						<option value="content">내용</option>
+						<option value="title" <%="title".equals(condition) ? "selected" : "" %> >제목</option>
+						<option value="writer" <%="writer".equals(condition) ? "selected" : "" %> >작성자</option>
+						<option value="content" <%="content".equals(condition) ? "selected" : "" %> >내용</option>
 					</select>
-					<input type="text" name="searchKeyword">
+					<input type="text" name="searchKeyword" placeholder="<%=keyword %>" > 
 					<button type="submit">검색</button>
 				</form>
 			</div>

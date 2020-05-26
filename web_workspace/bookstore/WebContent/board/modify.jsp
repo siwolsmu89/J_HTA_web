@@ -9,6 +9,7 @@
 	String input = request.getParameter("input");
 	int boardNo = NumberUtil.stringToInt(request.getParameter("boardno"));
 	BoardDAO boardDao = new BoardDAO();
+	
 	Board board = boardDao.getBoardByNo(boardNo);
 	String password = board.getPassword();
 	
