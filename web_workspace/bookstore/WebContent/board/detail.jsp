@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.StringUtil"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.vo.Reply"%>
 <%@page import="com.bookstore.dao.ReplyDAO"%>
@@ -66,7 +67,7 @@
 					</tr>
 					<tr>
 						<td colspan="6">
-							<%=reply.getContent() %>
+							<%=StringUtil.strWithBr(reply.getContent()) %>
 						</td>
 					</tr>
 			<%			

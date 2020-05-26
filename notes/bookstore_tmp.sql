@@ -115,4 +115,10 @@ SELECT O.order_no, O.user_id, O.book_no, O.order_price, O.order_amount, O.order_
 FROM sample_book_orders O, sample_books B
 WHERE O.book_no = B.book_no
       AND B.book_genre = ? 
-ORDER BY order_no DESC
+ORDER BY order_no DESC;
+
+
+SELECT board_no, board_title, board_writer, board_password, board_content, board_hit, board_del_yn, board_registered_date
+FROM sample_book_boards
+WHERE board_writer LIKE '%' || '±è' || '%'
+ORDER BY board_no DESC;

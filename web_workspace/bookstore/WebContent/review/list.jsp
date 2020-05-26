@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.StringUtil"%>
 <%@page import="com.bookstore.vo.User"%>
 <%@page import="com.bookstore.dao.UserDAO"%>
 <%@page import="com.bookstore.vo.Review"%>
@@ -61,7 +62,7 @@
 							<th colspan="6">리뷰내용</th>
 						</tr>
 						<tr>
-							<td rowspan="3" colspan="6"><%=review.getContent() %></td>
+							<td rowspan="3" colspan="6"><%=StringUtil.strWithBr(review.getContent()) %></td>
 						</tr>
 				</table>
 				<div class="text-right">

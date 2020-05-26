@@ -44,7 +44,7 @@
 		
 		<%
 			OrderDAO orderDao = new OrderDAO();
-			String genre = StringUtil.nullToBlack(request.getParameter("genre"));
+			String genre = StringUtil.nullToBlank(request.getParameter("genre"));
 		%>
 		<div class="body">
 			<div>

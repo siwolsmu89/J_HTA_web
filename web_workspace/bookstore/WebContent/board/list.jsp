@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.StringUtil"%>
 <%@page import="com.bookstore.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.dao.BoardDAO"%>
@@ -37,7 +38,15 @@
 					</thead>
 				<%
 					BoardDAO boardDao = new BoardDAO();
-					List<Board> boards = boardDao.getAllBoards();
+					String condition = StringUtil.nullToBlank(request.getParameter("searchCondition"));
+					String keyword = StringUtil.nullToBlank(request.getParameter("searchKeyword"));
+					
+					List<Board> boards;
+					if (("".equals(condition))||("".equals(keyword))) {
+						boards = boardDao.getAllBoards();
+					} else {
+						boards = boardDao.getBoardsBySearch(condition, keyword);
+					}
 				%>
 					<tbody>
 				<%
@@ -66,7 +75,7 @@
 					} else {
 				%>
 						<tr>
-							<td colspan="5">작성된 글이 없습니다.</td>
+							<td colspan="5"><%=condition + " " + keyword + " " %>작성된 글이 없습니다.</td>
 						</tr>
 				<%
 					}
@@ -77,6 +86,20 @@
 			<div class="text-right">
 				<a href="form.jsp"><button type="button">글쓰기</button></a>
 			</div>
+			</div>
+			<div class="text-center">
+				<form method="get" action="list.jsp">
+					<label>검색조건</label>
+					<select name="searchCondition" >
+						<option value="title">제목</option>
+						<option value="writer">작성자</option>
+						<option value="content">내용</option>
+					</select>
+					<input type="text" name="searchKeyword">
+					<button type="submit">검색</button>
+				</form>
+			</div>
+		
 		</div>
 		
 		<%@ include file="../common/footer.jsp" %>

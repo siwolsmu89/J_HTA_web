@@ -21,7 +21,19 @@ public class StringUtil {
 	 * @param str null인지 체크할 문자열
 	 * @return
 	 */
-	public static String nullToBlack(String str) {
+	public static String nullToBlank(String str) {
 		return nullToValue(str, "");
+	}
+	
+	/**
+	 * 문자열의 줄바꿈문자를 &lt;br&gt;태그로 변환해서 반환한다.
+	 * @param text 텍스트
+	 * @return &lt;br&gt;태그가 포함된 텍스트
+	 */
+	public static String strWithBr(String text) {
+		if (text == null) {
+			return "";
+		}
+		return text.replace(System.lineSeparator(), "<br/>");
 	}
 }
