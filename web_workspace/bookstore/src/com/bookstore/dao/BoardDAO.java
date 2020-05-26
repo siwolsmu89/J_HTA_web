@@ -28,6 +28,41 @@ public class BoardDAO {
 		connection.close();
 	}
 	
+	public void updateBoard(Board board) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.updateBoard"));
+		
+		String isDeleted;
+		if(board.isDeleted()) {
+			isDeleted = "Y";
+		} else {
+			isDeleted = "N";
+		}
+		pstmt.setString(1, board.getTitle());
+		pstmt.setString(2, board.getWriter());
+		pstmt.setInt(3, NumberUtil.stringToInt(board.getPassword()));
+		pstmt.setString(4, board.getContent());
+		pstmt.setInt(5, board.getHit());
+		pstmt.setString(6, isDeleted);
+		pstmt.setInt(7, board.getNo());
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
+	public void deleteBoard(int boardNo) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.deleteBoard"));
+		pstmt.setInt(1, boardNo);
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
 	public List<Board> getAllBoards() throws SQLException {
 		List<Board> allBoards = new ArrayList<Board>();
 		

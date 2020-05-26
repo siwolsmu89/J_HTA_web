@@ -32,27 +32,55 @@
 		<div class="body">
 			<div>
 				<h3>글 내용</h3>
-				<table class="table boardered">
-					<tr>
-						<th>제목</th>
-						<td><%=board.getTitle() %></td>
-						<th>작성자</th>
-						<td><%=board.getWriter() %></td>
-						<th>작성일</th>
-						<td><%=board.getRegisteredDate() %></td>
-					</tr>
-					<tr>
-						<td colspan="6">
-							<%=board.getContent() %>
-						</td>
-					</tr>
-									
+				<table class="table">
+					<colgroup>
+						<col width="10%">
+						<col width="40%">
+						<col width="10%">
+						<col width="40%">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>제목</th>
+							<td colspan="3"><%=board.getTitle() %></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td><%=board.getWriter() %></td>
+							<th>작성일</th>
+							<td><%=board.getRegisteredDate() %></td>
+						</tr>
+						<tr>
+							<th>조회수</th>
+							<td><%=board.getHit() %></td>
+							<th>댓글수</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3">
+								<%=StringUtil.strWithBr(board.getContent()) %>
+							</td>
+						</tr>
+					</tbody>
 				</table>
+				<hr>
+				<div class="text-right">
+					<a href="modifyform.jsp?boardno=<%=boardNo %>"><strong>[수정]</strong></a>
+					<a href="deleteform.jsp?boardno=<%=boardNo %>"><strong>[삭제]</strong></a>
+					<a href="list.jsp"><strong>[목록으로 가기]</strong></a>
+				</div>
 			</div>
 			
 			<div>
 				<h3>댓글보기</h3>
-				<table class="table boardered">
+				<table class="table">
+					<colgroup>
+						<col width="10%">
+						<col width="40%">
+						<col width="10%">
+						<col width="40%">
+					</colgroup>
 			<%
 				ReplyDAO replyDao = new ReplyDAO();
 				List<Reply> replys = replyDao.getReplysByBoardNo(boardNo); 
@@ -66,7 +94,8 @@
 						<td><%=reply.getRegisteredDate() %></td>
 					</tr>
 					<tr>
-						<td colspan="6">
+						<th>내용</th>
+						<td colspan="3">
 							<%=StringUtil.strWithBr(reply.getContent()) %>
 						</td>
 					</tr>
@@ -85,20 +114,19 @@
 			</div>
 			
 			<div>
-				<h3>댓글작성</h3>
 				<div class="well">
 				<form action="reply.jsp?boardno=<%=boardNo %>" method="post">
-					<div  class="form-group">
+					<div class="form-group">
 						<label>작성자</label>
 						<input type="text" name="writer" />
 					</div>
-					<div  class="form-group">
+					<div class="form-group">
 						<label>비밀번호</label>
 						<input type="password" name="password" maxlength="4" />
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea rows="3" cols="10" name="content"></textarea>
+						<textarea rows="4" name="content"></textarea>
 					</div>
 					<div class="text-right">
 						<button type="submit">등록</button>

@@ -11,6 +11,25 @@
 <meta charset="UTF-8">
 <title>board/list</title>
 <link rel="stylesheet" type="text/css" href="../css/bookstore.css" />
+<style type="text/css">
+	label {
+		font-weight: bold;
+	}
+	select {
+		display: inline-block;
+		width: 150px;
+		height: 37px;
+	}
+	input {
+		display: inline-block;
+		width: 250px;
+		height: 32px;
+	}
+	button {
+		height: 37px;
+	}
+	
+</style>
 </head>
 <body>
 	<div class = "wrapper">
