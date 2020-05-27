@@ -71,7 +71,7 @@
 	</div>
 	<div> 
 		<h3>등록된 책 목록 보기</h3> 
-		<button type="button" style="text-decoration: none; color: black;"><a href="booklist.jsp">목록 조회</a></button>
+		<a href="booklist.jsp"><button type="button" style="text-decoration: none; color: black;">목록 조회</button></a>
 	</div>
 
 </body>

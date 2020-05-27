@@ -16,6 +16,6 @@
 	<p>대구서 등교수업 하루만에 코로나 19 양성.. 학교 폐쇄</p>
 	<p>대구서 등교수업 하루만에 코로나 19 양성.. 학교 폐쇄</p>
 
-	<button><a href="form.jsp">글쓰기</a></button>
+	<a href="form.jsp"><button>글쓰기</button></a>
 </body>
 </html>

@@ -124,9 +124,7 @@
 				</form>
 			</div>
 		
+			<%@ include file="../common/footer.jsp" %>
 		</div>
-		
-		<%@ include file="../common/footer.jsp" %>
-	</div>
 </body>
 </html>

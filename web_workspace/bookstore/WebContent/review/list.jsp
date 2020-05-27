@@ -66,8 +66,8 @@
 						</tr>
 				</table>
 				<div class="text-right">
-					<button type="button"><a href="form2.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>&point=<%=review.getPoint() %>">리뷰수정</a></button>
-					<button type="button"><a href="delete.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>">리뷰삭제</a></button>
+					<a href="form2.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>&point=<%=review.getPoint() %>"><button type="button">리뷰수정</button></a>
+					<a href="delete.jsp?bookno=<%=review.getBookNo() %>&userid=<%=userId %>"><button type="button">리뷰삭제</button></a>
 				</div>
 				<%
 						}
@@ -75,7 +75,7 @@
 				%>
 			</div>
 			<div class="text-right">
-				<button type="button"><a href="../order/list.jsp?userid=<%=userId %>">내 주문목록</a></button>
+				<a href="../order/list.jsp?userid=<%=userId %>"><button type="button">내 주문목록</button></a>
 			</div>
 			
 		</div>
