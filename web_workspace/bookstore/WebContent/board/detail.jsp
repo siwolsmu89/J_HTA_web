@@ -118,11 +118,11 @@
 				<form action="reply.jsp?boardno=<%=boardNo %>" method="post">
 					<div class="form-group">
 						<label>작성자</label>
-						<input type="text" name="writer" />
+						<input type="text" name="writer" placeholder="작성자를 입력해주세요" />
 					</div>
 					<div class="form-group">
 						<label>비밀번호</label>
-						<input type="password" name="password" maxlength="4" />
+						<input type="password" name="password" maxlength="4" placeholder="비밀번호를 4자리 숫자로 입력해주세요(0으로 시작할 수 없음)"/>
 					</div>
 					<div class="form-group">
 						<label>내용</label>

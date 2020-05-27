@@ -54,7 +54,7 @@
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea rows="50" cols="10" name="content"><%="기존에 작성된 내용\n-----------------------\n" + board.getContent() +"\n-----------------------\n" %></textarea>
+						<textarea rows="50" cols="10" name="content"><%="[기존에 작성된 내용]\n-----------------------\n" + board.getContent() +"\n-----------------------\n" %></textarea>
 					</div>
 					<div>
 						<input type="hidden" name="boardno" value="<%=boardNo %>" />
