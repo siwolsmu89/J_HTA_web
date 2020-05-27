@@ -1,6 +1,7 @@
 JSP 기본객체
 	- 요청객체
 		* HttpServletRequest의 구현객체다.
+		* request 변수가 참조한다.
 		* 클라이언트가 서버로 보낸 요청 메시지 정보를 제공한다.
 		* jsp에서는 request 변수에 저장되어 있다.
 		* 주요 메소드
@@ -19,6 +20,7 @@ JSP 기본객체
 
 	- 응답객체
 		* HttpServletResponse의 구현객체다.
+		* response 변수가 참조한다.
 		* 서버가 클라이언트로 보내는 응답 메시지 정보를 담는다.
 		* jsp에서는 response 변수에 저장되어 있다.
 		* 주요 메소드
@@ -29,3 +31,29 @@ JSP 기본객체
 			* void setContentLength(long len)
 			- 응답헤더 관련
 			  void setHeader(String name, String value)
+
+	- 세션객체
+		* HttpSession의 구현객체다.
+		* session 변수가 참조한다.
+		* 클라이언트(브라우저)마다 하나씩 생성되는 객체다.
+		* 클라이언트의 개인적인 정보를 저장할 수 있다. 
+
+	- 어플리케이션 객체
+		* ServletContext의 구현객체다.
+		* application 변수가 참조한다.
+		* 웹애플리케이션 프로젝트 당 하나씩 생성되는 객체다.
+		* 웹서버가 시작되면 생성되고, 웹서버가 중단될 때까지 유지된다.
+		* 모든 서블릿/JSP/클라이언트가 공유하는 값을 저장할 수 있다.
+	
+	- 페이지컨텍스트 객체
+		* PageContext의 구현객체다.
+		* pageContext 변수가 참조한다.
+		* JSP 페이지마다 하나씩 생성되는 객체다.
+		* JSP 페이지에 대한 정보를 담고 있다.
+		* 다른 기본객체를 조회하는 기능이 제공된다.
+
+	- 서블릿컨피그 객체
+		* ServletConfig의 구현객체다.
+		* config 변수가 참조한다.
+		* 서블릿객체마다 하나씩 생성되는 객체다.
+		* 해당 서블릿객체만 사용할 설정정보를 담고 있다.
