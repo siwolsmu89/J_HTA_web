@@ -44,13 +44,41 @@ JSP 기본객체
 		* 웹애플리케이션 프로젝트 당 하나씩 생성되는 객체다.
 		* 웹서버가 시작되면 생성되고, 웹서버가 중단될 때까지 유지된다.
 		* 모든 서블릿/JSP/클라이언트가 공유하는 값을 저장할 수 있다.
-	
+		* 주요 메소드
+			String getInitParameter(String name)
+				- web.xml에 설정된 초기화 파라미터값을 반환한다.
+			String getRealPath(String path)
+				- 웹 애플리케이션 내의 특정 경로에 해당하는 시스템 상의 실제 경로를 반환한다.
+			URL getResource(String path)
+				- 웹 애플리케이션 내의 특정 경로에 해당하는 시스템 상의 실제 경로를 URL 객체로 반환한다. 
+			InputStream getResourceAsStream(String path)	
+				- 웹 애플리케이션 내의 특정 경로에 해당하는 시스템 상의 실제 자원을 읽어올 수 있는 스트림을 반환한다.
+
 	- 페이지컨텍스트 객체
 		* PageContext의 구현객체다.
 		* pageContext 변수가 참조한다.
 		* JSP 페이지마다 하나씩 생성되는 객체다.
 		* JSP 페이지에 대한 정보를 담고 있다.
 		* 다른 기본객체를 조회하는 기능이 제공된다.
+		* 주요 메소드
+			HttpServletRequest getRequest()
+				- 해당 jsp 실행시 전달받은 요청객체를 반환한다.
+			HttpServletResponse getResponse()
+				- 해당 jsp 실행시 전달받은 응답객체를 반환한다.
+			HttpSession getSession()
+				- 해당 jsp 실행을 요청한 브라우저와 연관된 세션객체를 반환한다.
+			ServletContext getServletContext()
+				- 해당 jsp가 포함된 웹프로젝트와 관련된 애플리케이션객체를 반환한다.
+			ServletConfig getServletConfig()
+				- 해당 jsp와 직접 연관된 Config객체를 반환한다.
+			JspWriter getOut()
+				- 해당 jsp의 실행을 요청한 클라이언트로 html 컨텐츠를 출력하는 스트림을 반환한다.
+			Exception getException()
+				- 오류 정보를 담고 있는 예외객체를 반환한다.
+			Object getPage()
+				- 현재 실행중인 JSP 객체 자신을 반환한다.
+			* 위의 메소드를 jsp에서 실제로 사용할 가능성은 0%다.
+			* 위의 메소드를 실행해서 획득되는 객체는 jsp 실행 시 이미 request, response, session, application, config, out, exception, page에 저장되어 있기 때문이다.
 
 	- 서블릿컨피그 객체
 		* ServletConfig의 구현객체다.
