@@ -14,7 +14,7 @@ import com.bookstore.vo.User;
 public class UserDAO {
 
 	public User getUserById(String userId) throws SQLException {
-		User user = new User();
+		User user = null;
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.getUserById"));
@@ -22,11 +22,13 @@ public class UserDAO {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
+			user = new User();
 			
 			user.setId(rs.getString("user_id"));
 			user.setName(rs.getString("user_name"));
 			user.setEmail(rs.getString("user_email"));
 			user.setPoint(rs.getInt("user_point"));
+			user.setPassword(rs.getString("user_password"));
 			user.setRegisteredDate(rs.getDate("user_registered_date"));
 		}	
 		

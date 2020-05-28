@@ -10,7 +10,7 @@
 <body>
 	<div class="wrapper">
 		<div class="navi">
-			<% String position = "user"; %>
+			<% String position = "register"; %>
 			<%@ include file="../common/navibar.jsp" %>
 		</div>
 		

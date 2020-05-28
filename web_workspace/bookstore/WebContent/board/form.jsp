@@ -40,7 +40,18 @@
 					</div>
 					<div  class="form-group">
 						<label>작성자</label>
+						<%
+							String writer = (String) session.getAttribute("username");
+							if (writer == null) {
+						%>
 						<input type="text" name="writer" placeholder="작성자명을 입력해주세요" />
+						<%
+							} else {
+						%>
+						<input type="text" name="writer" value="<%=writer %>" readonly />
+						<%
+							}
+						%>
 					</div>
 					<div  class="form-group">
 						<label>비밀번호</label>
