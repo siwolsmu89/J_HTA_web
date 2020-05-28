@@ -48,7 +48,8 @@
 						<%
 							} else {
 						%>
-						<input type="text" name="writer" value="<%=writer %>" readonly />
+						<input type="text" value="<%=writer %>" disabled />
+						<input type="hidden" name="writer" value="<%=writer %>" />
 						<%
 							}
 						%>

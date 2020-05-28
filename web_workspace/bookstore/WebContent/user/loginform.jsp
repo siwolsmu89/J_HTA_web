@@ -27,9 +27,14 @@
 		
 			if ("fail".equals(err)) {
 		%>
-			<div>
-				<p style="color: red; font-style: italic;"><strong>아이디 혹은 비밀번호가 올바르지 않습니다.</strong></p>
-			</div>
+			<p style="color: red; font-style: italic;"><strong>아이디 혹은 비밀번호가 올바르지 않습니다.</strong></p>
+		<%		
+			}
+		%>
+		<% 
+			if ("deny".equals(err)) {
+		%>
+			<p style="color: red; font-style: italic;"><strong>로그인이 필요한 서비스입니다.</strong></p>
 		<%		
 			}
 		%>

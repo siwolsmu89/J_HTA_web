@@ -23,12 +23,19 @@ h3 {
 .navi, .header, .body, .footer {
 	margin-top: 10px;
 }
+
 .navi #navibar {
+	background-color: #333;
+	overflow: hidden; 
+}
+
+.navi #navibar ul {
+	float: left;
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0; 
 	overflow: hidden; 
-	background-color: #333;
+	width: 800px;
 }
 .navi #navibar li {
 	float: left;
@@ -42,6 +49,14 @@ h3 {
 }
 .navi #navibar li a:hover {
 	background-color: #222; 
+}
+
+.navi #navibar p {
+	float:right;
+	color: white; 
+	margin: 0;
+	padding: 14px 16px; 
+	
 }
 
 .active {
@@ -74,6 +89,13 @@ h3 {
 .text-right {
 	text-align: right !important;
 }
+.left {
+	float: left !important;
+}
+.right {
+	float: right !important;
+}
+
 
 .form-group {
     margin: 10px 5px;

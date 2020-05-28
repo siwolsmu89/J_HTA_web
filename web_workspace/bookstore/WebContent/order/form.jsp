@@ -56,7 +56,19 @@
 				<form action="order.jsp" method="post">
 					<div class="form-group">
 						<label>주문자ID</label>
+						<%
+							String userId = (String) session.getAttribute("userid");
+							if (userId == null) {
+						%>
 						<input type="text" name="userid" />
+						<%		
+							} else {
+						%>
+						<input type="text" value="<%=userId %>" disabled />
+						<input type="hidden" name="userid" value="<%=userId %>" readonly />
+						<%
+							}
+						%>
 					</div>
 					<div class="form-group">
 						<label>구매가격</label>
