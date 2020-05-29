@@ -8,7 +8,7 @@ public class Reply {
 	private String writer;
 	private String content;
 	private boolean isDeleted;
-	private Date create_date;
+	private Date createDate;
 	private int boardNo;
 	
 	public Reply() {
@@ -47,12 +47,12 @@ public class Reply {
 		this.isDeleted = isDeleted;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date create_date) {
+		this.createDate = create_date;
 	}
 
 	public int getBoardNo() {

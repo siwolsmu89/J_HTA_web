@@ -11,10 +11,15 @@
 
 	UserDAO userDao = new UserDAO();
 	User user = userDao.getUserById(userId);
+	
 	if (!password.equals(user.getPassword())) {
-		response.sendRedirect("loginform.jsp?err=failed");
+		response.sendRedirect("loginform.jsp?error=failed");
 		return;
 	}
+	
+	session.setAttribute("logined_user_id", userId);
+	session.setAttribute("logined_user_name", user.getName());
+	session.setAttribute("logined_yn", "Y");
 	
 	response.sendRedirect("/simple-board/home.jsp");
 %>

@@ -20,11 +20,17 @@
 
 		<div class="body">
 		<%
-			String err = StringUtil.nullToBlank(request.getParameter("err"));
-			if ("failed".equals(err)) {
+			String error = StringUtil.nullToBlank(request.getParameter("error"));
+			if ("failed".equals(error)) {
 		%>
-			<p style="color: red;"><strong>로그인 실패</strong> : 아이디 혹은 비밀번호 오류</p>
+			<p style="color: red;"><strong>오류 발생</strong> : 아이디 혹은 비밀번호 오류</p>
 		<%		
+			}
+			
+			if ("deny".equals(error)) {
+		%>
+			<p style="color: red;"><strong>오류 발생</strong> : 로그인이 필요한 서비스</p>
+		<%
 			}
 		%>
 			<p>로그인 정보를 입력하세요</p>

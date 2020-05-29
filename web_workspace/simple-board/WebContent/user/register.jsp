@@ -12,7 +12,14 @@
 	user.setEmail(request.getParameter("email"));
 	
 	UserDAO userDao = new UserDAO();
-	userDao.addUser(user);
 	
+	User savedUser = userDao.getUserById(user.getId());
+	
+	if (savedUser.getId() != null) {
+		response.sendRedirect("form.jsp?error=dup");
+		return;
+	}
+	
+	userDao.addUser(user);
 	response.sendRedirect("/simple-board/home.jsp");
 %>

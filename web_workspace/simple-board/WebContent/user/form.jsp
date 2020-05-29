@@ -1,3 +1,4 @@
+<%@page import="com.simple.util.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +19,14 @@
 		</div>
 
 		<div class="body">
+		<%
+			String error = StringUtil.nullToBlank(request.getParameter("error"));
+			if ("dup".equals(error)) {
+		%>
+			<p style="color: red;"><strong>회원가입 실패</strong> : 중복된 아이디</p>
+		<%		
+			}
+		%>
 			<p>사용자 정보를 입력하세요</p>
 			<div class="well">
 				<form action="register.jsp" method="post">
