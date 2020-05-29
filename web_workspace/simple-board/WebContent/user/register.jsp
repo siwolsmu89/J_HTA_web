@@ -1,12 +1,18 @@
+<%@page import="com.simple.dao.UserDAO"%>
+<%@page import="com.simple.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%
+	request.setCharacterEncoding("UTF-8");
 
-</body>
-</html>
+	User user = new User();
+	user.setId(request.getParameter("id"));
+	user.setPassword(request.getParameter("pwd"));
+	user.setName(request.getParameter("name"));
+	user.setEmail(request.getParameter("email"));
+	
+	UserDAO userDao = new UserDAO();
+	userDao.addUser(user);
+	
+	response.sendRedirect("/simple-board/home.jsp");
+%>

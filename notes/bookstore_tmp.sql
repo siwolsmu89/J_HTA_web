@@ -154,5 +154,8 @@ CREATE TABLE sample_replys (
     CONSTRAINT sample_reply_writer_fk FOREIGN KEY (reply_writer) REFERENCES sample_users (user_id)
 );
 
+ALTER TABLE sample_replys ADD board_no NUMBER(7) 
+CONSTRAINT sample_board_no_fk REFERENCES sample_boards (board_no);
+
 CREATE SEQUENCE board_seq NOCACHE;
 CREATE SEQUENCE reply_seq NOCACHE;

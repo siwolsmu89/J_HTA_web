@@ -1,10 +1,11 @@
+<%@page import="com.simple.util.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>simple-board/user/form</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
 </head>
 <body>
@@ -18,9 +19,17 @@
 		</div>
 
 		<div class="body">
-			<p>사용자 정보를 입력하세요</p>
+		<%
+			String err = StringUtil.nullToBlank(request.getParameter("err"));
+			if ("failed".equals(err)) {
+		%>
+			<p style="color: red;"><strong>로그인 실패</strong> : 아이디 혹은 비밀번호 오류</p>
+		<%		
+			}
+		%>
+			<p>로그인 정보를 입력하세요</p>
 			<div class="well">
-				<form action="register.jsp" method="post">
+				<form action="login.jsp" method="post">
 					<div class="form-group">
 						<label>아이디</label>
 						<input type="text" name="id" />
@@ -28,14 +37,6 @@
 					<div class="form-group">
 						<label>비밀번호</label>
 						<input type="password" name="pwd" />
-					</div>
-					<div class="form-group">
-						<label>이름</label>
-						<input type="text" name="name" />
-					</div>
-					<div class="form-group">
-						<label>이메일</label>
-						<input type="text" name="email" />
 					</div>
 					<div class="form-group">
 						<input type="submit" />

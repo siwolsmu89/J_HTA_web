@@ -17,3 +17,9 @@
 			logincheck.jsp, navbar.jsp, footer.jsp
 		WebContent/resources/css
 			style.css
+
+4. 개발내용
+	- 회원가입기능
+		* 아이디, 이름, 비밀번호, 이메일을 입력받아서 회원정보를 제공한다.
+		* 화면 
+			user/form/jsp, user/register.jsp

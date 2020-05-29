@@ -6,11 +6,12 @@ public class Board {
 	
 	private int no;
 	private String title;
+	private String writer;
 	private String content;
-	private String password;
 	private int hit;
+	private int replyCnt;
 	private boolean isDeleted;
-	private Date registered_date;
+	private Date creatDate;
 	
 	public Board() {
 	
@@ -32,20 +33,20 @@ public class Board {
 		this.title = title;
 	}
 
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
 	public String getContent() {
 		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public int getHit() {
@@ -56,6 +57,14 @@ public class Board {
 		this.hit = hit;
 	}
 
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+
 	public boolean isDeleted() {
 		return isDeleted;
 	}
@@ -64,12 +73,12 @@ public class Board {
 		this.isDeleted = isDeleted;
 	}
 
-	public Date getRegistered_date() {
-		return registered_date;
+	public Date getCreatDate() {
+		return creatDate;
 	}
 
-	public void setRegistered_date(Date registered_date) {
-		this.registered_date = registered_date;
+	public void setCreatDate(Date creatDate) {
+		this.creatDate = creatDate;
 	}
-	
+
 }
