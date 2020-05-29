@@ -9,6 +9,7 @@
 <%@page import="com.bookstore.dao.OrderDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file = "../common/logincheck.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,20 +47,8 @@
 		<div class="body">
 		
 		<%
-			// 로그인여부 체크
-			// 로그인되지 않은 사용자는 로그인폼을 재요청하게 한다.
-			if (!"Yes".equals(login)) {
-				response.sendRedirect("/bookstore/user/loginform.jsp?err=deny");
-				return;
-			} 
-		
-			// 로그인된 회원의 경우, 회원의 정보를 추가적인 입력 없이 세션에서 가져온다.
-			String userName = (String) session.getAttribute("username");
-			String userId = (String) session.getAttribute("userid");
-					
-			// 세션에서 조회한 회원 정보로 그 회원의 주문내역을 조회한다.
 			OrderDAO orderDao = new OrderDAO();
-			List<OrderDTO> orders = orderDao.getOrdersById(userId);
+			List<OrderDTO> orders = orderDao.getOrdersById(loginedUserId);
 			
 			if (orders.isEmpty()) {
 		%>
@@ -70,7 +59,7 @@
 			} else {
 		%>
 			<div>
-				<p><strong><%=userName %></strong> 회원님, 주문 정보를 확인하세요.</p>
+				<p><strong><%=loginedUserName %></strong> 회원님, 주문 정보를 확인하세요.</p>
 				
 				<table class="table bordered">
 					<thead>

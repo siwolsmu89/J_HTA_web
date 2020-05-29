@@ -122,3 +122,37 @@ SELECT board_no, board_title, board_writer, board_password, board_content, board
 FROM sample_book_boards 
 WHERE board_title LIKE '%' || '' || '%' 
 ORDER BY board_no DESC;		
+
+
+CREATE TABLE sample_users (
+    user_id VARCHAR2(20) CONSTRAINT sample_user_id_pk PRIMARY KEY,
+    user_name VARCHAR2(100) NOT NULL,
+    user_password VARCHAR2(100) NOT NULL,
+    user_email VARCHAR2(256) NOT NULL,
+    user_disabled CHAR(1) DEFAULT 'N',
+    user_create_date DATE DEFAULT SYSDATE
+);
+
+CREATE TABLE sample_boards (
+    board_no NUMBER(7) CONSTRAINT sample_board_no_pk PRIMARY KEY,
+    board_title VARCHAR2(500) NOT NULL,
+    board_writer VARCHAR2(20) NOT NULL,
+    board_content VARCHAR2(4000) NOT NULL,
+    board_hit NUMBER(7) DEFAULT 0,
+    board_reply_cnt NUMBER(5) DEFAULT 0,
+    board_del_yn CHAR(1) DEFAULT 'N',
+    board_create_date  DATE DEFAULT SYSDATE,
+    CONSTRAINT sample_board_writer_fk FOREIGN KEY (board_writer) REFERENCES sample_users (user_id)
+);
+
+CREATE TABLE sample_replys (
+    reply_no NUMBER(7) CONSTRAINT sample_reply_no_pk PRIMARY KEY,
+    reply_writer VARCHAR2(20) NOT NULL,
+    reply_content VARCHAR2(2000) NOT NULL,
+    reply_del_yn CHAR(1) DEFAULT 'N',
+    reply_create_date DATE DEFAULT SYSDATE,
+    CONSTRAINT sample_reply_writer_fk FOREIGN KEY (reply_writer) REFERENCES sample_users (user_id)
+);
+
+CREATE SEQUENCE board_seq NOCACHE;
+CREATE SEQUENCE reply_seq NOCACHE;

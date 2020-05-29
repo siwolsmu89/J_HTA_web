@@ -3,6 +3,7 @@
 <%@page import="com.bookstore.dao.BookDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../common/logincheck.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,22 +55,6 @@
 			
 			<div class="well">
 				<form action="order.jsp" method="post">
-					<div class="form-group">
-						<label>주문자ID</label>
-						<%
-							String userId = (String) session.getAttribute("userid");
-							if (userId == null) {
-						%>
-						<input type="text" name="userid" />
-						<%		
-							} else {
-						%>
-						<input type="text" value="<%=userId %>" disabled />
-						<input type="hidden" name="userid" value="<%=userId %>" readonly />
-						<%
-							}
-						%>
-					</div>
 					<div class="form-group">
 						<label>구매가격</label>
 						<input type="text" value="<%=NumberUtil.numberWithComma(book.getDiscountPrice())%> 원" disabled />

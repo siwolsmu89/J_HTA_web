@@ -1,0 +1,19 @@
+1. Dynamic Web Project (simple-board)
+2. 필요한 라이브러리 복사 (/WEB-INF/lib)
+3. 필요한 패키지와 폴더를 생성한다.
+	- 패키지
+		com.simple.vo/dao/dto/util
+	- 폴더
+		WebContent/user
+			form.jsp, register,jsp
+			loginform.jsp, login.jsp, logout.jsp
+			my.jsp
+		WebContent/board
+			list.jsp, form.jsp, register,jsp, detail,jsp
+			modifyform.jsp, modify.jsp, delete,jsp
+		WebContent/reply
+			register.jsp, delete.jsp
+		WebContent/common
+			logincheck.jsp, navbar.jsp, footer.jsp
+		WebContent/resources/css
+			style.css
