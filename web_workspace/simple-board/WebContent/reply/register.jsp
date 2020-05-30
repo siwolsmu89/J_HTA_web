@@ -9,6 +9,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/logincheck.jsp" %>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	int boardNo = NumberUtil.stringToInt(request.getParameter("boardno"));
 	String content = StringUtil.nullToBlank(request.getParameter("content"));
 	
