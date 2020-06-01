@@ -56,18 +56,16 @@ public class EmployeeDAO {
 	 */
 	public List<Employee> getEmployeesByRange(int beginNumber, int endNumber) throws SQLException {
 		List<Employee> employees = new ArrayList<Employee>();
-		String sql = " SELECT * "  
-				+ "FROM (SELECT E.employee_id, E.first_name, E.last_name, E.job_id, D.department_id, D.department_name " 
+		String sql = "SELECT * "  
+				+ "FROM (SELECT ROW_NUMBER() OVER (ORDER BY E.employee_id) AS RNUMBER, E.employee_id, E.first_name, E.last_name, E.job_id, D.department_id, D.department_name " 
 						+ "FROM employees E, departments D " 
 						+ "WHERE E.department_id = D.department_id(+) "  
 						+ "ORDER BY E.employee_id ASC) " 
-				+ "WHERE ROWNUM BETWEEN ? AND ?";
+				+ "WHERE RNUMBER BETWEEN " + beginNumber + " AND " + endNumber;
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
-		pstmt.setInt(1, beginNumber);
-		pstmt.setInt(2, endNumber);
 		
 		while (rs.next()) {
 			Employee emp = new Employee();

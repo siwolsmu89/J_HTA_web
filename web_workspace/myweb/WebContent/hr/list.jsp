@@ -1,3 +1,4 @@
+<%@page import="com.sample.util.NumberUtil"%>
 <%@page import="com.sample.vo.Employee"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sample.dao.EmployeeDAO"%>
@@ -17,8 +18,18 @@
 		</div>
 		
 		<%
+			// 1. 한 화면에 표시할 행의 갯수
+			int rowsPerPage = 20;
+		
+			// 2. 클라이언트가 요청한 페이지 번호 조회하기
+			int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
+			
+			// 3. 시작과 끝번호 설정하기
+			int beginRowNumber = (pageNo -1) *rowsPerPage + 1;
+			int endRowNumber = pageNo * rowsPerPage;
+			
 			EmployeeDAO empDao = new EmployeeDAO();
-			List<Employee> employees = empDao.getAllEmployees();
+			List<Employee> employees = empDao.getEmployeesByRange(beginRowNumber, endRowNumber);
 		%>
 		
 		<div class="body">
@@ -63,11 +74,11 @@
 		<div class="text-center">
 			<div class="pagination">
 				<a href="">&laquo;</a>
-				<a href="" class="active" >1</a>
-				<a href="">2</a>
-				<a href="">3</a>
-				<a href="">4</a>
-				<a href="">5</a>
+				<a href="list.jsp?page=1" class="<%=pageNo == 1 ? "active" : ""%>">1</a>
+				<a href="list.jsp?page=2">2</a>
+				<a href="list.jsp?page=3">3</a>
+				<a href="list.jsp?page=4">4</a>
+				<a href="list.jsp?page=5">5</a>
 				<a href="">&raquo;</a>
 			</div>
 		</div>

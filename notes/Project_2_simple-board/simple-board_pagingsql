@@ -3,4 +3,4 @@
        FROM employees E, departments D 
 	   WHERE E.department_id = D.department_id(+)
        ORDER BY E.employee_id ASC)
-WHERE ROWNUM BETWEEN 1 AND 10;
+WHERE ROWNUM BETWEEN 10 AND 20;
