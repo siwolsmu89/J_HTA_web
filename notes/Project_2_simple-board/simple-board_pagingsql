@@ -1,0 +1,6 @@
+ SELECT *
+ FROM (SELECT E.employee_id, E.first_name, E.last_name, E.job_id, D.department_id, D.department_name 
+       FROM employees E, departments D 
+	   WHERE E.department_id = D.department_id(+)
+       ORDER BY E.employee_id ASC)
+WHERE ROWNUM BETWEEN 1 AND 10;
