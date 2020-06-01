@@ -19,7 +19,7 @@
 		
 		<%
 			// 1. 한 화면에 표시할 행의 갯수
-			int rowsPerPage = 20;
+			int rowsPerPage = 10;
 		
 			// 2. 클라이언트가 요청한 페이지 번호 조회하기
 			int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
@@ -28,6 +28,7 @@
 			int beginRowNumber = (pageNo -1) *rowsPerPage + 1;
 			int endRowNumber = pageNo * rowsPerPage;
 			
+			// 4. 화면에 표시할 목록 조회하기
 			EmployeeDAO empDao = new EmployeeDAO();
 			List<Employee> employees = empDao.getEmployeesByRange(beginRowNumber, endRowNumber);
 		%>
@@ -72,6 +73,13 @@
 		</div>
 		
 		<div class="text-center">
+		<%
+			// 1. 전체 행의 개수를 조회한다.
+			int rows = empDao.getEmployeesCount();
+		
+			// 2. 전체 페이지 수를 계산한다.
+			int totalPages = (int) Math.ceil((double) rows/rowsPerPage);
+		%>
 			<div class="pagination">
 				<a href="">&laquo;</a>
 				<a href="list.jsp?page=1" class="<%=pageNo == 1 ? "active" : ""%>">1</a>
