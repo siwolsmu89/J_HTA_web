@@ -47,6 +47,53 @@ public class BoardDAO {
 		connection.close();
 	}
 	
+	public int getBoardsTotalCount() throws SQLException {
+		int count = 0;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsTotalCount"));
+		ResultSet rs = pstmt.executeQuery();
+
+		rs.next();
+		count = rs.getInt("count");
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return count;
+	}
+	
+	public List<Board> getBoardsByRange(int begin, int end) throws SQLException {
+		List<Board> boards = new ArrayList<Board>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsByRange"));
+		pstmt.setInt(1, begin);
+		pstmt.setInt(2, end);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			Board board = new Board();
+			board.setNo(rs.getInt("board_no"));
+			board.setTitle(rs.getString("board_title"));
+			board.setWriter(rs.getString("board_writer"));
+			board.setContent(rs.getString("board_content"));
+			board.setHit(rs.getInt("board_hit"));
+			board.setReplyCnt(rs.getInt("board_reply_cnt"));
+			board.setDeleted("Y".equals(rs.getString("board_del_yn")));
+			board.setCreatDate(rs.getDate("board_create_date"));
+			
+			boards.add(board);
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return boards;
+	}
+	
 	public List<Board> getAllBoards() throws SQLException {
 		List<Board> allBoards = new ArrayList<Board>();
 		

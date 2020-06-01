@@ -1,3 +1,4 @@
+<%@page import="com.simple.util.NumberUtil"%>
 <%@page import="com.simple.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.simple.dao.BoardDAO"%>
@@ -22,10 +23,17 @@
 
 		<div class="body">
 			<% 
-				BoardDAO  boardDao = new BoardDAO();
-				List<Board> allBoards = boardDao.getAllBoards();
 			
-				if (allBoards.isEmpty()) {
+				int rowsPerPage = 5;
+				int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
+				
+				int begin = (pageNo-1) * rowsPerPage + 1;
+				int end = pageNo * rowsPerPage;
+				
+				BoardDAO  boardDao = new BoardDAO();
+				List<Board> boards = boardDao.getBoardsByRange(begin, end);
+				
+				if (boards.isEmpty()) {
 			%>
 				<div>
 					<p> 현재 작성된 글이 없습니다 </p>
@@ -55,7 +63,7 @@
 						</thead>
 						<tbody>
 			<%
-					for (Board board : allBoards) {
+					for (Board board : boards) {
 						if (!board.isDeleted()) {
 			%>						
 							<tr>
@@ -83,7 +91,37 @@
 				</div>
 			<%
 				}
+				
+				int pagesPerBlock = 5;
+				int boardCount = boardDao.getBoardsTotalCount();
+				
+				int pageCount = (int) Math.ceil((double) boardCount / rowsPerPage);
+				int currentBlock = (int) Math.ceil((double) pageNo / pagesPerBlock);
+				
+				int beginPage = (currentBlock - 1) * pagesPerBlock + 1;
+				int endPage = currentBlock * pagesPerBlock;
+				
+				if (pageNo > 1) {
 			%>
+				<div>
+					<a href="list.jsp?page=<%=pageNo - 1 %>">&laquo;</a>
+			<% 				
+				}
+				for (int i = beginPage; i<=endPage; i++) {
+					if (endPage>pageCount) {
+						endPage=pageCount;
+					}
+			%>
+					<a href="list.jsp?page=<%=i %>"><%=i %></a>
+			<%
+				}
+				if (pageNo < pageCount) {
+			%>
+					<a href="list.jsp?page=<%=pageNo + 1 %>">&raquo;</a>
+			<%
+				}
+			%>
+				</div>
 			<div class="text-right">
 				[<a href="form.jsp">글 쓰기</a>]
 			</div>
