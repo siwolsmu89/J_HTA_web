@@ -13,4 +13,24 @@
 				username=홍길동&userid=hong&password=zxcv1234
 		* enctype="multipart/form-data"
 			- 폼 입력값에 첨부파일이 있는 경우에 사용한다.
-			-
+			- 요청방식은 "POST"방식으로 지정해야한다.
+			- 요청메시지의 헤더정보의 컨텐츠 타입이 아래와 같이 지정된다.
+				Content-Type: multipart/form-data; boundary=----WebKitFormBoundarySHTBNyf6ASdf5hFB
+			- 전송되는 폼 입력값을 구분하는 구분자로 boundary에 지정되어 있는 문자열을 이용한다.
+			- 예)
+				----WebKitFormBoundarySHTBNyf6ASdf5hFB
+				Content-Disposition; form-data; name="title"
+				회사규정집 요약본
+
+				----WebKitFormBoundarySHTBNyf6ASdf5hFB
+				Content-Disposition; form-data; name="upfile" filename="summary.txt"
+				Content-Type: text/plain
+
+				주식회사 중앙HTA학원규정집 파일내용 파일내용 내용 내용(이하 파일내용 생략)
+				----WebKitFormBoundarySHTBNyf6ASdf5hFB--
+			  * WebKitFormBoundary 부분 뒤에 --가 붙으면 첨부파일의 끝을 나타낸다.
+			- 요청객체의 getParameter(String name) 메소드로 폼 입력값을 가져올 수 없다.
+			- 파일업로드 처리를 도와주는 별도의 라이브러리가 필요하다.
+				cos.jar
+				commons-fileupload.jar
+			
