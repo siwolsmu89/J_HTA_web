@@ -130,17 +130,19 @@ public class EmployeeDAO {
 	 */
 	public Employee getEmployeeById(int employeeId) throws SQLException {
 		Employee employee = null;
-		String sql = "SELECT E.employee_id, E.first_name, E.last_name, E.email, E.phone_number, E.hire_date, E.job_id, E.salary, E.commission_pct, "
-				+ "M.employee_id AS manager_id, M.first_name AS manager_first_name, M.last_name AS manager_last_name, "
-				+ "D.departmnet_id, D.department_name AS department_name "
-				+ "FROM employees E, departments D, employee M "
+		String sql = "SELECT E.employee_id, E.first_name, E.last_name, E.email, E.phone_number "
+				+ ", E.hire_date, E.job_id, E.salary, E.commission_pct "
+				+ ", M.employee_id AS manager_id, M.first_name AS manager_first_name, M.last_name AS manager_last_name "
+				+ ", D.department_id, D.department_name AS department_name "
+				+ "FROM employees E, departments D, employees M "
 				+ "WHERE E.department_id = D.department_id(+) "
-				+ "AND E.manager_id = M.manager_id "
-				+ "WHERE E.employee_id = " + employeeId + " "
-				+ "ORDER BY employee_id ASC";
+				+ "AND E.manager_id = M.employee_id "
+				+ "AND E.employee_id = ? "
+				+ "ORDER BY E.employee_id ASC";
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(sql);
+		pstmt.setInt(1, employeeId);
 		ResultSet rs = pstmt.executeQuery();
 		
 		if (rs.next()) {
