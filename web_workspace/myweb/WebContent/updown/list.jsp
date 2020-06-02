@@ -1,3 +1,6 @@
+<%@page import="com.sample.vo.SampleFile"%>
+<%@page import="java.util.List"%>
+<%@page import="com.sample.dao.SampleFileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +17,20 @@
 		</div>
 		
 		<div class="body">
+		<%
+			SampleFileDAO fileDao = new SampleFileDAO();
+			List<SampleFile> files = fileDao.getAllFiles();
+			
+			if (files.isEmpty()){
+		%>
+			<p>등록된 파일이 없습니다.</p>
+		<%
+			} else {
+		%>
 			<p>첨부파일을 확인해보세요</p>
+		<%
+				for (SampleFile f : files) {
+		%>
 			<table class="table">
 				<thead>
 					<tr>
@@ -26,13 +42,17 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>10</td>
-						<td>휴가신청서</td>
-						<td><a href="download.jsp?no=10">휴가신청서.hwp</a></td>
-						<td>2020-04-21</td>
+						<td><%=f.getNo() %></td>
+						<td><%=f.getTitle() %></td>
+						<td><a href="download.jsp?no=10"><%=f.getName() %></a></td>
+						<td><%=f.getCreateDate() %></td>
 					</tr>
 				</tbody>
 			</table>
+		<%
+				}
+			}
+		%>
 		</div>
 		
 		<div class="text-right">

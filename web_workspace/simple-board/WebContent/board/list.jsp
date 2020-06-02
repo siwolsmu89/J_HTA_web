@@ -68,7 +68,7 @@
 			%>						
 							<tr>
 								<td class="text-center"><%=board.getNo() %></td>
-								<td><a href="detail.jsp?boardno=<%=board.getNo() %>"><%=board.getTitle() %></a></td>
+								<td><a href="detail.jsp?boardno=<%=board.getNo() %>&page=<%=pageNo %>"><%=board.getTitle() %></a></td>
 								<td class="text-center"><a href="writers.jsp?writer=<%=board.getWriter() %>"><%=board.getWriter() %></a></td>
 								<td class="text-center"><%=board.getHit() %></td>
 								<td class="text-center"><%=board.getReplyCnt() %></td>

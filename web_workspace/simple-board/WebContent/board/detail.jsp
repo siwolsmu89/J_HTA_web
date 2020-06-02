@@ -78,10 +78,15 @@
 				</tbody>
 			</table>
 		</div>
+		
+		<%
+			int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
+		%>
+		
 		<div class="text-right">
 			[<a href="modifyform.jsp?boardno=<%=boardNo %>">수정하기</a>]
-			[<a href="delete.jsp?boardno=<%=boardNo %>">삭제하기</a>]
-			[<a href="list.jsp">목록가기</a>]
+			[<a href="delete.jsp?boardno=<%=boardNo %>&page=<%=pageNo %>">삭제하기</a>]
+			[<a href="list.jsp?page=<%=pageNo %>">목록가기</a>]
 		</div>
 		
 		<% 

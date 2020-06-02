@@ -1,9 +1,12 @@
+<%@page import="com.sample.vo.SampleFile"%>
+<%@page import="com.sample.dao.SampleFileDAO"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
 	String saveDirectory = "c:/files";
-	int maxPostSize = 1024 * 1024 * 10;
+	int maxPostSize = 1024 * 1024 * 100;
 	String encoding = "utf-8";
 	
 	// MultipartRequest 객체
@@ -17,10 +20,21 @@
 	//	 String getFilesystemName(String name)
 	//   String getOriginalFileName(String name)
 	
-	MultipartRequest mr = new MultipartRequest(request, saveDirectory, maxPostSize, encoding);
+	// * DefaultFileRenamePolicy
+	//		동일한 파일이름이 존재하는 경우 파일이름을 변경해주는 객체다.
+	// 		예) logo.jpg가 존재하는 경우 파일이름을 logo1.jpg로 변경해서 저장한다.
+	
+	MultipartRequest mr = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, new DefaultFileRenamePolicy());
 	
 	String title = mr.getParameter("title");
 	String filename = mr.getFilesystemName("upfile");
 	
-
+	SampleFile sampleFile = new SampleFile();
+	sampleFile.setTitle(title);
+	sampleFile.setName(filename);
+	
+	SampleFileDAO sampleFileDao = new SampleFileDAO();
+	sampleFileDao.insertFile(sampleFile);
+	
+	response.sendRedirect("list.jsp");
 %>

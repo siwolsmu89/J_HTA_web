@@ -8,7 +8,8 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	int boardNo = NumberUtil.stringToInt(request.getParameter("boardno"));
-	
+	int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
+
 	BoardDAO boardDao = new BoardDAO();
 	
 	Board board = boardDao.getBoardByNo(boardNo);
@@ -22,6 +23,6 @@
 	
 	boardDao.updateBoard(board);
 	
-	response.sendRedirect("list.jsp");
+	response.sendRedirect("list.jsp?page="+pageNo);
 
 %>
