@@ -20,6 +20,6 @@
 		return;
 	}
 	
-	userDao.addUser(user);
+	userDao.insertUser(user);
 	response.sendRedirect("/simple-board/home.jsp");
 %>

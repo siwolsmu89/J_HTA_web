@@ -24,13 +24,13 @@
 		</div>
 
 		<div class="body">
-			<p><strong><%=userName %></strong>님, 환영합니다.</p>
+			<p><strong><%=loginedUserName %></strong>님, 환영합니다.</p>
 			
 			<div>
 				<h3> 내가 쓴 글 목록 보기 </h3>
 			<%
 				BoardDAO boardDao = new BoardDAO();
-				List<Board> myBoards = boardDao.getMyBoards(userId);
+				List<Board> myBoards = boardDao.getMyBoards(loginedUserId);
 				
 				if (myBoards.isEmpty()) {
 			%>
@@ -93,7 +93,7 @@
 				
 				<%
 				ReplyDAO replyDao = new ReplyDAO();
-				List<Reply> myReplys = replyDao.getMyReplys(userId);
+				List<Reply> myReplys = replyDao.getMyReplys(loginedUserId);
 				
 				if (myReplys.isEmpty()) {
 			%>

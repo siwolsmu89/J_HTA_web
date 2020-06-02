@@ -20,9 +20,9 @@
 	Reply reply = new Reply();
 	reply.setBoardNo(boardNo);
 	reply.setContent(content);
-	reply.setWriter(userId);
+	reply.setWriter(loginedUserId);
 	
-	replyDao.addReply(reply);
+	replyDao.insertReply(reply);
 	
 	Board board = boardDao.getBoardByNo(boardNo);
 	board.setReplyCnt(board.getReplyCnt()+1);

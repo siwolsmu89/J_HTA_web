@@ -1,8 +1,9 @@
+<%@page import="com.simple.vo.Board"%>
 <%@page import="com.simple.util.StringUtil"%>
 <%@page import="com.simple.vo.Reply"%>
 <%@page import="java.util.List"%>
 <%@page import="com.simple.dao.ReplyDAO"%>
-<%@page import="com.simple.vo.Board"%>
+<%@page import="com.simple.dto.BoardDTO"%>
 <%@page import="com.simple.util.NumberUtil"%>
 <%@page import="com.simple.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,6 +12,7 @@
 	BoardDAO boardDao = new BoardDAO();
 	int boardNo = NumberUtil.stringToInt(request.getParameter("boardno"));
 	Board board = boardDao.getBoardByNo(boardNo);
+	
 	board.setHit(board.getHit()+1);
 	boardDao.updateBoard(board);
 %>

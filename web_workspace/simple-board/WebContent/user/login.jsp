@@ -12,6 +12,16 @@
 	UserDAO userDao = new UserDAO();
 	User user = userDao.getUserById(userId);
 	
+	if (user==null) {
+		response.sendRedirect("loginform.jsp?error=failed");
+		return;
+	}
+	
+	if (user.isDisabled()) {
+		response.sendRedirect("loginform.jsp?error=disabled");
+		return;
+	}
+	
 	if (!password.equals(user.getPassword())) {
 		response.sendRedirect("loginform.jsp?error=failed");
 		return;

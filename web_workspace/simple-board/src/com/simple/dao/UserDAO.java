@@ -11,9 +11,9 @@ import com.simple.vo.User;
 
 public class UserDAO {
 
-	public void addUser(User user) throws SQLException {
+	public void insertUser(User user) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.addUser"));
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.insertUser"));
 		pstmt.setString(1, user.getId());
 		pstmt.setString(2, user.getName());
 		pstmt.setString(3, user.getPassword());
@@ -49,7 +49,7 @@ public class UserDAO {
 	}
 	
 	public User getUserById(String userId) throws SQLException {
-		User user = new User();
+		User user = null;
 
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.getUserById"));
@@ -57,6 +57,7 @@ public class UserDAO {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if (rs.next()) {
+			user = new User();
 			user.setId(rs.getString("user_id"));
 			user.setPassword(rs.getString("user_password"));
 			user.setName(rs.getString("user_name"));

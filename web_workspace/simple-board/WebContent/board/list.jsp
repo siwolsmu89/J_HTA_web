@@ -1,5 +1,5 @@
+<%@page import="com.simple.dto.BoardDTO"%>
 <%@page import="com.simple.util.NumberUtil"%>
-<%@page import="com.simple.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.simple.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,7 +23,6 @@
 
 		<div class="body">
 			<% 
-			
 				int rowsPerPage = 5;
 				int pageNo = NumberUtil.stringToInt(request.getParameter("page"), 1);
 				
@@ -31,7 +30,7 @@
 				int end = pageNo * rowsPerPage;
 				
 				BoardDAO  boardDao = new BoardDAO();
-				List<Board> boards = boardDao.getBoardsByRange(begin, end);
+				List<BoardDTO> boards = boardDao.getBoardsByRange(begin, end);
 				
 				if (boards.isEmpty()) {
 			%>
@@ -63,13 +62,13 @@
 						</thead>
 						<tbody>
 			<%
-					for (Board board : boards) {
+					for (BoardDTO board : boards) {
 						if (!board.isDeleted()) {
 			%>						
 							<tr>
 								<td class="text-center"><%=board.getNo() %></td>
 								<td><a href="detail.jsp?boardno=<%=board.getNo() %>&page=<%=pageNo %>"><%=board.getTitle() %></a></td>
-								<td class="text-center"><a href="writers.jsp?writer=<%=board.getWriter() %>"><%=board.getWriter() %></a></td>
+								<td class="text-center"><a href="writers.jsp?writer=<%=board.getWriter() %>"><%=board.getWriterName() %></a></td>
 								<td class="text-center"><%=board.getHit() %></td>
 								<td class="text-center"><%=board.getReplyCnt() %></td>
 								<td class="text-center"><%=board.getCreatDate() %></td>

@@ -13,9 +13,9 @@ import com.simple.vo.Reply;
 
 public class ReplyDAO {
 	
-	public void addReply(Reply reply) throws SQLException {
+	public void insertReply(Reply reply) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("reply.addReply"));
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("reply.insertReply"));
 		pstmt.setString(1, reply.getWriter());
 		pstmt.setString(2, reply.getContent());
 		pstmt.setInt(3, reply.getBoardNo());
@@ -51,7 +51,7 @@ public class ReplyDAO {
 	}
 	
 	public List<Reply> getReplysByBoardNo(int boardNo) throws SQLException {
-List<Reply> replys = new ArrayList<Reply>();
+		List<Reply> replys = new ArrayList<Reply>();
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("reply.getReplysByBoardNo"));

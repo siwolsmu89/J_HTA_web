@@ -38,16 +38,28 @@
 		<servlet-name>filedownload</servlet-name>
 		<url-pattern>/download</url-pattern>
 	</servlet-mapping>
-	<!-- 
+	 <!-- 
 		에러페이지 설정
 	 -->
-	 <error-page>
-	 	<error-code>500</error-code>
-	 	<location>/error/serverError.jsp</location>
-	 </error-page>
-	 
+
+	 <!-- 
+	 	HTTP 응답코드 404
+	 	요청 URL이 올바르지 않거나, 요청 URL에 해당하는 파일을 찾을 수 없는 경우
+	  -->
 	 <error-page>
 	 	<error-code>404</error-code>
 	 	<location>/error/filenotfound.jsp</location>
 	 </error-page>
+	
+	<!-- 
+		HTTP 응답코드 500
+		클라이언트의 요청을 처리하는 도중 에러가 발생한 경우
+		jsp나 DAO, Service 등의 서버측 프로그램이 실행되는 도중 에러가 발생한 경우
+	 -->
+
+	 <error-page>
+	 	<error-code>500</error-code>
+	 	<location>/error/serverError.jsp</location>
+	 </error-page>
+
 </web-app>

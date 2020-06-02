@@ -23,13 +23,25 @@
 			String error = StringUtil.nullToBlank(request.getParameter("error"));
 			if ("failed".equals(error)) {
 		%>
-			<p style="color: red;"><strong>오류 발생</strong> : 아이디 혹은 비밀번호 오류</p>
+			<div class="error">
+				<p style="color: red;"><strong>오류 발생</strong> : 아이디 혹은 비밀번호 오류</p>
+			</div>
 		<%		
 			}
 			
 			if ("deny".equals(error)) {
 		%>
-			<p style="color: red;"><strong>오류 발생</strong> : 로그인이 필요한 서비스</p>
+			<div class="error">
+				<p style="color: red;"><strong>오류 발생</strong> : 로그인이 필요한 서비스</p>
+			</div>
+		<%
+			}
+			
+			if ("disabled".equals(error)) {
+		%>
+			<div class="error">
+				<p style="color: red;"><strong>오류 발생</strong> : 탈퇴한 사용자</p>
+			</div>			
 		<%
 			}
 		%>

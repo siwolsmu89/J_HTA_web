@@ -20,10 +20,10 @@
 	Board board = new Board();
 	board.setTitle(title);
 	board.setContent(content);
-	board.setWriter((String) session.getAttribute("logined_user_id"));
+	board.setWriter(loginedUserId);
 	
 	BoardDAO boardDao = new BoardDAO();
-	boardDao.addBoard(board);
+	boardDao.insertBoard(board);
 	
 	response.sendRedirect("list.jsp");
 	

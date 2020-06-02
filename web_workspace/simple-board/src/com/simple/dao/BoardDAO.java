@@ -7,15 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.simple.dto.BoardDTO;
 import com.simple.util.ConnectionUtil;
 import com.simple.util.QueryUtil;
 import com.simple.vo.Board;
 
 public class BoardDAO {
 	
-	public void addBoard(Board board) throws SQLException {
+	public void insertBoard(Board board) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.addBoard"));
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.insertBoard"));
 		pstmt.setString(1, board.getTitle());
 		pstmt.setString(2, board.getWriter());
 		pstmt.setString(3, board.getContent());
@@ -30,10 +31,7 @@ public class BoardDAO {
 	public void updateBoard(Board board) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.updateBoard"));
-		String deleted = "N";
-		if (board.isDeleted()) {
-			deleted = "Y";
-		}
+		String deleted = board.isDeleted() ? "Y" : "N";
 		pstmt.setString(1, board.getTitle());
 		pstmt.setString(2, board.getContent());
 		pstmt.setInt(3, board.getHit());
@@ -64,8 +62,8 @@ public class BoardDAO {
 		return count;
 	}
 	
-	public List<Board> getBoardsByRange(int begin, int end) throws SQLException {
-		List<Board> boards = new ArrayList<Board>();
+	public List<BoardDTO> getBoardsByRange(int begin, int end) throws SQLException {
+		List<BoardDTO> boards = new ArrayList<BoardDTO>();
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardsByRange"));
@@ -74,10 +72,11 @@ public class BoardDAO {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
-			Board board = new Board();
+			BoardDTO board = new BoardDTO();
 			board.setNo(rs.getInt("board_no"));
 			board.setTitle(rs.getString("board_title"));
 			board.setWriter(rs.getString("board_writer"));
+			board.setWriterName(rs.getString("writer_name"));
 			board.setContent(rs.getString("board_content"));
 			board.setHit(rs.getInt("board_hit"));
 			board.setReplyCnt(rs.getInt("board_reply_cnt"));
@@ -152,7 +151,7 @@ public class BoardDAO {
 	}
 	
 	public Board getBoardByNo(int boardNo) throws SQLException {
-		Board board = new Board();
+		Board board = null;
 		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("board.getBoardByNo"));
@@ -160,6 +159,7 @@ public class BoardDAO {
 		ResultSet rs = pstmt.executeQuery();
 		
 		if (rs.next()) {
+			board = new Board();
 			board.setNo(rs.getInt("board_no"));
 			board.setTitle(rs.getString("board_title"));
 			board.setWriter(rs.getString("board_writer"));
