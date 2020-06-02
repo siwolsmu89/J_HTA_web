@@ -44,7 +44,7 @@
 					<tr>
 						<td><%=f.getNo() %></td>
 						<td><%=f.getTitle() %></td>
-						<td><a href="download.jsp?no=10"><%=f.getName() %></a></td>
+						<td><a href="../download?no=<%=f.getNo() %>"><%=f.getName() %></a></td>
 						<td><%=f.getCreateDate() %></td>
 					</tr>
 				</tbody>

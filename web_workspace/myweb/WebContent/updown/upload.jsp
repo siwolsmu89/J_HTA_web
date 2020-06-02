@@ -1,3 +1,4 @@
+<%@page import="com.sample.util.NumberUtil"%>
 <%@page import="com.sample.vo.SampleFile"%>
 <%@page import="com.sample.dao.SampleFileDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -5,8 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	String saveDirectory = "c:/files";
-	int maxPostSize = 1024 * 1024 * 100;
+	String saveDirectory = application.getInitParameter("saveDirectory");
+	int maxPostSize = NumberUtil.stringToInt(application.getInitParameter("maxUploadFileSize"));
 	String encoding = "utf-8";
 	
 	// MultipartRequest 객체

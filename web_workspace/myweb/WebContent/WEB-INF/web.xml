@@ -8,12 +8,46 @@
 
 	<context-param>
 		<param-name>maxUploadFileSize</param-name>
-		<param-value>10485760</param-value>
+		<param-value>104857600</param-value>
 	</context-param>
 
 	<context-param>
 		<param-name>maxUploadFileCount</param-name>
 		<param-value>10</param-value>
 	</context-param>
+
+	<context-param>
+		<param-name>saveDirectory</param-name>
+		<param-value>C:/files</param-value>
+	</context-param>
 	
+	<!-- 
+		<servlet> 태그는 사용자정의 서블릿 클래스를 Tomcat에 지정된 이름으로 배포할 때 사용된다.
+		
+		<servlet-mapping> 태그는 지정된 URL 요청이 왔을 때 사용할 서블릿의 이름을 Tomcat에게 알려줄 때 사용된다.
+		
+		아래의 예를 살펴보면,
+			com.sample.download.FileDownloadServlet을 filedownload라는 이름으로 톰캣에 배포한다.
+			/download 요청이 접수되면 filedownload라는 이름으로 배포된 서블릿을 사용하도록 한다.
+	 -->
+	<servlet>
+		<servlet-name>filedownload</servlet-name>
+		<servlet-class>com.sample.download.FileDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>filedownload</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<!-- 
+		에러페이지 설정
+	 -->
+	 <error-page>
+	 	<error-code>500</error-code>
+	 	<location>/error/serverError.jsp</location>
+	 </error-page>
+	 
+	 <error-page>
+	 	<error-code>404</error-code>
+	 	<location>/error/filenotfound.jsp</location>
+	 </error-page>
 </web-app>

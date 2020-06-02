@@ -1,0 +1,24 @@
+HTTP 응답코드
+	1xx 
+		정보 응답
+		서버가 요청을 받았고, 요청을 처리중이다.
+		100 Continue
+		101 Switching Protocols 서버에서 프로토콜을 변경할 것임을 알림
+	2xx
+		성공 응답
+		200 OK			요청이 성공적으로 처리되었음
+		204 No Content		요청이 성공적으로 처리되었지만, 응답으로 보낼 컨텐츠는 없음
+	3xx
+		리다이렉션 메시지 응답
+		302 Found		클라이언트의 요청이 변경되었음을 응답으로 보낸다.
+		307 Temporary Redirect 	response.sendRedirect(path)를 이용할 때 보내지는 응답
+	4xx
+		클라이언트 에러 응답
+		401 Unauthorized	인증되지 않은 클라이언트의 요청
+		403 Forbidden		필요한 접근 권한을 가지고 있지 않은 요청
+		404 Not Found		요청한 리소스를 찾을 수 없음
+		405 Method Not Allowed	요청한 방식(get, post, put, delete)을 서버가 허용하지 않음
+	5xx
+		서버 에러 응답
+		500 Internal Server Error 서버 내부 에러가 발생함(클라이언트 요청 처리 중 예외가 발생함)
+		503 Service Unavailable   서버가 요청을 처리할 준비가 되어있지 않음
