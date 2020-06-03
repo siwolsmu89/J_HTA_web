@@ -6,9 +6,34 @@
 </head>
 <body>
 	<h1>이벤트 처리</h1>
+
+	<div>
+		<input type="number" id="field1" /> * <input type="number" id="field2" /> = <input type="number" id="field3" readonly />
+		<button onclick="calculate();">계산하기</button>
+	</div>	
 	
 	<script type="text/javascript">
-		
+		// 이벤트 핸들러 함수(이벤트가 발생했을 때 실행할 것을 목적으로 만드는 함수)
+		function calculate() {
+			var el1 = document.querySelector("#field1");
+			var el2 = document.querySelector("#field2");
+			var el3 = document.querySelector("#field3");
+			
+			var num1 = el1.value;
+			var num2 = el2.value;
+			
+			if (!num1) {
+				alert("첫번째 칸에 숫자를 입력하세요.");
+				return;
+			} else if (!num2) {
+				alert("두번째 칸에 숫자를 입력하세요.");
+				return;
+			}
+			
+			var result = parseInt(num1) + parseInt(num2);
+			el3.value = result;
+			
+		}
 	</script>
 </body>
 </html>
