@@ -12,5 +12,6 @@ Javascript
 		- 웹 서버와 데이터교환(통신)하는 프로그램을 작성할 수 있다.(AJAX)
 	- 웹페이지에 자바스크립트 포함시키기
 		- Internal javascript
-
+			<head>태그나 <body> 사이에 <script></script> 태그를 위치시키고, <script></script> 사이에 javascript 코드를 작성한다.
 		- External javascript
+			<head>나 <body> 사이에 <script src="자바스크립트 소스 파일"></script> 태그를 추가하면 자바스크립트 소스를 포함시킬 수 있다.

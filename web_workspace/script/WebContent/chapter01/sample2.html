@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+	외부 javascript 파일을 HTML에 포함시키기 
+-->
+<script type="text/javascript" src="sample.js"></script>
+<!-- 
+	스크립트 코드를 추가해야 하는 경우
+	새로운 <script></script> 태그를 생성하고,
+	스크립트 코드를 추가한다.
+ -->
+<script type="text/javascript">
+	function yourfunction() {
+		alert("내부스크립트의 함수 실행");
+	}
+</script>
+</head>
+<body>
+	<h1>javascript 포함시키기</h1>
+	<p>
+		<button onclick="myfunction()">얍</button>
+		<button onclick="yourfunction()">얍얍</button>
+	</p>
+</body>
+</html>
