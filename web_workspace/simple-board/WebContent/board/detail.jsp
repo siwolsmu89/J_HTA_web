@@ -86,8 +86,17 @@
 		%>
 		
 		<div class="text-right">
+		
+		<%
+			if (("Y".equals(loginedYn))&&(loginedUserId.equals(board.getWriter()))) {
+		%>
+		
 			[<a href="modifyform.jsp?boardno=<%=boardNo %>">수정하기</a>]
 			[<a href="delete.jsp?boardno=<%=boardNo %>&page=<%=pageNo %>">삭제하기</a>]
+			
+		<%
+			}
+		%>	
 			[<a href="list.jsp?page=<%=pageNo %>">목록가기</a>]
 		</div>
 		
