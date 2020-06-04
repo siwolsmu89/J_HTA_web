@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체</h1>
+	
+	<h3>연락처 정보</h3>
+	<dl id="contact">
+		<dt>이름</dt> <dd></dd>
+		<dt>연락처</dt> <dd></dd>
+		<dt>이메일</dt> <dd></dd>
+		<dt>소속회사</dt> <dd></dd>
+	</dl>
+	
+	<h3>경력사항</h3>
+	<ul id="career">
+	</ul>
+	
+	<h3>보유차랑정보</h3>
+	<dl id="carinfo">
+		<dt>차종</dt> <dd></dd>
+		<dt>구매년도</dt> <dd></dd>
+		<dt>가격</dt> <dd></dd>
+	</dl>
+	
+	<script type="text/javascript">
+		var person = {
+			name: "홍길동",
+			tel: "010-1234-5678",
+			email: "hong@gmail.com",
+			company: "한빛미디어",
+			career: ["편의점 알바", "조교", "대기업 인턴"],
+			car: {
+				name: "쏘나타", year: "2020-5-21", price: "3,000만원"
+			}
+		}
+		
+		var dd1 = document.querySelector("#contact dd:nth-of-type(1)");
+		var dd2 = document.querySelector("#contact dd:nth-of-type(2)");
+		var dd3 = document.querySelector("#contact dd:nth-of-type(3)");
+		var dd4 = document.querySelector("#contact dd:nth-of-type(4)");
+		
+		// 연락처 정보
+		dd1.textContent = person.name;
+		dd2.textContent = person["tel"];
+		dd3.textContent = person.email;
+		dd4.textContent = person.company;
+		
+		// 경력사항 표현
+		var careers = person.career;
+		var items = "";
+		for (var i = 0; i<careers.length; i++) {
+			items += "<li>" + careers[i] + "</li>";
+		}
+		
+		document.querySelector("#career").innerHTML = items;
+			
+	</script>
+</body>
+</html>

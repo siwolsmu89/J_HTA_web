@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>배열</h1>
+	
+	<div>
+		<form>
+			<div>
+				<label>경력사항</label>
+				<input type="text" name="career" value="한빛" />
+			</div>
+			<div>
+				<label>경력사항</label>
+				<input type="text" name="career" value="새빛" />
+			</div>
+			<div>
+				<label>경력사항</label>
+				<input type="text" name="career" value="별빛" />
+			</div>
+			<div>
+				<button type="submit">제출</button>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		// input 태그 중에서 name 속성이 career인 모든 엘리먼트를 반환한다.
+		// 조회된 엘리먼트는 유사배열인 NodeList에 담겨서 반환된다.
+		// NodeList는 배열은 아니지만 배열처럼 변수명.length로 길이를 알아낼 수 있고, 변수명[index]로 엘리먼트를 하나씩 꺼낼 수 있다.
+		var inputs = document.querySelectorAll("input[name='career']");
+		
+		for (var index = 0; index < inputs.length; index++) {
+			var inputEl = inputs[index];
+			var companyName = inputEl.value;
+			console.log("경력사항", companyName)
+		}
+		
+		console.log(inputs);
+	</script>
+</body>
+</html>
