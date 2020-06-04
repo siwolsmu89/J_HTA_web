@@ -128,4 +128,32 @@
 			  var x = {name:"홍길동", age:50};
 			  delete x.age; // x가 참조하는 객체의 age프로퍼티를 삭제한다.
 		- 생성자 함수
-			
+			- 생성자 함수는 new 키워드와 같이 사용되는 함수다.
+			- 생성자 함수는 다른 함수와 구별하기 위해 함수명을 대문자로 시작한다.
+			- 생성자 함수는 객체의 구성요소를 함수 안에서 정의하고 초기화한다.
+			- 작성예
+				var x = new Employee();
+					1. new 키워드가 빈 객체를 생성한다.
+					2. 생성자함수 Employee()를 실행하면서, 생성자함수의 this에 1번에서 생성한 빈 객체를 전달한다.
+					3. 생성자함수의 수행문이 실행되면서 전달받은 객체(this)에 프로퍼티와 메소드를 추가한다.
+					4. 생성자 함수의 실행이 완료되면 x에 전달받은 객체(this)가 반환된다.
+					5. console.log(x.id); 와 같이 사용할 수 있게 된다.
+				function Employee(id, name, salary, commission, dept) {
+					// 매개변수로 받은 id 값을 this가 가지고 있는 객체의 id 프로퍼티에 대입시킨다.
+					this.id = id;
+					this.name = name;
+					this.salary = salary;
+					this.commission = commission;
+					this.dept = dept;
+					this.displayInfo = function() {
+						console.log("아이디", this.id, "이름", this.name, "급여", this.salary, "커미션", this.commission, "소속부서", this.dept)
+					}
+				}
+		
+				var emp1 = new Employee(100, '홍길동', 23000, 0, '기술부');
+				var emp2 = new Employee(120, '김유신', 26000, 0.2, '영업부');
+
+				console.log(emp1);
+				console.log(emp2);
+				emp1.displayInfo();
+				emp2.displayInfo();

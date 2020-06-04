@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>생성자 함수</h1>
+	
+	<script type="text/javascript">
+	
+		/*
+			생성자 함수
+				new 생성자함수(); 와 같은 형태로 사용해야 한다.
+				var x = new Employee();
+					1. new 키워드가 빈 객체를 생성한다.
+					2. 생성자함수 Employee()를 실행하면서, 생성자함수의 this에 1번에서 생성한 빈 객체를 전달한다.
+					3. 생성자함수의 수행문이 실행되면서 전달받은 객체(this)에 프로퍼티와 메소드를 추가한다.
+					4. 생성자 함수의 실행이 완료되면 x에 전달받은 객체(this)가 반환된다.
+					5. console.log(x.id); 와 같이 사용할 수 있게 된다.
+		*/
+		function Employee(id, name, salary, commission, dept) {
+			// 매개변수로 받은 id 값을 this가 가지고 있는 객체의 id 프로퍼티에 대입시킨다.
+			this.id = id;
+			this.name = name;
+			this.salary = salary;
+			this.commission = commission;
+			this.dept = dept;
+			this.displayInfo = function() {
+				console.log("아이디", this.id, "이름", this.name, "급여", this.salary, "커미션", this.commission, "소속부서", this.dept)
+			}
+		}
+		
+		var emp1 = new Employee(100, '홍길동', 23000, 0, '기술부');
+		var emp2 = new Employee(120, '김유신', 26000, 0.2, '영업부');
+
+		console.log(emp1);
+		console.log(emp2);
+		emp1.displayInfo();
+		emp2.displayInfo();
+	</script>
+</body>
+</html>
