@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체</h1>
+	
+	<script type="text/javascript">
+		var emp = {
+			name: "홍길동",
+			pay: 10000,
+			hour: 4,
+			day: 15,
+			getSalary: function(pay, hour, day) {
+				pay = this.pay || pay;
+				hour = this.hour || hour;
+				day = this.day || day;
+				var salary = pay*hour*day;
+				return "[" + this.name+ "]님의 급여 : " + salary;
+			}
+		}
+		
+		var person = {
+			name: "김유신",
+			시급: 35000,
+			시간: 8,
+			일자: 20
+		}
+		
+		var professor = {
+			name: "김교수",
+			pay: 100000,
+			hour: 5,
+			day: 20
+		}
+		
+		var student = {
+			name: "알바생",
+			시급: 8000,
+			시간: 8,
+			일자: 20	
+		}
+			
+		// emp 객체가 emp객체의 getSalary()를 실행한다.
+		var result1 = emp.getSalary();
+		console.log(result1);
+		
+		// professor 객체가 emp객체의 getSalary()를 실행한다.
+		// professor과 emp의 프로퍼티 구성이 동일하다.
+		var result2 = emp.getSalary.call(professor);
+		var result3 = emp.getSalary.apply(professor);
+		console.log(result2);
+		console.log(result3);
+		
+		// student 객체가 emp 객체의 getSalary()를 실행한다.
+		// student 객체와 emp 객체의 프로퍼티 구성이 동일하지 않다.
+		var result4 = emp.getSalary.call(student, student.시급, student.시간, student.일자);
+		var result5 = emp.getSalary.apply(student, [student.시급, student.시간, student.일자]);
+		console.log(result4);
+		console.log(result5);
+	</script>
+</body>
+</html>

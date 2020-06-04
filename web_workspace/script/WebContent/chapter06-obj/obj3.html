@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체</h1>
+	
+	<script type="text/javascript">
+		var person = {
+				firstName: "Steven",
+				lastName: "King",
+				fullName: function() {
+					console.log(this);
+					return this.firstName + " " + this.lastName;
+				}
+		}
+		
+		var employee = {
+				firstName: "홍",
+				lastName: "길동",
+				salary: 3600000
+		}
+		
+		var personName = person.fullName();
+		console.log("사람이름 : ", personName);
+		
+		// apply()는 다른 객체의 메소드를 사용할 수 있게 한다.
+		// employee 객체가 person 객체의 fullName() 메소드를 사용할 수 있게 한다.
+		// fullName() 메소드의 실행 주체가 employee 객체가 되게 하는 것이다.
+		// 그렇기 때문에, fullName() 메소드의 this에 employee 객체가 전달된다.
+		var empName = person.fullName.apply(employee);
+		console.log("사람이름 : ", empName);
+		
+	</script>
+</body>
+</html>
