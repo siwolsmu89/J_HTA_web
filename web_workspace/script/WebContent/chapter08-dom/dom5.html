@@ -54,7 +54,7 @@
 		</div>
 		<div>
 			<label>자기소개</label>
-			<div><textarea name="introduce" rows="5"></textarea></div>
+			<div><textarea name="userprofile" id="user-profile" rows="5"></textarea></div>
 		</div>
 		<div>
 			<button type="button" onclick="checkFieldValue()">등록</button>
@@ -68,12 +68,14 @@
 			console.log(userName);
 			if (!userName) {
 				alert("사용자 이름은 필수 입력 값입니다.");
+				document.querySelector("#user-name").focus();
 				return;
 			}
 			var userId = document.querySelector("input[name='userid']").value;
 			console.log(userId);
 			if (!userId) {
 				alert("사용자 아이디는 필수 입력 값입니다.");
+				document.querySelector("#user-id").focus();
 				return;
 			}
 			
@@ -82,6 +84,7 @@
 			var pwd2 = document.querySelector("input[name='userpassword2']").value;
 			if (!pwd1) {
 				alert("비밀번호는 필수 입력 값입니다.");
+				document.querySelector("#user-pwd1").focus();
 				return;
 			} 
 			
@@ -89,6 +92,7 @@
 				alert("비밀번호가 일치하지 않습니다.");
 				document.querySelector("#user-pwd1").value = "";
 				document.querySelector("#user-pwd2").value = "";
+				document.querySelector("#user-pwd1").focus();
 				return;
 			}
 			
@@ -96,6 +100,7 @@
 			var userAddr = document.querySelector("#user-addr").value;
 			if (!userAddr) {
 				alert("주소지를 선택하세요");
+				document.querySelector("#user-addr").focus();
 				return;
 			}
 			console.log(userAddr);
@@ -123,11 +128,21 @@
 			}
 			if (!checkedSkillCount){
 				alert("보유 기술은 하나 이상 선택해야 합니다.");
+				skills[0].focus();
 				return;
-			}
+			} 
 			console.log(checkedSkillCount);
 			
-			// textarea의 값 읽어오기
+			// textarea의 값 읽어오기\
+			var userProfile = document.querySelector("#user-profile").value;
+			console.log(userProfile);
+			if (!userProfile) {
+				alert("자기소개를 작성하세요");
+				document.querySelector("#user-profile").focus();
+				return;
+			}
+			
+			alert("모든 입력값이 유효합니다.");
 		}
 	</script>
 </body>
