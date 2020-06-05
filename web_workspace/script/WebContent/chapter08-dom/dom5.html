@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>DOM 연습</h1>
+	
+	<form>
+		<div>
+			<label>이름</label>
+			<div><input type="text" name="username" id="user-name" /></div>
+		</div>
+		<div>
+			<label>아이디</label>
+			<div><input type="text" name="userid" id="user-id" /></div>
+		</div>
+		<div>
+			<label>비밀번호</label>
+			<div><input type="password" name="userpassword" id="user-pwd1" /></div>
+		</div>
+		<div>
+			<label>비밀번호 확인</label>
+			<div><input type="password" name="userpassword2" id="user-pwd2" /></div>
+		</div>
+		<div>
+			<label>주소지</label>
+			<div>
+				<select name="useraddr" id ="user-addr">
+					<option value="">선택하세요</option>
+					<option value="서울">서울특별시</option>
+					<option value="경기">경기도</option>
+					<option value="인천">인천광역시</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<label>성별</label>
+			<div>
+				<label><input type="radio" name="gender" value="남" checked /> 남성 </label>
+				<label><input type="radio" name="gender" value="여" /> 여성 </label>
+			</div>
+		</div>
+		<div>
+			<label>보유기술(하나 이상 선택하시오.)</label>
+			<div>
+				<label><input type="checkbox" name="skill" value="java" /> 자바 </label>
+				<label><input type="checkbox" name="skill" value="c" /> C, C++ </label>
+				<label><input type="checkbox" name="skill" value="python" /> 파이썬 </label>
+				<label><input type="checkbox" name="skill" value="db" /> 데이터베이스 </label>
+				<label><input type="checkbox" name="skill" value="network" /> 네트워크 </label>
+			</div>
+		</div>
+		<div>
+			<label>자기소개</label>
+			<div><textarea name="introduce" rows="5"></textarea></div>
+		</div>
+		<div>
+			<button type="button" onclick="checkFieldValue()">등록</button>
+		</div>
+	</form>
+	
+	<script type="text/javascript">
+		function checkFieldValue() {
+			// 입력필드의 값 읽어오기
+			var userName = document.querySelector("#user-name").value;
+			console.log(userName);
+			if (!userName) {
+				alert("사용자 이름은 필수 입력 값입니다.");
+				return;
+			}
+			var userId = document.querySelector("input[name='userid']").value;
+			console.log(userId);
+			if (!userId) {
+				alert("사용자 아이디는 필수 입력 값입니다.");
+				return;
+			}
+			
+			// 비밀번호 필드의 값 읽어오기
+			var pwd1 = document.querySelector("#user-pwd1").value;
+			var pwd2 = document.querySelector("input[name='userpassword2']").value;
+			if (!pwd1) {
+				alert("비밀번호는 필수 입력 값입니다.");
+				return;
+			} 
+			
+			if (pwd1 != pwd2) {
+				alert("비밀번호가 일치하지 않습니다.");
+				document.querySelector("#user-pwd1").value = "";
+				document.querySelector("#user-pwd2").value = "";
+				return;
+			}
+			
+			// select 박스의 값 읽어오기
+			var userAddr = document.querySelector("#user-addr").value;
+			if (!userAddr) {
+				alert("주소지를 선택하세요");
+				return;
+			}
+			console.log(userAddr);
+			
+			// 라디오버튼의 체크된 값 읽어오기
+			//	* 성별의 경우 체크된 값을 읽어오는 것이 프로그램적으로 전혀 의미가 없음 (어차피 하나는 체크가 되어 있을 것이기 때문)
+			var radioButtons = document.querySelectorAll("input[name='gender']");
+			var checkedGender = "";
+			for (var i = 0; i<radioButtons.length; i++) {
+				if (radioButtons[i].checked) {
+					checkedGender = radioButtons[i].value;
+				}
+			}
+			
+			console.log(checkedGender);
+			
+			// 체크박스의 체크된 값 읽어오기
+			// 체크박스는 체크된 체크박스의 개수가 프로그램에서 중요하게 다루어진다.
+			var checkedSkillCount = 0;
+			var skills = document.querySelectorAll("input[name=skill]");
+			for (var i = 0; i<skills.length; i++){
+				if (skills[i].checked) {
+					checkedSkillCount++;
+				}
+			}
+			if (!checkedSkillCount){
+				alert("보유 기술은 하나 이상 선택해야 합니다.");
+				return;
+			}
+			console.log(checkedSkillCount);
+			
+			// textarea의 값 읽어오기
+		}
+	</script>
+</body>
+</html>

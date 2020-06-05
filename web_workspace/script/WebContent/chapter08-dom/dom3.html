@@ -43,20 +43,31 @@
 	</table>
 	
 	<script type="text/javascript">
-		var body = document.querySelector("#contact-table-tbody");
+		var body = document.querySelector("#contact-table tbody");
 		
-		function removeRow(id) {
-			
-			
+		function removeRow(no) {
+			var row = document.querySelector("#contact-"+no);
+			body.removeChild(row);
 		}
 	</script>
 	
 	<!-- 
 		자바 코딩 시 예시
 		<%
-			List<Contact> contacts = contactDao		
-		
+			List<Contact> contacts = contactDao.getAllContacts();
+			for (Contact contact : contacts) {
 		%>
+				<tr id="contact-<%=contact.getNo() %>">
+					<td><%=contact.getNo() %></td>
+					<td><%=contact.getName() %></td>
+					<td><%=contact.getTel() %></td>
+					<td><%=contact.getEmail() %></td>
+					<td><button onclick="removeRow(<%=contact.getNo() %>)">삭제</button></td>
+				</tr>
+		<%
+			}		
+		%>
+		
 	 -->
 </body>
 </html>

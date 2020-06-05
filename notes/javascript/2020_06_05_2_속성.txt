@@ -1,0 +1,10 @@
+모든 태그에 적용가능한 속성들
+id, class
+
+폼 입력요소에 특화된 속성들
+value		<--- input, option
+name  		<--- 모든 폼 요소(input, select, textarea)
+checked 	<-- <input type="radio">, <input type="checkbox">
+selected 	<-- option
+
+disabled, readonly <-- 모든 폼 요소
