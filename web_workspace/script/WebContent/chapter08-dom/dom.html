@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>DOM API 연습</h1>
+	<p> Document, Element, Attribute의 주요 프로퍼티 메소드 연습하기 </p>
+	
+	<div>
+		<h3>음료 메뉴</h3>
+		<ul id="drink-list">
+			<li id="hot" class="drink">커피</li>
+			<li class="drink">쥬스</li>
+			<li class="drink">차</li>
+			<li class="drink">음료수</li>
+		</ul>
+		<p>메뉴의 종류에 따라서 조리 시간이 달라질 수 있습니다.</p>
+	</div>
+
+	<div>
+		<h3>주류 메뉴</h3>
+		<ul id="alcohol-list">
+			<li class="alcohol">소주</li>
+			<li class="alcohol">맥주</li>
+			<li class="alcohol">막걸리</li>
+			<li class="alcohol">위스키</li>
+		</ul>
+		<p>메뉴의 종류에 따라서 조리 시간이 달라질 수 있습니다.</p>
+	</div>
+	
+	<script type="text/javascript">
+		// 가장 잘 팔리는 음료 메뉴 조회하기
+		var el1 = document.getElementById("hot");					// var el1 = $("#hot");
+		var el2 = document.getElementsByTagName("li")[0];			// var el2 = $("li:eq(0)");
+		var el3 = document.getElementsByClassName("drink")[0];		// var el3 = $(".drink:eq(0)");
+		console.log(el1, el2, el3);
+		
+		var el4 = document.querySelector("#hot");
+		var el5 = document.querySelector("li:nth-of-type(1)");
+		var el6 = document.querySelector(".drink:nth-of-type(1)");
+		console.log(el4, el5, el6);
+		
+		// 글자색 바꾸기
+		el1.style.color = "crimson";
+		
+		// 컨텐츠 바꾸기 : 커피 -> 커피(파격할인)
+		var originalTextContent = el1.textContent;
+		console.log(originalTextContent);
+		el1.textContent += "(파격할인)";
+		
+		// 모든 주류 메뉴 조회하기
+		var els1 = document.getElementsByClassName("alcohol");		// var els1 = $(".alcohol");
+		var els2 = document.querySelectorAll(".alcohol");			// var els2 = $(".alcohol");
+		var els3 = document.querySelectorAll("#alcohol-list li");	// var els3 = $("#alcohol-list li");
+		console.log(els1, els2, els3);
+		
+		// 조회된 주류 메뉴의 모든 컨텐츠를 "메뉴명-10%할인"으로 변경
+		for (var i = 0; i < els1.length; i++) {
+			els1[i].textContent += "-10%할인";	// els1은 HTMLCollection이다. HTMLCollection은 유사배열객체다.
+		}
+		
+		// 조회된 주류 메뉴의 글자색을 빨강으로 변경하기
+		for (var i = 0; i < els1.length; i++) {
+			els1.item(i).style.color = "red";	// els1은 HTMLCollection이다. item(인덱스) 메소드를 사용해서 지정된 위치에 저장된 엘리먼트를 조회할 수 있다.
+		}
+		
+		// 모든 p태그를 조회하기   $('p');
+		var els4 = document.getElementsByTagName("p");
+		var els5 = document.querySelectorAll("p");
+		console.log(els4, els5);
+		
+		// 조회된 모든 p태그를 감추기   $("p").hide();
+		for (var i = 0; i < els4.length; i++) {
+			els4[i].style.display="none";
+		}
+	</script>
+</body>
+</html>

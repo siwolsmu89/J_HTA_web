@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>JSON 표기법으로 작성된 데이터의 해석</h1>
+	
+	<script type="text/javascript">
+		// JSON 배열표기법 <- javascript의 배열 리터럴과 유사하게 작성된 텍스트
+		var text = '["김유신", "강감찬", "이순신"]';
+		var arr1 = ["김유신","강감찬","이순신"];
+		var arr2 = JSON.parse(text);
+		
+		console.log(text);
+		console.log(arr1);
+		console.log(arr2);
+		// JSON 객체표기법 <- javascript의 객체 리터럴과 유사하게 작성된 텍스트
+		var textData = '{"name":"홍길동", "salary":300, "dept":"영업부","comm":0.1}';
+		var obj1 = {name:"김유신", salary:400, dept:"영업부", comm:0.1};
+		var obj2 = JSON.parse(textData);
+		
+		console.log(textData);
+		console.log(obj1);
+		console.log(obj2);
+	</script>
+</body>
+</html>

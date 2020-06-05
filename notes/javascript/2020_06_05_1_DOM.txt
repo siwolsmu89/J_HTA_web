@@ -1,0 +1,154 @@
+HTML DOM(Document Object Model)
+	- HTML 문서객체모델
+	- HTML 문서를 엑세스(HTML 문서의 엘리먼트, 속성, 컨텐츠 등을 조회/추가/삭제/변경)하는 표준을 정의
+	- DOM은 W3C(World Wide Web Consortium, http://w3c.org)에서 그 표준을 정의하고 있고, 브라우저 제조사, 프로그램언어 개발사, 라이브러리 개발자 등이 구현을 담당하고 있다.
+	- 브라우저나 프로그램언어의 종류에 상관없이 HTML 문서를 엑세스하는 방법은 동일하다.
+
+	- DOM의 주요 객체
+		- Document 객체
+			* HTML 문서를 표현하는 객체다.
+			* 웹브라우저가 HTML 문서를 로딩하고, 해석해서 Document 객체를 생성한다.
+			* 생성된 Document 객체는 전역객체(Window객체)의 document 프로퍼티에 저장된다.
+			* 현재 HTML 문서의 모든 태그에 대한 Element 객체가 포함되어 있다.
+		- Element 객체
+			* HTML 문서의 태그를 표현하는 객체다.
+			* 태그의 이름, 태그의 속성, 태그의 컨텐츠를 포함하고 있다.
+			* 자바스크립트로 HTML 문서를 조작하는 경우 주요 프로그래밍 대상이 된다.
+		- Attribute 객체
+			* HTML 태그의 속성을 표현하는 객체다.
+		- HTMLCollection (혹은 NodeList)
+			* Element 객체를 여러 개 포함할 수 있는 유사배열 객체다.
+			* Element를 검색할 때, 태그명, 클래스명 등으로 검색하는 경우, 결과로 나온 여러 개의 Element가 HTMLCollection 객체에 담겨서 반환된다.
+			* 브라우저마다, 메소드마다 조금씩 다르게 반환한다.
+		- Event 객체
+			* 사용자가 웹 페이지와 상호작용할때마다 엘리먼트에서 발생되는 객체다.
+				(버튼 클릭, 마우스 움직임, 키보드 입력 등)
+			* 이벤트 소스, 이벤트 이름, 이벤트 처리와 관련된 메소드 등을 포함하고 있는 객체다.
+
+	- DOM의 주요 API
+		- Document 객체
+			- Property
+				cookie	
+					* html문서의 모든 쿠키들을 name/value의 쌍으로 반환한다
+				doctype
+					* html문서의 형식을 문자열로 반환한다.
+			- Method
+				createElement("태그명")
+					* 지정된 태그명의 Element 객체 생성한다.
+				createAttribute("속성명", "속성값")
+					* 지정된 속성정보를 가진 Attribute 객체를 생성한다.
+				createTextNode("텍스트컨텐츠")
+					* 지정된 텍스트내용을 가지는 TextNode객체를 생성한다.
+					* 엘리먼트의 컨텐츠는 실제로는 TextNode가 가지고 있다.
+				createComment("주석내용")
+					* 지정된 주석내용을 가지는 Comment객체를 생성한다.
+				getElementById("id")
+					* 지정된 id에 해당하는 Element객체를 반환한다.
+				getElementsByTagName("태그명")
+					* 지정된 태그명에 해당하는 모든 Element객체를 HTMLCollection에 담아서 반환한다.
+				getElementsByClassName("클래스")
+					* 지정된 클래스를 가지고 있는 모든 Element객체를 HTMLCollection에 담아서 반환한다.
+				querySelector("CSS선택자")
+					* 지정된 선택자로 검색된 첫번째 Elemenet객체를 반환한다.
+				querySelectorAll("CSS선택자")
+					* 지정된 선택자로 검색된 모든 Element객체를 HTMLCollection에 담아서 반환한다.
+		- Element 객체
+			- Property
+				tagName
+					* Element의 태그명을 반환한다.
+				textContent
+					* Element의 텍스트 컨텐츠를 조회/변경할 수 있다.
+				innerHTML
+					* Element의 html 컨텐츠를 조회/변경할 수 있다.
+				id	
+					* Element의 id값을 반환한다.
+				children
+					* 모든 자식엘리먼트들을 HTMLCollection에 담아서 반환한다.
+				style
+					* 해당 엘리먼트의 CSS를 조회/변경할 수 있다.
+					* style 프로퍼티는 
+				value
+					* input, select, textarea Element의 값을 조회/변경할 수 있다.
+				disabled
+					* input, select, textarea, button Element의 비활성화 여부를 조회/변경할 수 있다.
+					* true는 비활성화, false는 활성화
+				readOnly
+					* input, select, textarea, button Element의 읽기전용 여부를 조회/변경할 수 있다.
+					* true는 읽기전용, false는 편집가능
+				checked
+					* checkbox, radio Element의 비활성화 여부를 조회/변경할 수 있다.
+					* true는 체크상태, false는 체그상태아님
+				options
+					* select Element의 모든 option Element객체를 HTMLCollection에 담아서를 반환한다.
+				selectedIndex
+					* select Element의 현재 선택된 옵션의 인덱스를 조회/변경할 수 있다.
+				
+			- Method
+				getElementsByTagName("태그명")
+				getElementsByClassName("클래스")
+				querySelector("선택자")
+				querySelectorAll("선택자")
+					* Document객체에 정의된 기능과 동일한다.
+					* 단, 문서전체가 아닌 해당 Element 객체 하위에서 검색한다.
+				
+				appendChild(Element)
+					* 지정된 엘리먼트를 맨 마지막 자식노드로 추가한다.
+				removeChild(Element)
+					* 지정된 엘리먼트를 삭제한다.
+				insertBefore(Element)
+					* 지정된 엘리먼트를 첫 번째 자식노드로 추가한다.
+				remove()
+					* 엘리먼트를 삭제한다.
+
+				firstChild(), firstElementChild()
+					* 해당 엘리먼트의 첫번째 자식 엘리먼트를 반환한다.
+				lastChild(), lastElementChild()
+					* 해당 엘리먼트의 마지막 자식 엘리먼트를 반환한다.
+				previousSibling(), previousElementSibling()
+					* 해당 엘리먼트의 형제 중 바로 앞에 위치한 엘리먼트를 반환한다.
+				nextSibling(), nextElementSibling()
+					* 해당 엘리먼트의 형제 중 바로 뒤에 위치한 엘리먼트를 반환한다.
+				parentNode()
+					* 해당 엘리먼트의 부모 엘리먼트를 반환한다.
+
+				getAttribute("속성명")
+					* 지정된 속성명에 해당하는 속성값을 반환한다.
+				setAttribute("속성명", "속성값")
+					* 속성을 변경/추가한다.
+				removeAttribute("속성명")
+					* 속성을 삭제한다.
+		- HTMLCollection 객체
+			- Property
+				length
+					* 저장된 갯수를 반환한다.
+			- Method
+				item(index)
+					* 인덱스 번호에 해당하는 Element객체를 반환한다.
+			* 사용예
+				var collections = document.getElementsByTagName("p")
+				for (var i=0; i<collections.length; i++) {
+					var el = collections.item(i);
+					var el = collections[i];
+				}
+		- Event 객체
+			- Property	
+				target
+					* 이벤트가 발생된 엘리먼트객체를 반환한다.
+				type
+					* 발생된 이벤트이름을 반환한다.
+				dataTransfer
+					* drag & drop에서 값을 전달하기 위한 객체를 반환한다.
+				pageX, pageY
+					* 마우스의 현재 좌표를 반환한다.
+				which
+					* 입력한 문자의 아스키코드값을 반환한다.
+			- Method
+				preventDefault()
+					* 해당 엘리먼트에 특정 이벤트 발생시 실행할 기본동작이 지정되어 있는 경우
+                                          그 동작의 실행을 취소시킨다.
+					* <form> 태그 안에서 button, submit 버튼 클릭시 폼이 전송되는 것
+					* <a> 태그 클릭시 지정된 링크로 이동하는 것
+				stopPropagation()
+					* 이벤트 버블링을 중지시킨다.
+				stopImmediatePropagation()
+					* 이벤트 버블링을 중지시킨다.
