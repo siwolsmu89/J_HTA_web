@@ -20,9 +20,33 @@ HTML DOM(Document Object Model)
 			* Element 객체를 여러 개 포함할 수 있는 유사배열 객체다.
 			* Element를 검색할 때, 태그명, 클래스명 등으로 검색하는 경우, 결과로 나온 여러 개의 Element가 HTMLCollection 객체에 담겨서 반환된다.
 			* 브라우저마다, 메소드마다 조금씩 다르게 반환한다.
+			* 반복 처리가 필요하다.
 		- Event 객체
 			* 사용자가 웹 페이지와 상호작용할때마다 엘리먼트에서 발생되는 객체다.
 				(버튼 클릭, 마우스 움직임, 키보드 입력 등)
+			* 이벤트의 종류
+				마우스 이벤트
+				**	onclick				엘리먼트를 클릭했을 때
+					ondbclick			엘리멘트를 더블클릭했을 때
+				**	onmouseenter			엘리먼트로 마우스 포인터가 진입했을 때
+				**	onmouseleave			엘리먼트에서 마우스 포인터가 빠져나갈 때
+					onmouseover			엘리먼트 위로 마우스 포인터가 올라왔을 때
+					onmouseout			엘리먼트 위에서 마우스 포인터가 나갔을 때
+					onmousemove			엘리먼트 안에서 마우스 포인터가 움직일 때
+				키보드 이벤트
+					onkeydown			키보드를 누르기 시작할 때
+					onkeypress			키보드가 완전히 눌러졌을 때
+				**	onkeyup				키보드가 눌러졌다가 올라오기 시작할 때
+				폼 관련 이벤트
+				**	onchange			checkbox, radio, select의 상태가 변할 때
+					onselect			input, textarea에서 입력된 텍스트를 마우스로 끌어서 선택할 때(블록을 지정할 때)
+				**	onsubmit			폼 입력값을 서버로 제출할 때(폼 입력값 유효성 검증 처리)
+					onreset				폼 입력값을 리셋할 때
+				화면 관련 이벤트
+				**	onload				(body 태그에서 주로 사용) body 태그의 모든 컨텐츠가 완전히 화면에 표시됐을 때
+					onresize			브라우저의 화면 크기가 변경되었을 때
+				**	onscroll			스크롤바를 위아래로 움직일 때
+					onerror				웹 페이지에서 외부파일을 읽어오는 동안 에러가 발생했을 때(img, link, script 태그 등에서 사용)
 			* 이벤트 소스, 이벤트 이름, 이벤트 처리와 관련된 메소드 등을 포함하고 있는 객체다.
 
 	- DOM의 주요 API
@@ -32,7 +56,7 @@ HTML DOM(Document Object Model)
 					* html문서의 모든 쿠키들을 name/value의 쌍으로 반환한다
 				doctype
 					* html문서의 형식을 문자열로 반환한다.
-			- Method
+			- Method(** 표시된 부분은 나중에 형광펜 처리할 것)
 				createElement("태그명")
 					* 지정된 태그명의 Element 객체 생성한다.
 				createAttribute("속성명", "속성값")
@@ -42,52 +66,55 @@ HTML DOM(Document Object Model)
 					* 엘리먼트의 컨텐츠는 실제로는 TextNode가 가지고 있다.
 				createComment("주석내용")
 					* 지정된 주석내용을 가지는 Comment객체를 생성한다.
-				getElementById("id")
+			**	getElementById("id")
 					* 지정된 id에 해당하는 Element객체를 반환한다.
-				getElementsByTagName("태그명")
+			**	getElementsByTagName("태그명")
 					* 지정된 태그명에 해당하는 모든 Element객체를 HTMLCollection에 담아서 반환한다.
-				getElementsByClassName("클래스")
+			**	getElementsByClassName("클래스")
 					* 지정된 클래스를 가지고 있는 모든 Element객체를 HTMLCollection에 담아서 반환한다.
-				querySelector("CSS선택자")
+			**	querySelector("CSS선택자")
 					* 지정된 선택자로 검색된 첫번째 Elemenet객체를 반환한다.
-				querySelectorAll("CSS선택자")
+			**	querySelectorAll("CSS선택자")
 					* 지정된 선택자로 검색된 모든 Element객체를 HTMLCollection에 담아서 반환한다.
 		- Element 객체
 			- Property
-				tagName
-					* Element의 태그명을 반환한다.
-				textContent
-					* Element의 텍스트 컨텐츠를 조회/변경할 수 있다.
-				innerHTML
-					* Element의 html 컨텐츠를 조회/변경할 수 있다.
-				id	
-					* Element의 id값을 반환한다.
-				children
-					* 모든 자식엘리먼트들을 HTMLCollection에 담아서 반환한다.
-				style
-					* 해당 엘리먼트의 CSS를 조회/변경할 수 있다.
-					* style 프로퍼티는 
-				value
-					* input, select, textarea Element의 값을 조회/변경할 수 있다.
-				disabled
-					* input, select, textarea, button Element의 비활성화 여부를 조회/변경할 수 있다.
-					* true는 비활성화, false는 활성화
-				readOnly
-					* input, select, textarea, button Element의 읽기전용 여부를 조회/변경할 수 있다.
-					* true는 읽기전용, false는 편집가능
-				checked
-					* checkbox, radio Element의 비활성화 여부를 조회/변경할 수 있다.
-					* true는 체크상태, false는 체그상태아님
-				options
-					* select Element의 모든 option Element객체를 HTMLCollection에 담아서를 반환한다.
-				selectedIndex
-					* select Element의 현재 선택된 옵션의 인덱스를 조회/변경할 수 있다.
-				
+
+				** 공통 프로퍼티
+					textContent
+						* Element의 텍스트 컨텐츠를 조회/변경할 수 있다.
+					innerHTML
+						* Element의 html 컨텐츠를 조회/변경할 수 있다.
+					id	
+						* Element의 id값을 반환한다.
+					style
+						* 해당 엘리먼트의 CSS를 조회/변경할 수 있다.
+					tagName
+						* Element의 태그명을 반환한다.
+					children
+						* 모든 자식엘리먼트들을 HTMLCollection에 담아서 반환한다.
+				--------------------------------------------------
+				* 폼 입력요소의 프로퍼티
+				(input, select, textarea 태그만 가지는 프로퍼티)
+					value
+						* input, select, textarea Element의 값을 조회/변경할 수 있다.
+					disabled
+						* input, select, textarea, button Element의 비활성화 여부를 조회/변경할 수 있다.
+						* true는 비활성화, false는 활성화
+					readOnly
+						* input, select, textarea, button Element의 읽기전용 여부를 조회/변경할 수 있다.
+						* true는 읽기전용, false는 편집가능
+					checked
+						* checkbox, radio Element의 비활성화 여부를 조회/변경할 수 있다.
+						* true는 체크상태, false는 체크상태아님
+					options
+						* select Element의 모든 option Element객체를 HTMLCollection에 담아서 반환한다.
+					selectedIndex
+						* select Element의 현재 선택된 옵션의 인덱스를 조회/변경할 수 있다.(0부터 시작)
 			- Method
 				getElementsByTagName("태그명")
 				getElementsByClassName("클래스")
-				querySelector("선택자")
-				querySelectorAll("선택자")
+				querySelector("CSS 선택자")
+				querySelectorAll("CSS 선택자")
 					* Document객체에 정의된 기능과 동일한다.
 					* 단, 문서전체가 아닌 해당 Element 객체 하위에서 검색한다.
 				
@@ -132,23 +159,53 @@ HTML DOM(Document Object Model)
 				}
 		- Event 객체
 			- Property	
-				target
-					* 이벤트가 발생된 엘리먼트객체를 반환한다.
+			**	target
+					* 이벤트가 발생된 엘리먼트 객체를 반환한다.
 				type
 					* 발생된 이벤트이름을 반환한다.
 				dataTransfer
 					* drag & drop에서 값을 전달하기 위한 객체를 반환한다.
 				pageX, pageY
-					* 마우스의 현재 좌표를 반환한다.
+					* 마우스 이벤트 발생 시 마우스 포인터의 x, y 좌표를 반환한다.
+				button
+					* 마우스 이벤트 발생시 클릭한 마우스 버튼을 반환(0:left, 1:wheel, 2:right)
 				which
-					* 입력한 문자의 아스키코드값을 반환한다.
+					* 키보드 이벤트 발생시 입력된 문자의 아스키코드 값을 반환한다.
 			- Method
 				preventDefault()
-					* 해당 엘리먼트에 특정 이벤트 발생시 실행할 기본동작이 지정되어 있는 경우
-                                          그 동작의 실행을 취소시킨다.
-					* <form> 태그 안에서 button, submit 버튼 클릭시 폼이 전송되는 것
-					* <a> 태그 클릭시 지정된 링크로 이동하는 것
+					* 해당 엘리먼트에 특정 이벤트 발생시 실행할 기본동작이 지정되어 있는 경우 그 동작의 실행을 취소시킨다.
+					* <form> 태그 안에서 button, submit 버튼 클릭시 폼이 전송되는 것을 방해
+					* <a> 태그 클릭시 지정된 링크로 이동하는 것을 방해
 				stopPropagation()
 					* 이벤트 버블링을 중지시킨다.
+					* 발생한 이벤트가 부모 엘리먼트로 전파되는 것을 방지한다.
 				stopImmediatePropagation()
 					* 이벤트 버블링을 중지시킨다.
+					* 하나의 엘리먼트에 동일한 이벤트에 대한 이벤트 핸들러 함수가 여러 개 등록되어 있는 경우, 하나만 실행하고 다른 이벤트 핸들러 함수의 실행을 방해한다.
+			- 이벤트 처리하기
+				* 태그에서 직접 이벤트 연결 (인라인 이벤트 방식)
+					<button onclick="fn()">버튼</button>
+					function fn() {
+						수행문;
+					}
+				* 엘리먼트.이벤트명 = 함수명으로 연결 (이벤트 프로퍼티를 이용하는 방식)
+					<button id="btn">버튼</button>
+					function fn() {
+						수행문;
+					}
+					var el = document.getElementById("btn");
+					el.onclick = fn;
+				* 엘리먼트.addEventListener("이벤트명", 함수명) 메소드 사용
+					<button id="btn">버튼</button>
+					function fn() {
+						수행문;
+					}
+					var el = document.getElementById("btn");
+					el.addEventListener("click", fn);
+				* 엘리먼트.addAttachEvent("이벤트", 함수명) 사용 (익스플로러 옛날 버전용)
+					<button id="btn">버튼</button>
+					function fn() {
+						수행문;
+					}
+					var el = document.getElementById("btn");
+					el.addAttachEvent("onclick", fn)

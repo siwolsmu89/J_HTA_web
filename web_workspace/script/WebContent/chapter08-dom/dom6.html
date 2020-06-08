@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#thumbnails img {
+		opacity: 0.5;
+		cursor: pointer;
+	}
+	#thumbnails img:hover {
+		opacity: 0.8;
+	}
+</style>
+</head>
+<body>
+	<h1>DOM 연습</h1>
+	
+	<div id="gallary">
+		<img id="thumbnail-gallary" alt="" src="images/1.png" width="350" height="350">
+	</div>
+	<div id="thumbnails">
+		<img id="thum-1" alt="" src="images/1.png" width="120" height="120" onclick="changeGallary(1)">
+		<img id="thum-2" alt="" src="images/2.png" width="120" height="120" onclick="changeGallary(2)">
+		<img id="thum-3" alt="" src="images/3.png" width="120" height="120" onclick="changeGallary(3)">
+		<img id="thum-4" alt="" src="images/4.png" width="120" height="120" onclick="changeGallary(4)">
+		<img id="thum-5" alt="" src="images/5.png" width="120" height="120" onclick="changeGallary(5)">
+		<img id="thum-6" alt="" src="images/6.png" width="120" height="120" onclick="changeGallary(6)">
+	</div>
+	
+	<script type="text/javascript">
+		/*
+			썸네일 이미지를 클릭하면 해당 이미지가 큰 이미지로 표시된다.
+			클릭된 썸네일은 선명한 상태가 유지된다.
+			이전에 클릭된 썸네일이 있었다면 해당 썸네일의 투명도를 낮춘다.
+		*/
+		function changeGallary(num) {
+			var id = "#thum-" + num;
+			
+			// 클릭한 썸네일을 표시할 썸네일 갤러리 엘리먼트 조회하기
+			var gallary = document.querySelector("#thumbnail-gallary") 
+
+			// 전달받은 번호에 해당하는 이미지 엘리먼트 조회하기
+			var thumbnail = document.querySelector(id);
+			
+			// 썸네일 엘리먼트의 속성값 조회하기
+			var imageSourcePath = thumbnail.getAttribute("src");
+			
+			// 갤러리 엘리먼트의 속성값 변경하기
+			gallary.setAttribute("src", imageSourcePath);
+
+			// 클릭한 엘리먼트를 선명하게 유지시키기
+			var thumbImgs = document.querySelectorAll("#thumbnails img");
+			for (var i = 0; i < thumbImgs.length; i++) {
+				thumbImgs[i].style["opacity"] = "0.5";
+			}
+			
+			thumbnail.style = "opacity: 1";
+		}
+	</script>
+</body>
+</html>

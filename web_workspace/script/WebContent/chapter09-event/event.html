@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>이벤트 처리</h1>
+	
+	<div>
+		<button id="el-1" onclick="fn1()">클릭</button>
+		<div id="el-2" onclick="fn2(event)">클릭</div>
+		<span id="el-3">클릭</span>
+		<p id="el-4">클릭</p>
+	</div>
+	
+	<script type="text/javascript">
+		function fn1() {
+			console.log("fn1", "이벤트 실행됨");
+		}
+		
+		function fn2(event) {
+			console.log("fn2", "이벤트 실행됨");
+			console.log("fn2", event);				// 발생한 이벤트 객체
+			console.log("fn2", event.type);			// 발생한 이벤트명
+			console.log("fn2", event.target);		// 이벤트가 발생된 엘리먼트 객체
+			console.log("fn2", event.target.id);	// 이벤트가 발생된 엘리먼트 객체의 아이디값
+		}
+		
+		function fn3() {
+			
+		}
+		
+		function fn4() {
+			
+		}
+	</script>
+</body>
+</html>
