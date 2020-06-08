@@ -8,10 +8,16 @@
 	<h1>이벤트 처리</h1>
 	
 	<div>
+		<h3>인라인 이벤트 처리</h3>
 		<button id="el-1" onclick="fn1()">클릭</button>
-		<div id="el-2" onclick="fn2(event)">클릭</div>
+		<div id="el-2" onclick="fn2(event, 10, 'hong')">클릭</div>
+		
+		<h3>엘리먼트의 이벤트 프로퍼티에 이벤트 발생 시 실행할 함수를 등록해 이벤트 처리</h3>
 		<span id="el-3">클릭</span>
 		<p id="el-4">클릭</p>
+		
+		<h3>엘리먼트의 addEventListener('이벤트명', 함수명) 메소드를 이용한 이벤트 처리</h3>
+		<p id="el-5">클릭</p>
 	</div>
 	
 	<script type="text/javascript">
@@ -19,21 +25,44 @@
 			console.log("fn1", "이벤트 실행됨");
 		}
 		
-		function fn2(event) {
+		function fn2(event, no, id) {
 			console.log("fn2", "이벤트 실행됨");
 			console.log("fn2", event);				// 발생한 이벤트 객체
 			console.log("fn2", event.type);			// 발생한 이벤트명
 			console.log("fn2", event.target);		// 이벤트가 발생된 엘리먼트 객체
 			console.log("fn2", event.target.id);	// 이벤트가 발생된 엘리먼트 객체의 아이디값
+			console.log("fn2", "매개변수값", no);
+			console.log("fn2", "매개변수값", id);
 		}
 		
 		function fn3() {
-			
+			console.log("fn3", "이벤트 실행됨");
+			console.log("fn3");
 		}
+		// 이벤트 핸들러 등록하기
+		var el3 = document.querySelector("#el-3");
+		el3.onclick = fn3;
 		
-		function fn4() {
-			
+		function fn4(event) {
+			console.log("fn4", "이벤트 실행됨");
+			console.log("fn4", event);
+			console.log("fn4", event.type);
+			console.log("fn4", event.target);				// 이벤트가 발생한 엘리먼트
+			console.log("fn4", event.target.id);			// 해당 엘리먼트의 아이디
+			console.log("fn4", event.target.textContent);	// 해당 엘리먼트의 텍스트컨텐츠
+			event.target.style.color = "red";
+			event.target.textContent = "클릭이 되었음";
 		}
+		var el4 = document.querySelector("#el-4");
+		el4.onclick = fn4;
+		
+		function fn5(event) {
+			console.log("fn5", "이벤트 실행됨");
+			console.log("fn5", event);
+		}
+		var el5 = document.querySelector("#el-5");
+		el5.addEventListener("click", fn5);
+		
 	</script>
 </body>
 </html>

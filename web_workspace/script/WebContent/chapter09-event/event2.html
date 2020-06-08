@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		width: 200px;
+		background-color: black;
+		color: white;
+		font-weight: bolder;
+		padding: 16px;
+		margin-left: -180px;
+	}
+</style>
+</head>
+<body>
+	<h1>마우스 이벤트</h1>
+	
+	<div id="menu-box" onmouseenter="showMenu()" 
+					   onmouseleave="hideMenu()">
+		<h3>메뉴</h3>
+		<ul>
+			<li>국내도서</li>
+			<li>해외도서</li>
+			<li>음반</li>
+			<li>영화</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function showMenu() {
+			document.querySelector("#menu-box").style.marginLeft = 0;
+		}
+		
+		function hideMenu() {
+			document.querySelector("#menu-box").style.marginLeft = "-180px";
+		}
+	</script>
+</body>
+</html>
