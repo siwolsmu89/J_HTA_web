@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table {
+		width: 100%;
+		border: 1px solid #ddd;
+		border-collapse: collapse;
+	}
+	th, td {
+		padding: 14px;
+		text-align: left;
+		border: 1px solid #ddd;
+	}
+</style>
+</head>
+<body onload="changeDisplayStyle('.form-group', 'none')">
+	<h1>checkbox, radio, select 관련 이벤트</h1>
+	<p>체크박스, 라디오버튼의 체크상태가 변경될때마다 onchange 이벤트 발생</p>
+	<p>select의 옵션항목이 새로 선택될 때마다 onchange 이벤트 발생</p>
+	
+	<h3>체크박스</h3>
+	<div>
+		<label><input type="checkbox" name="" onchange="toggleField(event)">개인정보 활용동의</label>
+		<div class="form-group">
+			<label>전화번호</label>
+			<div><input type="text" name="tel" /></div>
+		</div>
+		<div class="form-group">
+			<label>이메일</label>
+			<div><input type="text" name="email" /></div>
+		</div>
+	</div>
+	<h3>라디오 버튼</h3>
+	<div>
+		<label><input type="radio" name="type" value="전체" onchange="changeCourseDisplay(event)">전체과목</label>
+		<label><input type="radio" name="type" value="교양" onchange="changeCourseDisplay(event)">교양과목</label>
+		<label><input type="radio" name="type" value="전선" onchange="changeCourseDisplay(event)">전공선택</label>
+		<label><input type="radio" name="type" value="전필" onchange="changeCourseDisplay(event)">전공필수</label>
+	</div>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>구분</th>
+				<th>과정명</th>
+				<th>학과</th>
+				<th>담당교수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-type="교양">
+				<td>교양</td>
+				<td>영어회화 기초</td>
+				<td>영어영문학과</td>
+				<td>홍길동 교수</td>
+			</tr>
+			<tr data-type="전선">
+				<td>전공선택</td>
+				<td>전자기학</td>
+				<td>전자공학과</td>
+				<td>이순신 교수</td>
+			</tr>
+			<tr data-type="전선">
+				<td>전공선택</td>
+				<td>공업수학</td>
+				<td>전자공학과</td>
+				<td>홍길동 교수</td>
+			</tr>
+			<tr data-type="전필">
+				<td>전공필수</td>
+				<td>기초 전기/전자실험</td>
+				<td>전자공학과</td>
+				<td>김유신 교수</td>
+			</tr>
+			<tr data-type="전필">
+				<td>전공필수</td>
+				<td>학교문법론</td>
+				<td>국어교육과</td>
+				<td>이관규 교수</td>
+			</tr>
+			<tr data-type="전필">
+				<td>전공필수</td>
+				<td>국어교재연구 및 교육과정</td>
+				<td>국어교육과</td>
+				<td>이순영 교수</td>
+			</tr>
+			<tr data-type="전선">
+				<td>전공선택</td>
+				<td>현대시교육론</td>
+				<td>국어교육과</td>
+				<td>고형진 교수</td>
+			</tr>
+			<tr data-type="교양">
+				<td>교양</td>
+				<td>문학과 대중예술</td>
+				<td>국어국문학과</td>
+				<td>강웅식 교수</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<script type="text/javascript">
+		function toggleField(event) {
+			var checkbox = event.target;		// event.target에는 이벤트가 발생된 엘리먼트 객체가 들어 있다.
+			console.log("체크여부", checkbox.checked);
+			
+			if (checkbox.checked) {
+				changeDisplayStyle(".form-group", "block");
+			} else {
+				changeDisplayStyle(".form-group", "none");
+			}
+		}	
+		
+		function changeDisplayStyle(selector, displayValue) {
+			var elements = document.querySelectorAll(selector);
+			for (var i=0; i<elements.length; i++) {
+				var el = elements[i];
+				el.style.display = displayValue;				
+			}
+		}
+		
+		function changeCourseDisplay(event) {
+			var value = event.target.value;
+			var trs = document.querySelectorAll("tbody tr");
+			if (value == "전체") {
+				for (var i = 0; i<trs.length; i++) {
+					var tr = trs[i];
+					tr.style.display = "block";
+				}							
+			} else {
+				for (var i = 0; i<trs.length; i++) {
+					var tr = trs[i];
+					tr.style.display = "none";
+				}					
+				var els = document.querySelectorAll("tr[data-type='"+value+"'");
+				for (var i = 0; i<els.length; i++) {
+					var el = els[i];
+					el.style.display = "block";
+				}
+			}
+			
+			
+		}
+		
+	</script>
+</body>
+</html>
