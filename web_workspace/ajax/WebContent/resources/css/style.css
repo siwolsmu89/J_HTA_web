@@ -1,0 +1,123 @@
+a:link, a:visited {
+	color: black;
+    text-decoration: none;
+}
+a:hover {
+	color: blue;
+    text-decoration: underline;
+}
+
+h3 {
+	margin-bottom: 5px;
+}
+
+.wrapper {
+	box-sizing: border-box;
+	width: 990px;
+	margin: 5px auto;
+}
+.wrapper .body > div {
+	margin-bottom: 50px;
+}
+
+.navi, .header, .body, .footer {
+	margin-top: 10px;
+}
+
+.navi #navibar {
+	background-color: #333;
+	overflow: hidden; 
+}
+
+.navi #navibar ul {
+	float: left;
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0; 
+	overflow: hidden; 
+	width: 800px;
+}
+.navi #navibar li {
+	float: left;
+}
+.navi #navibar li a {
+	display: block; 
+	color: white; 
+	text-align: center; 
+	padding: 14px 16px; 
+	text-decoration: none;
+}
+.navi #navibar li a:hover {
+	background-color: #222; 
+}
+
+.navi #navibar p {
+	float:right;
+	color: white; 
+	margin: 0;
+	padding: 14px 16px; 
+	
+}
+
+.active {
+	background-color: #4caf50;
+}
+
+.table {
+	border-collapse: collapse; width: 100%;
+}
+.table th, .table td {
+	padding: 8px; text-align: left;
+}
+.table thead th {
+	border-bottom: 2px solid #555;
+}
+.table tbody tr th, .table tbody tr  td {
+	border-bottom: 1px solid #ddd;
+}
+
+.table.bordered th, .table.bordered td {
+	border: 1px solid #ddd;
+}
+
+.text-left {
+	text-align: left !important;
+}
+.text-center {
+	text-align: center !important;
+}
+.text-right {
+	text-align: right !important;
+}
+.left {
+	float: left !important;
+}
+.right {
+	float: right !important;
+}
+
+
+.form-group {
+    margin: 10px 5px;
+}
+.form-group label {
+    font-weight: bold;
+}
+.form-group div {
+    margin-top: 6px;
+}
+.form-group input[type='text'], .form-group input[type='number'], .form-group input[type="password"], .form-group input[type="number"]{
+    width: 100%;
+    height: 30px;
+}
+.form-group select {
+	 width: 100%;
+	 height: 37px;
+}
+.form-group textarea{
+    width: 100%;
+}
+
+.well {padding: 12px; border: 1px solid lightgray; background-color: #eee; border-radius: 10px;}
+
+.footer {margin-top: 25px; background-color: #333; color: white; padding: 14px 16px;}

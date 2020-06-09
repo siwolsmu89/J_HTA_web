@@ -15,7 +15,7 @@
 	
 	User savedUser = userDao.getUserById(user.getId());
 	
-	if (savedUser.getId() != null) {
+	if (savedUser != null) {
 		response.sendRedirect("form.jsp?error=dup");
 		return;
 	}

@@ -1,0 +1,11 @@
+가장 많이 사용하는 이벤트
+onclick
+onchange
+onsubmit
+
+onkeyup
+onload
+
+그 다음 많이 쓰는 이벤트 (근데 퍼블리셔가 많이 씀)
+onmouseenter
+onmouseover

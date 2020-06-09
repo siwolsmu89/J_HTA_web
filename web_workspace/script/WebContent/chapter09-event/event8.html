@@ -40,8 +40,17 @@
 		<label><input type="radio" name="type" value="전선" onchange="changeCourseDisplay(event)">전공선택</label>
 		<label><input type="radio" name="type" value="전필" onchange="changeCourseDisplay(event)">전공필수</label>
 	</div>
-	
-	<table border="1">
+	<h3>셀렉터 박스</h3>
+	<div>
+		과정구분 :
+		<select onchange="changeCourseDisplay(event)">
+			<option value="전체">전체 과목</option>
+			<option value="교양">교양 과목</option>
+			<option value="전선">전공선택 과목</option>
+			<option value="전필">전공필수 과목</option>
+		</select>
+	</div>
+	<table id="course-table" border="1">
 		<thead>
 			<tr>
 				<th>구분</th>
@@ -117,6 +126,7 @@
 		
 		function changeDisplayStyle(selector, displayValue) {
 			var elements = document.querySelectorAll(selector);
+			
 			for (var i=0; i<elements.length; i++) {
 				var el = elements[i];
 				el.style.display = displayValue;				
@@ -124,28 +134,49 @@
 		}
 		
 		function changeCourseDisplay(event) {
-			var value = event.target.value;
-			var trs = document.querySelectorAll("tbody tr");
-			if (value == "전체") {
-				for (var i = 0; i<trs.length; i++) {
-					var tr = trs[i];
-					tr.style.display = "block";
-				}							
-			} else {
-				for (var i = 0; i<trs.length; i++) {
-					var tr = trs[i];
-					tr.style.display = "none";
-				}					
-				var els = document.querySelectorAll("tr[data-type='"+value+"'");
-				for (var i = 0; i<els.length; i++) {
-					var el = els[i];
-					el.style.display = "block";
-				}
+			var courseType = event.target.value;
+
+			hideAllCourse();
+			showCourse(courseType);
+		}
+		
+		function hideAllCourse() {
+			var rows = document.querySelectorAll("#course-table tbody tr");
+			for (var i = 0; i < rows.length; i++) {
+				rows[i].style.display = "none";
 			}
-			
+		}
+		
+		function showCourse(courseType) {
+			var rows = document.querySelectorAll("#course-table tbody tr");
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				var rowCourseType = row.getAttribute("data-type");
+				
+				if (courseType == "전체") {
+					row.style.display = "";
+					continue;
+				}
+				
+				if (courseType === rowCourseType) {
+					row.style.display = "";
+				} 
+			}
 			
 		}
 		
+		/*
+		function showCourse(courseType) {
+			if (courseType == "전체") {
+				var rows = document.querySelectorAll("#course-table tbody tr");
+			} else {
+				var rows = document.querySelectorAll("tr[data-type='"+courseType+"']");
+			}
+			for (var i = 0; i < rows.length; i++) {
+				rows[i].style.display = "";
+			}
+		}
+		*/
 	</script>
 </body>
 </html>
