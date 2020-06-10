@@ -1,0 +1,68 @@
+AJAX(Asynchronous Javascript And XML)
+	- 자바스크립트와 XML(혹은 JSON)을 활용한 서버와의 비동기 데이터 통신
+	- XMLHttpRequest 객체를 사용해서 서버와 데이터 통신을 한다.
+	- 특징
+		* javascript만을 사용해서 웹서버와 데이터 통신이 가능하다.
+		* 페이지의 리로딩없이 화면의 일부분을 갱신하는 것이 가능하다.
+		  (화면 갱신에 사용되는 데이터는 XMLHttpRequest를 사용해 서버로부터 받아온다)
+	- 대표적인 구현 예
+		* 구글 맵, 다음 지도
+		* 포털사이트 검색기능에서 추천 검색어 표시
+		* 대분류의 하위분류를 조회하는 기능
+		* 아이디 중복체크 기능
+	- XMLHttpRequest 객체
+		* 웹서버에 요청을 보내고, 웹서버의 응답을 받는 기능이 지원되는 객체
+		* javascript로 제어가능한 객체
+		  (XMLHttpRequest를 사용하면 브라우저의 도움없이 javascript만으로 웹서버와 데이터 통신이 가능해진다.)
+		* 주요 프로퍼티
+			- readyState
+				XMLHttpRequest의 현재 상태를 반환한다.
+				0 : XMLHttpRequest객체 생성, 아직 초기화되지 않음
+				1 : 초기화가 완료되고, 서버와 연결되었음
+				2 : 서버가 XMLHttpRequest가 보낸 요청을 받음
+				3 : 서버가 요청을 처리중임
+				4 : 서버가 요청 처리를 끝내고 응답처리를 보냄
+			- status
+				요청에 대한 HTTP 응답코드
+				200 : OK
+				404 : Not Found
+				500 : Server Error
+			- onreadystatechange
+				XMLHttpRequest의 readyState의 상태값이 변할때마다 발생하는 이벤트
+				xhr.onreadystatechange = function() {
+					readyState 값이 변할 때마다 실행할 작업
+					* readyState가 4, state가 200인 경우에만 유효한 응답이 온 것이다.
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						// 서버가 보낸 응답데이터 조회
+						// 응답데이터로 HTML 컨텐츠 제작
+						// 제작된 HTML 컨텐츠로 화면의 특정 부분을 갱신
+					}
+				}
+			- responseText
+				서버가 보낸 응답데이터가 보관되어 있다.
+			- responseXML
+				서버가 보낸 XML 응답데이터가 보관되어 있다.
+		* 주요 메소드
+			- new XMLHttpRequest()
+				XMLHttpRequest 객체를 생성한다.
+			- open(method, url, async, username, password)
+				XMLHttpRequest 객체를 초기화시킨다.
+				method - 요청방식("GET", "POST")
+				url - 요청 URL
+				async - 동작방식(true : 비동기식 / false : 동기식)
+				username - 접속자 아이디 
+				password - 접속자 비밀번호\
+			- send()
+				서버로 요청을 보낸다. (GET방식 요청)
+			- send(data)
+				서버로 요청을 보낸다. (POST방식 요청)
+				data는 서버로 보내는 요청파라미터다.
+				data의 형태는 queryString의 형태다.
+				사용예
+					xhr.send("opt=title&keyword=자바&page=1");
+			- setRequestHeader(name, value)
+				서버로 POST 방식의 요청을 보낼 때 사용된다.
+				요청헤더에 새로운 정보를 추가한다.
+				요청바디부에 담겨서 전달되는 데이터의 컨텐츠 타입을 지정한다.
+				사용예
+					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

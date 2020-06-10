@@ -10,6 +10,11 @@
 <meta charset="UTF-8">
 <title>HR</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+<style type="text/css">
+	#popup {
+		width: 600px;
+	}
+</style>
 </head>
 <body>
 	<div class="wrapper">
@@ -50,18 +55,57 @@
 				</form>
 			</div>
 			<table class="table">
+				<colgroup>
+					<col width="33%">
+					<col width="33%">
+					<col width="34%">
+				</colgroup>
 				<thead>
 					<tr>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>전화번호</th>
-						<th>직종</th>
-						<th>급여</th>
-						<th>입사일</th>
 					</tr>
 				</thead>
 				<tbody id="employee-body"></tbody>
 			</table>
+		</div>
+		
+		<div id="popup"> 
+			<h3>사원 상세 정보</h3>
+			
+			<table class="table bordered">
+				<colgroup>
+					<col width="25%">
+					<col width="25%">
+					<col width="25%">
+					<col width="25%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td id="id-cell"></td>
+						<th>Hire Date</th>
+						<td id="hire-cell"></td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td id="name-cell"></td>
+						<th>Phone Number</th>
+						<td id="phone-cell"></td>
+					</tr>
+					<tr>
+						<th>Job Id</th>
+						<td id="job-cell"></td>
+						<th>Salary</th>
+						<td id="salary-cell"></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr/>
+			<div class="text-right">
+				<button >닫기</button>
+			</div>
 		</div>
 		
 		<div class="footer">
@@ -94,11 +138,8 @@
 						var emp = employees[i];
 						rows += "<tr>";
 						rows += "<td>" + emp.id + "</td>";
-						rows += "<td>" + emp.firstName + "</td>";
+						rows += "<td><a href='data2.jsp?id="+emp.id+"'>" + emp.firstName + "</a></td>";
 						rows += "<td>" + emp.phoneNumber + "</td>";
-						rows += "<td>" + emp.jobId + "</td>";
-						rows += "<td>" + emp.salary + "</td>";
-						rows += "<td>" + emp.hireDate + "</td>";
 						rows += "</tr>";
 					}
 					document.querySelector("#employee-body").innerHTML = rows;

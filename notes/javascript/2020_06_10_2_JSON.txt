@@ -1,0 +1,74 @@
+JSON(JavaScript Object Notation)
+	- 자바스크립트의 객체, 배열의 표기법과 유사한 형태의 데이터 표기법
+	- 다른 데이터 표기법에 비해 경량의 데이터-교환 형식이다.
+	- 경량의 데이터-표기법이다.
+	- 특징
+		* 사람이 읽고 쓰기 쉽다.
+		* 기계(혹은 프로그램)가 분석하고, 생성하기 쉽다.
+		* 프로그래밍 언어로부터 완전히 독립적이다.
+		* 서로 다른 시스템 간의 데이터 교환에 이상적인 데이터-교환 형식이다.
+	- 표기형식
+		* Object 표기법
+			{"name":value, "name":value, "name":value}
+			* name은 문자열만 가능하다.
+			* name은 반드시 ""로 감싸야 한다.
+			* value는 문자열, 숫자, 객체, 배열, true, false, null
+			* 작성예
+				public class Book {
+					int no;
+					String title;
+					int price;
+					boolean soldout;
+					String event;
+				}
+				* Book객체에 책정보를 담고 JSON 표기법으로 변환함
+				{"no":10, "title":"학교문법론", "writer":"이관규", "price":25000, "soldout":false, "event":null}
+
+				public class Customer	{
+					String name;
+					String tel;
+					Car myCar;
+				}
+				public class Car {
+					String name;
+					int year;
+					int distance;
+				}
+				* Car 객체를 포함하고 있는 Customer 객체를 JSON 표기법으로 변환한 경우(이렇게 만들어 주는 것은 GSON 라이브러리가 해 줌)
+				{"name":"홍길동", "tel":"010-1234-5678", 
+				"myCar":{"name":"소나타", "year":2019, "distancte":15000}}
+		* Array 표기법
+			[value, value, value, value]
+			값들의 순서화된 리스트다.
+			작성예
+				List<String> names = new ArrayList<String>();
+				names.add("홍길동");
+				names.add("김유신");
+				* 문자열을 포함하고 있는 ArrayList를 JSON 표기법으로 변환
+				["홍길동", "김유신"]
+
+				public class IdolGroup {
+					String name;
+					List<String> members;
+				}
+				* 문자열과 List를 포함하고 있는 객체를 JSON 표기법으로 변환
+				{"name":"블랙핑크", members:["지수", "제니", "로제", "리사"]}
+
+				List<Book> books = bookDao.getAllBooks();
+				* Book 객체가 여러 개 포함된 ArrayList를 JSON 표기법으로 변환
+				[{"no":10, "title":"학교문법론", "writer":"이관규", "price":25000, "soldout":false, "event":null},
+				 {"no":10, "title":"학교문법론", "writer":"이관규", "price":25000, "soldout":false, "event":null},
+				 {"no":10, "title":"학교문법론", "writer":"이관규", "price":25000, "soldout":false, "event":null}]
+		* 자바 - JSON - 자바스크립트
+		----------------------------------------------------------------------------------------------------
+		Java		JSON 표기법					JavaScript
+		----------------------------------------------------------------------------------------------------
+		VO, Map	   ->	{"name":value, "name":value, ...}	-> JSON.parse(json)	-> 객체(javascript)
+		배열, List ->	[value, value, value, value, ...]	-> JSON.parse(json)	-> 배열(javascript)
+		VO, Map	   <-	{"name":value, "name":value, ...}	<- JSON.stringify(객체)	<- 객체(javascript)
+		배열, List <-	[value, value, value, value, ...]	<- JSON.stringify(배열)	<- 배열(javascript)
+		----------------------------------------------------------------------------------------------------
+		* 자바와 다른 시스템 간에 데이터 교환이 필요한 경우
+		자바의 객체/Map/배열/List를 JSON표기법의 텍스트로 변환해서 상호교환하는 경우가 많다.
+		* 자바에서는 JSON 관련 다양한 오픈소스 라이브러리가 있다.
+		* 자바스크립트는 JSON.parse(), JSON.stringify()를 사용해서 JSON 텍스트와 자바스크립트의 객체/배열간의 변환을 지원한다.
