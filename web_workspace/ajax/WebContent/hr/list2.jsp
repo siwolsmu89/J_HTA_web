@@ -3,7 +3,7 @@
 <%@page import="com.sample.hr.dao.EmployeeDAO"%>
 <%@page import="com.simple.util.NumberUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,16 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
 <style type="text/css">
 	#popup {
+		display: none;
+		position: fixed;
+		left: 550px;
+		top: 250px;
 		width: 600px;
+		border: 1px solid #ddd;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: white;
+		z-index: 999;
 	}
 </style>
 </head>
@@ -104,7 +113,7 @@
 			</table>
 			<hr/>
 			<div class="text-right">
-				<button >닫기</button>
+				<button onclick="closePopup()">닫기</button>
 			</div>
 		</div>
 		
@@ -113,6 +122,48 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		function openPopup(event) {
+			// 링크 클릭시 페이지가 이동되는 기본 동작이 발생하지 않도록 방해함
+			event.preventDefault();
+			// 사원정보를 표시할 팝업을 화면에 표시함
+			document.querySelector("#popup").style.display = "block";
+			
+			// event.target에는 지금 클릭한 <a>태그에 대한 엘리먼트 객체가 들어있음
+			// 해당 엘리먼트에서 href속성값을 조회함  <-- "data2.jsp?id=사원아이디" 정보
+			var url = event.target.getAttribute("href");
+			
+			// AJAX 처리 시작
+			// XHR 객체 생성
+			var xhr = new XMLHttpRequest();
+			
+			// XHR에 콜백함수 등록 <-- onreadystatechange 이벤트 발생 시 실행할 함수임
+			// onreadystatechange는 XHR의 readyState 값이 변할 때마다 발생하는 이벤트임
+			xhr.onreadystatechange = function () {
+				// 콜백함수가 4번 실행되기는 하지만, 실질적인 작업이 구현된 아래의 소스는 하나의 XHR에 대해서 한 번만 실행됨
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					// 서버가 보낸 응답데이터 조회 <-- XHR의 rseponseText는 응답데이터를 보관함
+					var text = xhr.responseText;
+					// 응답데이터가 JSON 텍스트라면 JSON.parse(json표기법의 텍스트) 메소드를 실행해서 텍스트데이터를 자바스크립트 배열이나 객체로 변환할 수 있음
+					var emp = JSON.parse(text);
+					
+					document.querySelector("#id-cell").textContent = emp.id;
+					document.querySelector("#hire-cell").textContent = emp.hireDate;
+					document.querySelector("#name-cell").textContent = emp.firstName;
+					document.querySelector("#phone-cell").textContent = emp.phoneNumber;
+					document.querySelector("#job-cell").textContent = emp.jobId;
+					document.querySelector("#salary-cell").textContent = emp.salary;
+				}
+			}
+			
+			// XHR 초기화, url에는 클릭한 <a>태그의 href 속성에서 조회한 jsp 경로가 들어있음
+			xhr. open("GET", url);
+			xhr.send();
+		}
+	
+		function closePopup() {
+			document.querySelector("#popup").style.display = "none";
+		}
+	
 		function getEmployees() {
 			var departmentId = document.querySelector("select[name=deptid]").value;
 			
@@ -138,7 +189,7 @@
 						var emp = employees[i];
 						rows += "<tr>";
 						rows += "<td>" + emp.id + "</td>";
-						rows += "<td><a href='data2.jsp?id="+emp.id+"'>" + emp.firstName + "</a></td>";
+						rows += "<td><a onclick='openPopup(event)' href='data2.jsp?id="+emp.id+"'>" + emp.firstName + "</a></td>";
 						rows += "<td>" + emp.phoneNumber + "</td>";
 						rows += "</tr>";
 					}
