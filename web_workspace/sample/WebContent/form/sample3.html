@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>Bootstrap 4 Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<!-- 페이지의 현재 위치를 나타내는 부분 시작 -->
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">홈</a></li>
+				<li class="breadcrumb-item"><a href="#">메뉴</a></li>
+				<li class="breadcrumb-item"><a href="#">서브메뉴</a></li>
+				<li class="breadcrumb-item active">문의게시판</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 페이지의 현재 위치를 나타내는 부분 끝 -->
+	
+	<!-- 입력폼을 포함하는 row 시작 -->
+	<div class="row">
+		<div class="col-12">
+			
+			<!-- 문의하기 입력폼을 포함하고 있는 card 컴포넌트 시작 -->
+			<div class="card ">
+				<div class="card-header">문의내용 입력폼</div>
+				<div class="card-body">
+					<!--문의하기 입력 폼 시작  -->
+					<form method="post" action="#" enctype="multipart/form-data">
+						<!-- 상세화면에서 상품에 대한 문의하기 버튼을 클릭하고 왔을 때 해당 상품번호를 전달받게 되는데, 그 번호를 hidden필드에 입력한다. -->
+						<input type="hidden" name="productNo"/>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">카테고리</label>
+							<div class="col-3">
+								<select class="form-control" name="cate"  >
+									<option value="" selected="selected" disabled="disabled"> 카테고리 선택</option>
+									<option value="1"> 배송</option>
+									<option value="2"> 결재</option>
+								</select>
+							</div>
+							<div class="col-5">
+								<select class="form-control" name="title"  >
+									<option value="" selected="selected" disabled="disabled"> 제목 선택</option>
+									<option value="10"> 배송관련 문의</option>
+									<option value="11"> 결재관련 문의</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">문의내용</label>
+							<div class="col-10">
+								<textarea rows="10" class="form-control" name="content"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">첨부파일</label>
+							<div class="col-10">
+								<div class="custom-file form-group">
+		    						<input type="file" class="custom-file-input" name="upfile"  >
+		    						<label class="custom-file-label" >파일을 선택하세요</label>
+		  						</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 text-right">
+								<button type="submit" class="btn btn-primary">등록</button>
+							</div>
+						</div>
+					</form>
+					<!--문의하기 입력 폼 끝  -->
+				</div>
+			</div>
+			<!-- 문의하기 폼을 포함하고 있는 card 컴포넌트 끝 -->
+		</div>
+	</div>
+	<!-- 오류알림과 입력폼을 포함하는 row 끝 -->
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
