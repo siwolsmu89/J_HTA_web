@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<!-- 화면의 현재위치를 나타내는 부분 시작 -->
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb">
+				<li class="breadcrumb-item active">홈</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 화면의 현재위치를 나타내는 부분 끝 -->
+	
+	<!-- 배너 광고 시작 -->
+	<div class="row">
+		<div class="col-12">
+			<!-- 배너광고 슬라이드 시작  -->
+			<div id="demo" class="carousel slide" data-ride="carousel">
+  				<!-- 배너의 하단에 표시되는 바로가기 표시 시작  -->
+  				<ol class="carousel-indicators">
+    				<li data-target="#demo" data-slide-to="0" class="active"></li>
+    				<li data-target="#demo" data-slide-to="1"></li>
+    				<li data-target="#demo" data-slide-to="2"></li>
+  				</ol>
+  				<!-- 배너의 하단에 표시되는 바로가기 표시 끝  -->
+
+  				<!-- 배너 이미지 시작 -->
+  				<div class="carousel-inner">
+    				<div class="carousel-item active">
+    					<a href="링크주소">
+	      					<img src="../resources/images/banners/banner1.jpg" alt="설명">
+    					</a>
+    				</div>
+    				<div class="carousel-item">
+      					<a href="링크주소">
+	      					<img src="../resources/images/banners/banner2.jpg" alt="설명">
+    					</a>
+    				</div>
+    				<div class="carousel-item">
+      					<a href="링크주소">
+	      					<img src="../resources/images/banners/banner3.jpg" alt="설명">
+    					</a>
+    				</div>
+  				</div>
+  				<!-- 배너 이미지 끝 -->
+
+  				<!-- 이전/다음 표시 시작 -->
+  				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+    				<span class="carousel-control-prev-icon"></span>
+  				</a>
+  				<a class="carousel-control-next" href="#demo" data-slide="next">
+    				<span class="carousel-control-next-icon"></span>
+  				</a>
+  				<!-- 이전/다음 표시 끝 -->
+			</div>
+			<!-- 배너광고 슬라이드 끝  -->
+		</div>
+	</div>
+	<!-- 배너 광고 끝 -->
+</div>
+</body>
+</html>

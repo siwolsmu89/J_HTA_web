@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>Bootstrap 4 Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	</head>
+<body>
+<div class="container">
+	<!-- 화면의 현재 위치를 나타내는 부분 시작-->
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">홈</a></li>
+				<li class="breadcrumb-item"><a href="#">메뉴</a></li>
+				<li class="breadcrumb-item"><a href="#">서브메뉴</a></li>
+				<li class="breadcrumb-item active">게시판</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 화면의 현재 위치를 나타내는 부분 끝-->
+	
+	<!-- 게시판 테이블이 포함될 row -->
+	<div class="row">
+		<div class="col-12">
+			<!-- 게시판 테이블을 담는 card 컴포넌트 시작  -->
+			<div class="card">
+				<div class="card-header">게시판</div>
+				<div class="card-body">
+					<!-- 게시판 테이블 시작 -->
+					<table class="table">
+						<colgroup>
+							<col width="10%">
+							<col width="*">
+							<col width="10%">
+							<col width="10%">
+							<col width="10%">
+						</colgroup>
+						<thead class="thead-dark">
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>조회수</th>
+								<th>등록일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 게시판의 게시글 하나 시작 -->
+							<tr>
+								<td>1008</td>
+								<td>게시판의 제목은 여기에 표시됩니다.</td>
+								<td>관리자</td>
+								<td>40</td>
+								<td>2020-05-70</td>
+							</tr>
+							<!-- 게시판의 게시글 하나 끝 -->
+							<tr>
+								<td>1008</td>
+								<td>게시판의 제목은 여기에 표시됩니다.</td>
+								<td>관리자</td>
+								<td>40</td>
+								<td>2020-05-70</td>
+							</tr>
+							<tr>
+								<td>1008</td>
+								<td>게시판의 제목은 여기에 표시됩니다.</td>
+								<td>관리자</td>
+								<td>40</td>
+								<td>2020-05-70</td>
+							</tr>
+							<tr>
+								<td>1008</td>
+								<td>게시판의 제목은 여기에 표시됩니다.</td>
+								<td>관리자</td>
+								<td>40</td>
+								<td>2020-05-70</td>
+							</tr>
+							<tr>
+								<td>1008</td>
+								<td>게시판의 제목은 여기에 표시됩니다.</td>
+								<td>관리자</td>
+								<td>40</td>
+								<td>2020-05-70</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 게시판 테이블 끝 -->
+					
+					<!-- 페이징 처리 시작 -->
+					<ul class="pagination justify-content-center" style="margin:20px 0">
+  						<li class="page-item"><a class="page-link" href="#">이전</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item"><a class="page-link" href="#">다음</a></li>
+					</ul>
+					<!-- 페이징 처리 끝 -->
+					
+				</div>
+			</div>
+			<!-- 게시판 테이블을 담는 card 컴포넌트 끝  -->
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
