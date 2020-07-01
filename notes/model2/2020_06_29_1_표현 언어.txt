@@ -1,0 +1,21 @@
+EL을 사용하기 전
+	<% 
+		// username이라는 이름으로 서버에 전달된 값을 요청객체에서 조회하기
+		String name = request.getParameter("username");
+	
+		// 세션에 LOGINED_USER라는 이름으로 저장된 User 객체를 조회하기
+		User loginedUser = (User) session.getAttribute("LOGINED_USER");
+	%>
+	
+		// 위에서 조회한 요청파라미터 값을 표현하기
+		<div><strong><%=name %></strong></div>
+	
+		// 위에서 조회한 User객체의 name필드의 값을 표현하기
+		<div><strong><%=loginedUser.getName() %></strong>님 환영합니다. </div>
+
+EL을 사용한 후
+	// 요청파라미터의 값을 조회하고 표현하기
+	<div>%{param.username}</div>
+
+	// 세션객체에 저장된 속성을 조회하고 표현하기
+	<div>${LOGINED_USER.name}</div>
