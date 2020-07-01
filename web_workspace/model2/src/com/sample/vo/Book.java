@@ -22,6 +22,7 @@ public class Book {
 		this.writer = writer;
 		this.price = price;
 		this.stock = stock;
+		this.pubDate = new Date();
 	}
 
 	public int getNo() {

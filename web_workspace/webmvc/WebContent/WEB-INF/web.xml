@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
+	<servlet>
+		<servlet-name>frontController</servlet-name>
+		<servlet-class>com.simple.controller.FrontController</servlet-class>
+	</servlet>
+	<!-- 요청 URL과 서블릿 매핑 -->
+	<servlet-mapping>
+		<servlet-name>frontController</servlet-name>
+		<url-pattern>*.hta</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
