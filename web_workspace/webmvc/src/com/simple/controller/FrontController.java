@@ -35,6 +35,7 @@ public class FrontController extends HttpServlet{
 				controller = new EmptyController();
 			}
 			
+			
 			// xxxController의 process(req, res) 메소드 실행해서 요청처리하고, 이동할 뷰페이지 이름 제공받기 
 			String path = controller.process(req, resp);
 			

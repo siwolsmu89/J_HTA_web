@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,6 +19,34 @@
 		<div class="col-12">
 			<h1>Home</h1>
 			<p>${message }</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-12">
+			<h3>최근 등록된 책 <small><a class="float-right" href="list.hta">더보기</a></small></h3>
+			<table class="table table-bordered mt-3">
+				<thead>
+					<tr>
+						<th>순번</th>
+						<th>제목</th>
+						<th>저자</th>
+						<th>가격</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="book" varStatus="num" items="${recentBooks }">
+						<tr>
+							<td>${num.count }</td>
+							<td>${book.title }</td>
+							<td>${book.writer }</td>
+							<td><fmt:formatNumber value="${book.price }" pattern="#,###"/> 원</td>
+							<td><fmt:formatDate value="${book.registeredDate }" pattern="yyyy.M.d"/></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
