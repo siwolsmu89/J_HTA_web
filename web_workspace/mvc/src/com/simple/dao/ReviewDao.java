@@ -13,52 +13,45 @@ import com.simple.vo.Review;
 
 public class ReviewDao {
 	
-	private Review resultSetToReview(ResultSet rs) throws SQLException {
-		Review review = new Review();
-		
-		review.setNo(rs.getInt("review_no"));
-		review.setContent(rs.getString("review_content"));
-		review.setPoint(rs.getInt("review_point"));
-		review.setBookNo(rs.getInt("book_no"));
-		review.setUserId(rs.getString("user_id"));
-		review.setRegisteredDate(rs.getDate("review_registered_date"));
-		
-		return review;
-	}
-	
 	public Review getReviewByNo(int reviewNo) throws SQLException {
 		Review review = null;
-		
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewByNo"));
 		pstmt.setInt(1, reviewNo);
-		
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) {
-			review = resultSetToReview(rs);
+			review = new Review();
+			review.setNo(rs.getInt("review_no"));
+			review.setContent(rs.getString("review_content"));
+			review.setPoint(rs.getInt("review_no"));
+			review.setBookNo(rs.getInt("book_no"));
+			review.setUserId(rs.getString("user_id"));
+			review.setRegisteredDate(rs.getDate("review_registered_date"));
 		}
-		
 		rs.close();
 		pstmt.close();
 		connection.close();
 		
 		return review;
 	}
-	
+
 	public List<Review> getReviewsByBookNo(int bookNo) throws SQLException {
-		List<Review> reviews = new ArrayList<Review>();
-		
+		List<Review> reviews = new ArrayList<>();
 		Connection connection = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("review.getReviewsByBookNo"));
-		
 		pstmt.setInt(1, bookNo);
 		ResultSet rs = pstmt.executeQuery();
-		
-		while(rs.next()) {
-			Review review = resultSetToReview(rs);
+		while (rs.next()) {
+			Review review = new Review();
+			review.setNo(rs.getInt("review_no"));
+			review.setContent(rs.getString("review_content"));
+			review.setPoint(rs.getInt("review_no"));
+			review.setBookNo(rs.getInt("book_no"));
+			review.setUserId(rs.getString("user_id"));
+			review.setRegisteredDate(rs.getDate("review_registered_date"));
+			
 			reviews.add(review);
 		}
-		
 		rs.close();
 		pstmt.close();
 		connection.close();
@@ -90,3 +83,14 @@ public class ReviewDao {
 		connection.close();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

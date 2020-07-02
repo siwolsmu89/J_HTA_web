@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.simple.controller.book.AddController;
+import com.simple.controller.book.DeleteReviewController;
 import com.simple.controller.book.DetailController;
 import com.simple.controller.book.FormController;
 import com.simple.controller.book.ListController;
 import com.simple.controller.login.LoginCheckController;
 import com.simple.controller.login.LoginFormController;
+import com.simple.controller.login.LogoutController;
 
 public class FrontController extends HttpServlet{
 	@Override
@@ -42,6 +44,10 @@ public class FrontController extends HttpServlet{
 				controller = new LoginFormController();
 			} else if ("/login/check.hta".equals(requestURI)) {
 				controller = new LoginCheckController();
+			} else if ("/login/out.hta".equals(requestURI)) {
+				controller = new LogoutController();
+			} else if ("/book/delReview.hta".equals(requestURI)) {
+				controller = new DeleteReviewController();
 			} else {
 				controller = new EmptyController();
 			}
