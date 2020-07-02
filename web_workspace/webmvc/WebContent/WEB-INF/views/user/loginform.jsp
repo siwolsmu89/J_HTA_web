@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>텅빈, 공허한</title>
+  <title>로그인 폼</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -15,30 +15,27 @@
 </head>
 <body>
 <div class="container">
-	<!-- Grey with black text -->
-	<nav class="navbar navbar-expand-sm bg-light navbar-light">
-	  <ul class="navbar-nav">
-	    <li class="nav-item">
-	      <a class="nav-link" href="#">홈</a>
-	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="#">책</a>
-	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="#">로그인</a>
-	    </li>
-	  </ul>
-	</nav>
+	<%@ include file="../common/nav.jsp" %>
 	<div class="row">
 		<div class="col-12">
-			<h1>Empty</h1>
-			<p>${message }</p>
-		</div>
+			<h1>로그인 폼</h1>
+		</div>	
 	</div>
-	
 	<div class="row">
 		<div class="col-12">
-			
+			<form method="post" action="check.hta">
+				<div class="form-group">
+					<label>아이디</label>
+					<input type="text" class="form-control" name="userid" />
+				</div>
+				<div class="form-group">
+					<label>비밀번호</label>
+					<input type="password" class="form-control" name="userpwd" />
+				</div>
+				<div class="text-right">
+					<button type="submit" class="btn btn-primary">로그인</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

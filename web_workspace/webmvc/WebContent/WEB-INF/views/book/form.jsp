@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title></title>
+  <title>책 입력 폼</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+	<%@ include file="../common/nav.jsp" %>
 	<div class="row">
 		<div class="col-12">
 			<h1>새 책 입력폼</h1>

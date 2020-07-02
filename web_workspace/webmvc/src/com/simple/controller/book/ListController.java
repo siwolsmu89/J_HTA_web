@@ -1,10 +1,11 @@
-package com.simple.controller;
+package com.simple.controller.book;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.simple.controller.Controller;
 import com.simple.dao.BookDao;
 import com.simple.vo.Book;
 
@@ -23,7 +24,7 @@ public class ListController implements Controller {
 		
 		// 내부이동할 뷰페이지의 이름을 반환하기
 		
-		return "list.jsp";
+		return "book/list.jsp";
 	}
 	
 }

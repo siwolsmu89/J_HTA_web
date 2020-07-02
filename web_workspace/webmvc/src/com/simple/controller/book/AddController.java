@@ -1,8 +1,9 @@
-package com.simple.controller;
+package com.simple.controller.book;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.simple.controller.Controller;
 import com.simple.dao.BookDao;
 import com.simple.util.NumberUtil;
 import com.simple.vo.Book;

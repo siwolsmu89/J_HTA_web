@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title></title>
+  <title>홈</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+	<%@ include file="common/nav.jsp" %>
 	<div class="row">
 		<div class="col-12">
 			<h1>Home</h1>
@@ -24,7 +25,7 @@
 	
 	<div class="row">
 		<div class="col-12">
-			<h3>최근 등록된 책 <small><a class="float-right" href="list.hta">더보기</a></small></h3>
+			<h3>최근 등록된 책 <small><a class="float-right" href="book/list.hta">더보기</a></small></h3>
 			<table class="table table-bordered mt-3">
 				<thead>
 					<tr>
