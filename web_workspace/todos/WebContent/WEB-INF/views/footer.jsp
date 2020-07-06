@@ -163,7 +163,7 @@
 					var result = JSON.parse(text).result;
 					
 					if (result) {
-						alert("${loginUser.name} 회원 로그인됨");
+						// 주소창의 주소를 home.hta로 바꾸기 --> home.hta를 요청하게 됨
 						location.href="home.hta";
 					} else {
 						document.querySelector("#login-fail-msg-row").style.display="block";

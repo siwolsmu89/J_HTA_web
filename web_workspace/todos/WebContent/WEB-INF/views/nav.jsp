@@ -22,6 +22,9 @@
       			</c:when>
 	      		<c:otherwise>
 		      		<li class="nav-item">
+		        		<a class="nav-link">${loginUser.name }님, 환영합니다.</a>
+		      		</li>
+		      		<li class="nav-item">
 		        		<a class="nav-link" href="/logout.hta">로그아웃</a>
 		      		</li>
 	      		</c:otherwise>

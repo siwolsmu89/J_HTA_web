@@ -11,8 +11,8 @@ CREATE TABLE sample_todos (
     todo_title VARCHAR2(200) NOT NULL,
     todo_content VARCHAR2(2000) NOT NULL,
     todo_day DATE NOT NULL,
-    todo_completed_day DATE NOT NULL,
-    todo_status VARCHAR2(100) NOT NULL,
+    todo_completed_day DATE,
+    todo_status VARCHAR2(100) DEFAULT '처리예정',
     user_id VARCHAR2(20) REFERENCES sample_todo_users (user_id),
     todo_created_date DATE DEFAULT SYSDATE
 );

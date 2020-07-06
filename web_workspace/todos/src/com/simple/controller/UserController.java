@@ -54,4 +54,14 @@ public class UserController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/logout.hta")
+	public ModelAndView logout(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		req.getSession().invalidate();
+		mav.setViewName("redirect: home.hta");
+		
+		return mav;
+	}
 }
