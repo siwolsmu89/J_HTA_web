@@ -2,6 +2,7 @@ package com.simple.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.simple.service.UserService;
 import com.simple.vo.User;
@@ -59,8 +60,12 @@ public class UserController {
 	public ModelAndView logout(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
-		req.getSession().invalidate();
-		mav.setViewName("redirect: home.hta");
+		HttpSession session = req.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		
+		mav.setViewName("redirect:/home.hta");
 		
 		return mav;
 	}

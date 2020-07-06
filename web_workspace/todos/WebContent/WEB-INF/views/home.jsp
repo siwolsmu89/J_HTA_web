@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,141 +23,33 @@
 				<div class="card-header">전체 일정</div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-primary">처리예정</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
-										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
-										</div>
+						<c:forEach items="${todoDtos }" var="todoDto">
+							<div class="col-4 mb-2">
+								<div class="card">
+									<div class="card-header d-flex justify-content-between">
+										<div>${todoDto.title }</div> 
+										<div><span class="badge ${todoDto.statusClass }">${todoDto.status }</span></div>
 									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-info">처리중</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
+									<div class="card-body">
+										<div class="row mb-3">
+											<div class="col-9">
+												<small>${todoDto.content }</small>
+											</div>
+											<div class="col-3">
+												<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal(${todoDto.no})">상세</button>
+											</div>
 										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
+										<div class="d-flex justify-content-between">
+											<span class="text-secondary font-weight-bold">${todoDto.userName }</span>											
+											<strong>${todoDto.createdDate }</strong>
 										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-secondary">보류</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
-										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-danger">삭제</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
-										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-success">처리완료</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
-										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4 mb-2">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between">
-									<div>프로젝트 일정 회의</div> 
-									<div><span class="badge badge-success">처리완료</span></div>
-								</div>
-								<div class="card-body">
-									<div class="row mb-3">
-										<div class="col-9">
-											<small>내용 내용 내용 내용 내용 내용 내용</small>
-										</div>
-										<div class="col-3">
-											<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal()">상세</button>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<span class="text-secondary font-weight-bold">이 순신</span>											
-										<strong>2020.7.20</strong>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center"><button class="btn btn-outline-dark btn"> 더보기 </button></div>
+						<div class="col-12 text-center"><button class="btn btn-outline-dark btn" onclick="getMoreTodos()"> 더보기 </button></div>
 					</div>
 				</div>
 			</div>
@@ -183,23 +77,23 @@
      							<tbody>
      								<tr>
      									<th>제목</th>
-     									<td colspan="3">프로젝트 일정 회의</td>
+     									<td class="todo-title" colspan="3"></td>
      								</tr>
      								<tr>
      									<th>작성자</th>
-     									<td>홍길동</td>
+     									<td class="todo-user">홍길동</td>
      									<th>등록일</th>
-     									<td>2020-06-12</td>
+     									<td class="todo-createday">2020-06-12</td>
      								</tr>
      								<tr>
      									<th>상태</th>
-     									<td>처리예정</td>
+     									<td class="todo-status">처리예정</td>
      									<th>예정일</th>
-     									<td>2020-07-12</td>
+     									<td class="todo-day">2020-07-12</td>
      								</tr>
      								<tr>
      									<th style="vertical-align: middle;">내용</th>
-     									<td colspan="3"><small>내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 </small></td>
+     									<td class="todo-content" colspan="3"><small>내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 </small></td>
      								</tr>
      							</tbody>
      						</table>
@@ -220,9 +114,31 @@
 	<%@ include file="footer.jsp" %>
 </div>
 <script type="text/javascript">
-	function openTodoDetailModal() {
-		$("#modal-todo-detail").modal('show');
+	function openTodoDetailModal(todono) {
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				$("#modal-todo-detail").modal('show');
+				var text = xhr.responseText;
+				var jsonObj = JSON.parse(text);
+				console.log(jsonObj);
+				
+				document.querySelector(".todo-title").textContent = jsonObj.title;
+				document.querySelector(".todo-user").textContent = jsonObj.userName;
+				document.querySelector(".todo-createday").textContent = jsonObj.createdDate;
+				document.querySelector(".todo-status").textContent = jsonObj.status;
+				document.querySelector(".todo-day").textContent = jsonObj.day;
+				document.querySelector(".todo-content").textContent = jsonObj.content;
+			}
+		}
+
+		xhr.open("GET", "detailtodo.hta?todono=" + todono);
+		
+		xhr.send();
 	}
+	
 </script>
 </body>
 </html>

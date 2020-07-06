@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header -->
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
 		<ul class="navbar-nav mr-auto">

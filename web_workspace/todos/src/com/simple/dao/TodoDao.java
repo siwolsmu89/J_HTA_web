@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.simple.dto.TodoDto;
 import com.simple.util.ConnectionUtil;
 import com.simple.util.QueryUtil;
 import com.simple.vo.Todo;
@@ -37,6 +38,61 @@ public class TodoDao {
 		todo.setCreatedDate(rs.getDate("todo_created_date"));
 		
 		return todo;
+	}
+	
+	public TodoDto resultSetToTodoDto(ResultSet rs) throws SQLException {
+		TodoDto todoDto = new TodoDto();
+		
+		todoDto.setNo(rs.getInt("todo_no"));
+		todoDto.setTitle(rs.getString("todo_title"));
+		todoDto.setContent(rs.getString("todo_content"));
+		todoDto.setDay(rs.getDate("todo_day"));
+		todoDto.setCompletedDay(rs.getDate("todo_completed_day"));
+		todoDto.setStatus(rs.getString("todo_status"));
+		todoDto.setUserId(rs.getString("user_id"));
+		todoDto.setUserName(rs.getString("user_name"));
+		todoDto.setCreatedDate(rs.getDate("todo_created_date"));
+		
+		return todoDto;
+	}
+	
+	public TodoDto getTodoDtoByNo(int todoNo) throws SQLException {
+		TodoDto todoDto = null;
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getTodoDtoByNo"));
+		pstmt.setInt(1, todoNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			todoDto = resultSetToTodoDto(rs);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return todoDto;
+	}
+	
+	public List<TodoDto> getRecentTodoDtos(int pageNo) throws SQLException {
+		List<TodoDto> todoDtos = new ArrayList<TodoDto>();
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getRecentTodoDtos"));
+		pstmt.setInt(1, 6 * pageNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			TodoDto todoDto = resultSetToTodoDto(rs);
+			todoDtos.add(todoDto);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return todoDtos;
 	}
 	
 	public List<Todo> getTodosByUserId(String userId) throws SQLException {
