@@ -1,0 +1,48 @@
+book.getAllBooks=select * \
+				 from sample_books \
+				 order by book_no desc
+book.getBookByNo=select * \
+				 from sample_books \
+				 where book_no = ?
+book.getRecentBooks=select * \
+					from (select A.*, rownum \
+					      from sample_books A \
+					      order by book_no desc ) \
+					where rownum <= 3
+book.insertBook=insert into sample_books \
+				(book_no, book_title, book_writer, book_genre, book_publisher, \
+				 book_price, book_discount_price) \
+				values \
+				(sample_book_seq.nextval, ?,?,?,?,?,?)
+				
+				
+review.getReviewsByBookNo=select * \
+						  from sample_book_reviews \
+						  where book_no = ? \
+						  order by review_no asc
+review.insertReview=insert into sample_book_reviews \
+					(review_no, review_content, review_point, book_no, user_id) \
+					values \
+					(sample_review_seq.nextval, ?,?,?,?)
+review.deleteReview=delete from sample_book_reviews \
+					where review_no = ?
+review.getReviewByNo=select * \
+				     from sample_book_reviews \
+				     where review_no = ?
+					
+user.getUserById=select * \
+				 from sample_book_users \
+				 where user_id = ?
+						  
+
+
+
+
+
+
+
+
+
+
+
+

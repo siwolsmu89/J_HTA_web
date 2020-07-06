@@ -1,0 +1,30 @@
+1.회원가입
+	* query.properties에 user.insertUser, user.getUserById SQL을 정의한다.
+	* UserDao 클래스를 정의하고, public void insertUser(User user) throws SQLException {...}
+				     public void getUserById(String userId) throws SQLException {...} 를 구현한다.
+	* UserService 클래스를 정의하고,
+		public class UserService {
+
+			private UserDao userDao = new UserDao();
+			// 새 사용자 가입 서비스
+			public boolean addNewUser(User user) throws Exception {
+				// 전달받은 사용자의 아이디로 사용자 정보를 조회한다.
+				// 사용자 정보가 존재할 경우 false를 반환한다.
+				// 사용자 정보가 존재하지 않으면 전달받은 사용자 정보를 DB에 저장하고 true를 반환한다.
+			}
+
+		}
+
+	* UserController 클래스를 정의하고,
+		@Controller
+		public class UserController {
+
+			private UserService userService = new UserService();
+			// 회원가입 요청을 처리하는 요청핸들러 메소드를 구현한다.
+			@RequestMapping("/register.hta")
+			public ModelAndView registerUser(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+				// 요청 파라미터값 조회
+				// User 객체를 생성해서 값 저장
+				// UserService의 addNewUser(User user)를 실행
+			}
+		}

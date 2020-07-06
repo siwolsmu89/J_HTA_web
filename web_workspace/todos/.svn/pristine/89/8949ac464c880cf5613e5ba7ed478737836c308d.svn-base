@@ -1,0 +1,100 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+	<!-- 회원등록 모달창 -->
+	<div class="modal" id="modal-register-form">
+		<div class="modal-dialog">
+			<form method="post" action="register.hta">
+	 			<div class="modal-content">
+	   				<div class="modal-header">
+	     				<h4 class="modal-title">회원가입 입력폼</h4>
+	     				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	   				</div>
+	   				<div class="modal-body">
+	     				<div class="row">
+	     					<div class="col-12">
+	     						<div class="card">
+	     							<div class="card-body">
+	     								<div class="form-group">
+	     									<label>이름</label>
+	     									<input type="text" class="form-control" name="name" />
+	     								</div>
+	     								<div class="form-group">
+	     									<label>아이디</label>
+	     									<input type="text" class="form-control" name="id" />
+	     								</div>
+	     								<div class="form-group">
+	     									<label>비밀번호</label>
+	     									<input type="password" class="form-control" name="pwd" />
+	     								</div>
+	     								<div class="form-group">
+	     									<label>이메일</label>
+	     									<input type="text" class="form-control" name="email" />
+	     								</div>
+	     							</div>
+	     						</div>
+	     					</div>
+	     				</div>
+	   				</div>
+	   				<div class="modal-footer">
+	     				<button type="submit" class="btn btn-outline-success btn-sm">회원가입</button>
+	     				<button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">닫기</button>
+	   				</div>
+	 			</div>
+ 			</form>
+		</div>
+	</div>
+	<!-- 로그인 모달창 -->
+	<div class="modal" id="modal-login-form">
+		<div class="modal-dialog">
+			<form method="post" action="login.hta">
+	 			<div class="modal-content">
+	   				<div class="modal-header">
+	     				<h4 class="modal-title">로그인 입력폼</h4>
+	     				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	   				</div>
+	   				<div class="modal-body">
+	     				<div class="row">
+	     					<div class="col-12">
+	     						<div class="card">
+	     							<div class="card-body">
+	     								<div class="form-group">
+	     									<label>아이디</label>
+	     									<input type="text" class="form-control" name="userid" />
+	     								</div>
+	     								<div class="form-group">
+	     									<label>비밀번호</label>
+	     									<input type="password" class="form-control" name="userpwd" />
+	     								</div>
+	     							</div>
+	     						</div>
+	     					</div>
+	     				</div>
+	   				</div>
+	   				<div class="modal-footer">
+	     				<button type="submit" class="btn btn-outline-success btn-sm">로그인</button>
+	     				<button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">닫기</button>
+	   				</div>
+	 			</div>
+ 			</form>
+		</div>
+	</div>
+	<!-- Footer  -->
+	<div class="row">
+		<div class="col-12">
+			<div class="bg-dark text-white p-3">
+				<div>회사 : 중앙HTA학원</div>
+				<div>주소 : 서울특별시 종로구 율곡로10길 105 디아망빌딩 4층 401호</div>
+				<div>전화 : 070-1234-5678</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function openRegisterformModal(event) {
+			event.preventDefault();
+			$("#modal-register-form").modal('show');
+		}
+		
+		function openLoginformModal(event) {
+			event.preventDefault();
+			$("#modal-login-form").modal('show');
+		}
+	</script>
