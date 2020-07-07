@@ -10,6 +10,8 @@ public class TodoDto {
 	private Date day;
 	private Date completedDay;
 	private String status;
+	private String statusClass;
+	private boolean canModify;
 	private String userId;
 	private String userName;
 	private Date createdDate;
@@ -75,12 +77,20 @@ public class TodoDto {
 		} else if ("처리완료".equals(status)) {
 			value = "badge-success";
 		}
-		
 		return value;
 	}
 	
+	public boolean isCanModify() {
+		return canModify;
+	}
+
+	public void setCanModify(boolean canModify) {
+		this.canModify = canModify;
+	}
+
 	public void setStatus(String status) {
 		this.status = status;
+		this.statusClass = getStatusClass();
 	}
 
 	public String getUserId() {

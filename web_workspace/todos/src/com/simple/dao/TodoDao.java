@@ -20,9 +20,32 @@ public class TodoDao {
 		pstmt.setString(1, todo.getTitle());
 		pstmt.setString(2, todo.getContent());
 		pstmt.setDate(3, new java.sql.Date(todo.getDay().getTime()));
-		pstmt.setDate(4, new java.sql.Date(todo.getCompletedDay().getTime()));
+		pstmt.setString(4, todo.getUserId());
+		
+		pstmt.executeUpdate();
+
+		pstmt.close();
+		con.close();
+	}
+	
+	public void updateTodo(Todo todo) throws SQLException {
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.updateTodo"));
+		pstmt.setString(1, todo.getTitle());
+		pstmt.setString(2, todo.getContent());
+		pstmt.setDate(3, new java.sql.Date(todo.getDay().getTime()));
+		if (todo.getCompletedDay() != null) {
+			pstmt.setDate(4, new java.sql.Date(todo.getCompletedDay().getTime()));
+		} else {
+			pstmt.setDate(4, null);
+		}
 		pstmt.setString(5, todo.getStatus());
-		pstmt.setString(6, todo.getUserId());
+		pstmt.setInt(6, todo.getNo());
+		
+		pstmt.executeUpdate();
+
+		pstmt.close();
+		con.close();
 	}
 	
 	public Todo resultSetToTodo(ResultSet rs) throws SQLException {
@@ -54,6 +77,25 @@ public class TodoDao {
 		todoDto.setCreatedDate(rs.getDate("todo_created_date"));
 		
 		return todoDto;
+	}
+	
+	public Todo getTodoByNo(int todoNo) throws SQLException {
+		Todo todo = null;
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getTodoByNo"));
+		pstmt.setInt(1, todoNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			todo = resultSetToTodo(rs);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return todo;
 	}
 	
 	public TodoDto getTodoDtoByNo(int todoNo) throws SQLException {

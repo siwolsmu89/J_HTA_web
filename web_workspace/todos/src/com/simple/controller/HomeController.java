@@ -7,12 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.simple.dto.TodoDto;
 import com.simple.service.TodoService;
-import com.simple.vo.Todo;
 
 import kr.co.jhta.mvc.annotation.Controller;
 import kr.co.jhta.mvc.annotation.RequestMapping;
 import kr.co.jhta.mvc.servlet.ModelAndView;
-import kr.co.jhta.mvc.view.JSONView;
 
 @Controller
 public class HomeController {
@@ -28,19 +26,6 @@ public class HomeController {
 		
 		req.setAttribute("todoDtos", todoDtos);
 		mav.setViewName("home.jsp");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/detailtodo.hta")
-	public ModelAndView detailTodo(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		
-		int todoNo = Integer.parseInt(req.getParameter("todono"));
-		TodoDto todoDto = todoService.getTodoDtoByNo(todoNo);
-		
-		mav.addAttribute("todoDetail", todoDto);
-		mav.setView(new JSONView());
 		
 		return mav;
 	}

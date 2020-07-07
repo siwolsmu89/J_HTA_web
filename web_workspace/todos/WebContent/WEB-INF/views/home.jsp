@@ -28,7 +28,7 @@
 								<div class="card">
 									<div class="card-header d-flex justify-content-between">
 										<div>${todoDto.title }</div> 
-										<div><span class="badge ${todoDto.statusClass }">${todoDto.status }</span></div>
+										<div><span id="todo-${todoDto.no }-status-badge" class="badge ${todoDto.statusClass }">${todoDto.status }</span></div>
 									</div>
 									<div class="card-body">
 										<div class="row mb-3">
@@ -76,35 +76,37 @@
      							</colgroup>
      							<tbody>
      								<tr>
+     									<th>번호</th>
+     									<td id="modal-todo-no"></td>
      									<th>제목</th>
-     									<td class="todo-title" colspan="3"></td>
+     									<td id="modal-todo-title" colspan="3"></td>
      								</tr>
      								<tr>
      									<th>작성자</th>
-     									<td class="todo-user">홍길동</td>
+     									<td id="modal-todo-user">홍길동</td>
      									<th>등록일</th>
-     									<td class="todo-createday">2020-06-12</td>
+     									<td id="modal-todo-createday">2020-06-12</td>
      								</tr>
      								<tr>
      									<th>상태</th>
-     									<td class="todo-status">처리예정</td>
-     									<th>예정일</th>
-     									<td class="todo-day">2020-07-12</td>
+     									<td id="modal-todo-status">처리예정</td>
+     									<th id="modal-todo-day-head">예정일</th>
+     									<td id="modal-todo-day-body">2020-07-12</td>
      								</tr>
      								<tr>
      									<th style="vertical-align: middle;">내용</th>
-     									<td class="todo-content" colspan="3"><small>내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 </small></td>
+     									<td id="modal-todo-content" colspan="3"><small>내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 </small></td>
      								</tr>
      							</tbody>
      						</table>
      					</div>
      				</div>
    				</div>
-   				<div class="modal-footer">
-     				<button type="button" class="btn btn-success btn-sm">처리완료</button>
-     				<button type="button" class="btn btn-info btn-sm">처리중</button>
-     				<button type="button" class="btn btn-secondary btn-sm">보류</button>
-     				<button type="button" class="btn btn-danger btn-sm">취소</button>
+   				<div class="modal-footer" id="modal-todo-status-modify" style="display: none;">
+     				<button id="modal-todo-처리완료-btn" type="button" class="btn btn-success btn-sm" onclick="changeTodoStatus('처리완료')">처리완료</button>
+     				<button id="modal-todo-처리중-btn" type="button" class="btn btn-info btn-sm" onclick="changeTodoStatus('처리중')">처리중</button>
+     				<button id="modal-todo-보류-btn" type="button" class="btn btn-secondary btn-sm" onclick="changeTodoStatus('보류')">보류</button>
+     				<button id="modal-todo-삭제-btn" type="button" class="btn btn-danger btn-sm" onclick="changeTodoStatus('삭제')">삭제</button>
      				<button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">닫기</button>
    				</div>
  			</div>
@@ -114,31 +116,87 @@
 	<%@ include file="footer.jsp" %>
 </div>
 <script type="text/javascript">
+
+	function changeDisabledBtn(status) {
+		var buttons = document.querySelectorAll("#modal-todo-status-modify button");
+		var currentId = "modal-todo-" + status + "-btn";
+		for (var i = 0; i < buttons.length; i++) {
+			if (buttons[i].id == currentId) {
+				buttons[i].setAttribute("disabled", "disabled");
+			} else {
+				buttons[i].removeAttribute("disabled");
+			}
+		}
+	}
+
+	function setTodoDetailModal(todono) {
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var text = xhr.responseText;
+				var jsonObj = JSON.parse(text);
+					
+				document.querySelector("#modal-todo-no").textContent = todono;
+				document.querySelector("#modal-todo-title").textContent = jsonObj.title;
+				document.querySelector("#modal-todo-user").textContent = jsonObj.userName;
+				document.querySelector("#modal-todo-createday").textContent = jsonObj.createdDate;
+				document.querySelector("#modal-todo-status").textContent = jsonObj.status;
+				if (jsonObj.status == "처리완료") {
+					document.querySelector("#modal-todo-day-head").textContent = "완료일";
+					document.querySelector("#modal-todo-day-body").textContent = jsonObj.completedDay;
+				} else {
+					document.querySelector("#modal-todo-day-head").textContent = "예정일";
+					document.querySelector("#modal-todo-day-body").textContent = jsonObj.day;
+				}
+				document.querySelector("#modal-todo-content").textContent = jsonObj.content;
+				
+				if (jsonObj.canModify) {
+					document.querySelector("#modal-todo-status-modify").style.display="";
+				}
+				
+				changeDisabledBtn(jsonObj.status);
+			}
+		}
+
+		xhr.open("GET", "todo/detail.hta?todono=" + todono);
+		
+		xhr.send();
+	}
+	
 	function openTodoDetailModal(todono) {
+		$("#modal-todo-detail").modal('show');
+		setTodoDetailModal(todono);
+	}
+	
+	function changeTodoStatus(todoStatus) {
+		var todoNo = document.querySelector('#modal-todo-no').textContent;
 		
 		var xhr = new XMLHttpRequest();
 		
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				$("#modal-todo-detail").modal('show');
 				var text = xhr.responseText;
-				var jsonObj = JSON.parse(text);
-				console.log(jsonObj);
-				
-				document.querySelector(".todo-title").textContent = jsonObj.title;
-				document.querySelector(".todo-user").textContent = jsonObj.userName;
-				document.querySelector(".todo-createday").textContent = jsonObj.createdDate;
-				document.querySelector(".todo-status").textContent = jsonObj.status;
-				document.querySelector(".todo-day").textContent = jsonObj.day;
-				document.querySelector(".todo-content").textContent = jsonObj.content;
+				var statusClass = JSON.parse(text).statusClass;
+				document.querySelector("#modal-todo-status").textContent = todoStatus;
+				document.querySelector("#todo-" + todoNo + "-status-badge").textContent = todoStatus;
+				document.querySelector("#todo-" + todoNo + "-status-badge").setAttribute("class", "badge " + statusClass);
+				changeDisabledBtn(todoStatus);
+				// 이거 하다가 감
+				if (todoStatus == "처리완료") {
+					document.querySelector("#modal-todo-day-head").textContent = "완료일";
+					document.querySelector("#modal-todo-day-body").textContent = jsonObj.completedDay;
+				} else {
+					document.querySelector("#modal-todo-day-head").textContent = "예정일";
+					document.querySelector("#modal-todo-day-body").textContent = jsonObj.day;
+				}
 			}
 		}
 
-		xhr.open("GET", "detailtodo.hta?todono=" + todono);
+		xhr.open("GET", "todo/status.hta?todono=" + todoNo + "&status=" + todoStatus);
 		
 		xhr.send();
 	}
-	
 </script>
 </body>
 </html>
