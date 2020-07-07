@@ -51,8 +51,8 @@ public class TodoController {
 		int todoNo = Integer.parseInt(req.getParameter("todono"));
 		String status = req.getParameter("status");
 		
-		String statusClass = todoService.setTodoStatus(todoNo, status);
-		mav.addAttribute("statusClass", statusClass);
+		TodoDto todoDto = todoService.setTodoStatus(todoNo, status);
+		mav.addAttribute("todoDto", todoDto);
 		mav.setView(new JSONView());
 		
 		return mav;

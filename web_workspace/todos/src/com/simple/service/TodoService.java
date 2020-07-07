@@ -24,7 +24,7 @@ public class TodoService {
 		return todoDto;
 	}
 	
-	public String setTodoStatus(int todoNo, String status) throws SQLException {
+	public TodoDto setTodoStatus(int todoNo, String status) throws SQLException {
 		Todo todo = todoDao.getTodoByNo(todoNo);
 		if ("처리완료".equals(status)) {
 			todo.setCompletedDay(new Date());
@@ -36,6 +36,6 @@ public class TodoService {
 		
 		TodoDto todoDto = todoDao.getTodoDtoByNo(todoNo);
 		
-		return todoDto.getStatusClass();
+		return todoDto;
 	}
 }

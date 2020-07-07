@@ -49,7 +49,7 @@
 						</c:forEach>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center"><button class="btn btn-outline-dark btn" onclick="getMoreTodos()"> 더보기 </button></div>
+						<div class="col-12 text-center"><button class="btn btn-outline-dark btn" onclick="getMoreTodos(${param.pageno })"> 더보기 </button></div>
 					</div>
 				</div>
 			</div>
@@ -177,10 +177,10 @@
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var text = xhr.responseText;
-				var statusClass = JSON.parse(text).statusClass;
+				var jsonObj = JSON.parse(text);
 				document.querySelector("#modal-todo-status").textContent = todoStatus;
 				document.querySelector("#todo-" + todoNo + "-status-badge").textContent = todoStatus;
-				document.querySelector("#todo-" + todoNo + "-status-badge").setAttribute("class", "badge " + statusClass);
+				document.querySelector("#todo-" + todoNo + "-status-badge").setAttribute("class", "badge " + jsonObj.statusClass);
 				changeDisabledBtn(todoStatus);
 				// 이거 하다가 감
 				if (todoStatus == "처리완료") {
@@ -196,6 +196,17 @@
 		xhr.open("GET", "todo/status.hta?todono=" + todoNo + "&status=" + todoStatus);
 		
 		xhr.send();
+	}
+	
+	function getMoreTodos(pageNo) {
+		
+		if (!pageNo) {
+			pageNo = 1;
+		}
+		var nextPage = 1 + pageNo;
+		
+		location.href="home.hta?pageno=" + nextPage;
+		
 	}
 </script>
 </body>
