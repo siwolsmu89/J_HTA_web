@@ -156,4 +156,62 @@ public class TodoDao {
 				
 		return todos;
 	}
+	
+	public int getTotalRowsOfConditions(String userId, String status, String keyword) throws SQLException {
+		int totalRows = 0;
+		
+		String sql = "SELECT count(*) AS cnt FROM sample_todos ";
+		sql += "WHERE user_id = '" + userId + "' ";
+		if (!"전체".equals(status)) {
+			sql += "AND todo_status = '" + status + "' ";
+		}
+		if (!"".equals(keyword)) {
+			sql += "AND todo_title LIKE '%' || '" + keyword + "' || '%' ";
+		}
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			totalRows = rs.getInt("cnt");
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return totalRows;
+	}
+	
+	public List<TodoDto> getTodosOfConditionsByRange(String userId, String status, String keyword, int beginIndex, int endIndex) throws SQLException {
+		List<TodoDto> todosOfCondition = new ArrayList<TodoDto>();
+		
+		String sql = "SELECT * FROM (SELECT T.*, U.user_name, ROW_NUMBER() OVER(ORDER BY todo_no DESC) AS RN ";
+		sql += "FROM sample_todos T, sample_todo_users U ";
+		sql += "WHERE U.user_id = '" + userId + "' ";
+		if (!"전체".equals(status)) {
+			sql += "AND T.todo_status = '" + status + "' ";
+		}
+		if (!"".equals(keyword)) {
+			sql += "AND T.todo_title LIKE '%' || '" + keyword + "' || '%' ";
+		}
+		sql += ") WHERE RN BETWEEN " + beginIndex + " AND " +endIndex + " ";
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			TodoDto todoDto = resultSetToTodoDto(rs);
+			todosOfCondition.add(todoDto);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
+		return todosOfCondition;
+	}
+	
 }

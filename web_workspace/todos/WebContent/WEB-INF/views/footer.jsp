@@ -143,7 +143,7 @@
 				}
 			}
 			
-			xhr.open("POST", "register.hta");
+			xhr.open("POST", "/register.hta");
 			
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");			
 			xhr.send(data);
@@ -164,14 +164,14 @@
 					
 					if (result) {
 						// 주소창의 주소를 home.hta로 바꾸기 --> home.hta를 요청하게 됨
-						location.href="home.hta";
+						location.href="/home.hta";
 					} else {
 						document.querySelector("#login-fail-msg-row").style.display="block";
 					}
 				}
 			}
 			
-			xhr.open("POST", "login.hta");
+			xhr.open("POST", "/login.hta");
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.send(data);
 		}

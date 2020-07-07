@@ -13,7 +13,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body onload="goLast(${param.pageno })">
 <div class="container">
 	<%@ include file="nav.jsp" %>
 	<!-- Content -->
@@ -49,7 +49,7 @@
 						</c:forEach>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center"><button class="btn btn-outline-dark btn" onclick="getMoreTodos(${param.pageno })"> 더보기 </button></div>
+						<div class="col-12 text-center"><button id="more-btn" class="btn btn-outline-dark btn" onclick="getMoreTodos(${param.pageno })"> 더보기 </button></div>
 					</div>
 				</div>
 			</div>
@@ -116,6 +116,12 @@
 	<%@ include file="footer.jsp" %>
 </div>
 <script type="text/javascript">
+
+	function goLast(pageNo) {
+		if (pageNo) {
+			document.querySelector("#more-btn").scrollIntoView();
+		}
+	}
 
 	function changeDisabledBtn(status) {
 		var buttons = document.querySelectorAll("#modal-todo-status-modify button");
@@ -206,7 +212,6 @@
 		var nextPage = 1 + pageNo;
 		
 		location.href="home.hta?pageno=" + nextPage;
-		
 	}
 </script>
 </body>
