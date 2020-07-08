@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+	<c:set var="position" value="todos"></c:set>
 	<%@ include file="nav.jsp" %>
 	
 	<!-- Content -->
@@ -79,9 +80,9 @@
 						<div class="row">
 							<div class="col-6 ">
 								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#">이전</a></li>
+									<li class="page-item"><a class="page-link" href="#" onclick="refreshList(${pagenation.begin - 1}, event)">이전</a></li>
 									<c:forEach var="num" begin="${pagination.begin }" end="${pagination.end }">
-										<li class="page-item"><a class="page-link" href="#" onclick="refreshList(${num}, event)">${num }</a></li>
+										<li class="page-item ${param.pageNo eq num ? 'active' : ''}"><a class="page-link" href="#" onclick="refreshList(${num}, event)">${num }</a></li>
 									</c:forEach>
 									<li class="page-item"><a class="page-link" href="#">다음</a></li>
 								</ul>

@@ -14,13 +14,15 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body onload="goLast(${param.pageno })">
+<fmt:bundle basename="com.simple.resources.message">
 <div class="container">
+	<c:set var="position" value="home" />
 	<%@ include file="nav.jsp" %>
 	<!-- Content -->
 	<div class="row mb-3">
 		<div class="col-12">
 			<div class="card">
-				<div class="card-header">전체 일정</div>
+				<div class="card-header"><fmt:message key="home.title" /></div>
 				<div class="card-body">
 					<div class="row">
 						<c:forEach items="${todoDtos }" var="todoDto">
@@ -36,7 +38,9 @@
 												<small>${todoDto.content }</small>
 											</div>
 											<div class="col-3">
-												<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal(${todoDto.no})">상세</button>
+												<button type="button" class="btn btn-outline-secondary btn-sm" onclick="openTodoDetailModal(${todoDto.no})">
+													<fmt:message key="button.label.detail" />
+												</button>
 											</div>
 										</div>
 										<div class="d-flex justify-content-between">
@@ -49,7 +53,11 @@
 						</c:forEach>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center"><button id="more-btn" class="btn btn-outline-dark btn" onclick="getMoreTodos(${param.pageno })"> 더보기 </button></div>
+						<div class="col-12 text-center">
+							<button id="more-btn" class="btn btn-outline-dark btn" onclick="getMoreTodos(${param.pageno })">
+								<fmt:message key="button.label.more" />
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -115,6 +123,8 @@
 	
 	<%@ include file="footer.jsp" %>
 </div>
+</fmt:bundle>
+
 <script type="text/javascript">
 
 	function goLast(pageNo) {
