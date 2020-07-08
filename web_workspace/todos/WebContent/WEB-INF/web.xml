@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 	
+	<!-- 필터 배포 -->
+	<filter>
+		<filter-name>loggingFilter</filter-name>
+		<filter-class>com.simple.filter.LoggerFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>logincheckFilter</filter-name>
+		<filter-class>com.simple.filter.LoginCheckFilter</filter-class>
+		<!-- 
+			* 필터 초기화에 필요한 정보를 설정한다.
+			* FilterConfig 객체에 저장된다.
+			* Filter 객체의 init(FilterConfig config) 메소드가 실행될 때 설정된 정보가 저장된 FilterConfig 객체가 전달된다.  
+		 -->
+		<init-param>
+			<param-name>checkURL</param-name>
+			<param-value>/todo/list.hta</param-value>
+		</init-param>
+		<init-param>
+			<param-name>uncheckURL</param-name>
+			<param-value>/home.hta, /todo/detail.hta</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>loggingFilter</filter-name>
+		<url-pattern>*.hta</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>logincheckFilter</filter-name>
+		<url-pattern>*.hta</url-pattern>
+	</filter-mapping>
+
+	<!-- 서블릿 배포 -->
 	<servlet>
 		<servlet-name>frontController</servlet-name>
 		<servlet-class>kr.co.jhta.mvc.servlet.FrontControllerServlet</servlet-class>

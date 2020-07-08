@@ -14,6 +14,7 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<fmt:bundle basename="com.simple.resources.message">
 <div class="container">
 	<c:set var="position" value="todos"></c:set>
 	<%@ include file="nav.jsp" %>
@@ -195,6 +196,7 @@
 	
 	<%@ include file="footer.jsp" %>	
 </div>
+</fmt:bundle>
 <script>
 
 	function refreshList(pageNo, event) {
