@@ -15,7 +15,7 @@ import kr.co.jhta.util.pagination.Pagination;
 
 public class TodoService {
 	
-	private TodoDao todoDao = new TodoDao();
+	private TodoDao todoDao = TodoDao.getInstance();
 	
 	public List<TodoDto> getRecentTodoDtos(int pageNo) throws SQLException {
 		List<TodoDto> todoDtos = todoDao.getRecentTodoDtos(pageNo);

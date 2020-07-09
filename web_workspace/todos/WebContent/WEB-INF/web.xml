@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 	
+	<!-- 초기화 파라미터 정의 -->
+	<context-param>
+		<param-name>db.url</param-name>
+		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>db.driverClassName</param-name>
+		<param-value>oracle.jdbc.OracleDriver</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>db.username</param-name>
+		<param-value>hr</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>db.password</param-name>
+		<param-value>zxcv1234</param-value>
+	</context-param>
+	
+	<!-- 리스너 배포 -->
+	<listener>
+		<listener-class>com.simple.listener.DBCPInitializerListener</listener-class>
+	</listener>
+	
+	
 	<!-- 필터 배포 -->
 	<filter>
 		<filter-name>loggingFilter</filter-name>
@@ -45,6 +72,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>frontController</servlet-name>
 		<url-pattern>*.hta</url-pattern>

@@ -14,6 +14,17 @@ import com.simple.vo.Todo;
 
 public class TodoDao {
 
+	// 정적변수 self에 TodoDao 객체를 담아둔다. (정적변수는 클래스 로딩 시 하나만 생성된다)
+	private static TodoDao self = new TodoDao(); 
+	
+	// 생성자의 외부 접근을 차단한다.
+	private TodoDao() {} 
+	
+	// 미리 생성된 TodoDao를 제공하는 기능이다. 객체 외부의 접근을 허용하기 위해 static으로 지정한다.
+	public static TodoDao getInstance() {
+		return self;
+	}
+	
 	public void insertTodo(Todo todo) throws SQLException {
 		Connection con = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.insertTodo"));

@@ -1,0 +1,42 @@
+ServletContextListner
+	* Tomcat 서버가 켜질 때, 종료될 때 실행하고 싶은 코드를 작성할 때 사용된다. 
+	void contextDestroyed(ServletContextEvent e)
+	void contextInitialized(ServletContextEvent e)
+
+ServletContextAttributeListner
+	* ServletContext에 속성이 추가/삭제/변경될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void attributeAdded(ServletContextAttributeEvent e)
+	void attributeRemoved(ServletContextAttributeEvent e)
+	void attributeReplaced(ServletContextAttributeEvent e)
+
+ServletRequestListner
+	* 요청이 접수될 때, 요청 처리가 완료됐을 때 실행하고 싶은 코드를 작성할 때 사용된다.	
+	void requestDestroyed(ServletRequestEvent e)
+	void requestInitialized(ServletRequestEvent e)
+
+ServletRequestAttributeListner
+	* HttpServletRequest 객체에 속성이 추가/삭제/변경될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void attributeAdded(ServletRequestAttributeEvent e)
+	void attributeRemoved(ServletRequestAttributeEvent e)
+	void attributeReplced(ServletRequestAttributeEvent e)
+
+HttpSessionListner
+	* HttpSession 객체가 생성/소멸될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void sessionCreated(HttpSessionEvent e)
+	void sessionDestroyed(HttpSessionEvent e)
+
+HttpSessionAttributeListner
+	* HttpSession 객체에 속성이 추가/삭제/변경될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void attributeAdded(HttpSessionBindingEvent e)
+	void attributeRemoved(HttpSessionBindingEvent e)
+	void attributeReplaced(HttpSessionBindingEvent e)
+
+HttpSessionActivationListner
+	* HttpSession 객체가 활성화/비활성화될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void sessionDidActivate(HttpSessionEvent e)
+	void sessionWillPassivate(HttpSessionEvent e)
+
+HttpSessionBindingListner
+	* 이 인터페이스를 구현한 객체가 세션에 저장/삭제될 때 실행하고 싶은 코드를 작성할 때 사용된다.
+	void valueBound(HttpSessionBindingEvent e)
+	void valueUnbound(HttpSessionBindingEvent e)
