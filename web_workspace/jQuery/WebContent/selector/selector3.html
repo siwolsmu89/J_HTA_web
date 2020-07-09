@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.box {
+		padding: 14px;
+		border: 2px solid gray;
+		margin-bottom: 5px;
+	}
+</style>
+</head>
+<body>
+
+	<h1>자손, 자식, 형제 선택자</h1>
+
+	<h3>자손 선택하기</h3>
+
+	<div class="box" id="drink-box">
+		<ul>
+			<li><a href="">커피</a></li>
+			<li><a href="">우유</a></li>
+			<li><a href="">음료</a></li>
+		</ul>	
+		<a href="">홈으로 가기</a>
+	</div>
+	<div>
+		<button onclick="fn1()">첫번째 div의 자손 중에서 링크 선택하기</button>
+	</div>
+
+	<hr/>
+	
+	<h3>자식 선택하기</h3>
+	<div class="box" id="food-box">
+		<ul>
+			<li><a href="">삼각김밥</a></li>
+			<li><a href="">도시락</a></li>
+			<li><a href="">샌드위치</a></li>
+		</ul>	
+		<a href="">홈으로 가기</a>
+	</div>
+	<div>
+		<button onclick="fn2()">두번째 div의 자식 중에서 링크 선택하기</button>
+		<button onclick="fn3()">div의 자식 중에서 링크 선택하기</button>
+	</div>
+
+	<hr/>
+	
+	<h3>형제 선택하기</h3>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	function fn1() {
+		$("#drink-box a").css("border", "2px solid yellow");
+	}
+	
+	function fn2() {
+		$("#food-box > a").css("border","2px solid green");
+	}
+
+	function fn3() {
+		$(".box > a").css("background-color","red");
+	}
+
+</script>
+
+</body>
+</html>

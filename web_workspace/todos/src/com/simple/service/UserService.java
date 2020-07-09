@@ -5,7 +5,7 @@ import com.simple.vo.User;
 
 public class UserService {
 
-	private UserDao userDao = new UserDao();
+	private UserDao userDao = UserDao.getInstance();
 	
 	public boolean addNewUser(User user) throws Exception {
 		User savedUser = userDao.getUserById(user.getId());

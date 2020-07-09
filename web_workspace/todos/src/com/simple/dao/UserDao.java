@@ -11,6 +11,15 @@ import com.simple.vo.User;
 
 public class UserDao {
 
+	private static UserDao self = new UserDao();
+	
+	private UserDao() {}
+	
+	public static UserDao getInstance() {
+		
+		return self;
+	}
+	
 	public void insertUser(User user) throws SQLException {
 		Connection con = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("user.insertUser"));
