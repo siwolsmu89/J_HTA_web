@@ -1,0 +1,19 @@
+function $(선택자) {
+
+	var elements = document.querySelectorAll(선택자);
+
+	return {
+		items: elements;
+		css: function(propName, propValue) {
+			var arr = this.items;
+			for (var i = 0; i < arr.length; i++) {
+				var el = arr[i];
+				el.propName = propValue;
+			}
+			return this;
+		}
+	}
+}
+
+컨셉은 이런 식이다.
+조작 함수 실행 후 'this'($함수 객체 자신)를 반환하여 메소드 체이닝을 사용할 수 있도록 한다.
