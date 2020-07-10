@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>선택자 연습</h1>
+	<p id="notice-message">원하는 메뉴를 선택하세요</p>
+	
+	<div class="box">
+		<h3>음료 메뉴</h3>
+		<ul>
+			<li class="best"><span>팥빙수</span>	<span>7000</span>원</li>
+			<li>			 <span>수박주스</span> <span>4000</span>원</li>
+			<li class="best"><span>딸기주스</span> <span>4500</span>원</li>
+			<li>			 <span>레몬주스</span> <span>4000</span>원</li>
+		</ul>
+	</div>
+	
+	<hr/>
+	
+	<div class="box">
+		<h3>팥빙수 정보</h3>
+		<p class="summary">
+			우리 가게 팥빙수는 <span class="highlight">국산 팥</span>을 사용해서 만들었습니다.
+		</p>
+		<div class="detail">
+			<p>생산지 : <span>국내산</span></p>
+			<p>열량 : <span>350Kcal</span></p>
+			<p>나트륨 : <span>4%</span></p>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	// 안내메시지의 글자를 진하게 하세요 $(표현식).css('font-weight', 'bolder');
+	$("#notice-message").css("font-weight","bolder");
+
+	// best상품으로 선정된 메뉴는 메뉴명만 빨갛게 표시하세요
+	$("li.best span:first-child").css("color","red");
+	
+	// best 상품으로 선정된 메뉴들 중에서 가격이 7000원인 메뉴의 가격을 진하게 표시하세요
+	$("li.best span:contains('7000')").css("font-weight","bolder");
+	
+	// 두번째 박스의 모든 span 태그의 글자크기를 24px로 지정하세요
+	$(".box:eq(1) span").css("font-size", "24px");
+	
+	// 제품에 대한설명을 포함하고 있는 p태그에 테두리를 추가하세요
+	$("p.summary").css({'border':'1px solid gray', 'padding':'5px' });
+	
+	// span중에서 class가 highlight인 것과 제품 성분표시란의 성분 중에서 국내산이라는 텍스트를 포함하고 있는 span을 찾아서 글자를 빨갛게 표시하세요
+	$("span.highlight, .detail span:contains('국내산')").css('color','red');
+</script>
+
+
+</body>
+</html>

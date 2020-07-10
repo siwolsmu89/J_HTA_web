@@ -48,6 +48,23 @@
 	<hr/>
 	
 	<h3>형제 선택하기</h3>
+	<div id="siblings-box">
+		<p id="desc-1">아래의 항목중에서 해당되는 항목을 선택하세요</p>
+		<p id="desc-2">반드시 2개 이상 선택하세요</p>
+		<label><input type="checkbox" name="skill">Java</label>
+		<label><input type="checkbox" name="skill">C++</label>
+		<label><input type="checkbox" name="skill">python</label>
+		<label><input type="checkbox" name="skill">web</label>
+		<label><input type="checkbox" name="skill">javascript</label>
+		<p id="desc-3">야호</p>
+	</div>
+	<div>
+		<button onclick="fn4()">첫 번째 p 바로 다음에 오는 label 찾기</button>
+		<button onclick="fn5()">두 번째 p 바로 다음에 오는 label 찾기</button>
+		<button onclick="fn6()">첫 번째 p 다음에 오는 모든 label 찾기</button>
+		<button onclick="fn7()">두 번째 p 다음에 오는 모든 label 찾기</button>
+		<button onclick="fn8()">세 번째 p 다음에 오는 모든 label 찾기</button>
+	</div>
 	
 <script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -61,6 +78,22 @@
 
 	function fn3() {
 		$(".box > a").css("background-color","red");
+	}
+	
+	function fn4() {
+		$("#desc-1 + label").css("color", "red");
+	}
+	function fn5() {
+		$("#desc-2 + label").css("color", "green");
+	}
+	function fn6() {
+		$("#desc-1 ~ label").css("border", "2px solid yellow");
+	}
+	function fn7() {
+		$("#desc-2 ~ label").css("padding", "10px");
+	}
+	function fn8() {
+		$("#desc-3 ~ label").css("background-color", "green");
 	}
 
 </script>
