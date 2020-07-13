@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		padding: 15px;
+		border: 2px solid gray;
+		margin: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>이벤트 처리</h1>
+	
+	<div id="box-1">
+		첫번째 박스
+		<div id="box-2">
+			두번째 박스
+			<div id="box-3">
+				세번째 박스
+			</div>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$("#box-1").click(function () {
+		console.log("첫번째 박스가 클릭되었습니다.");
+	});
+	$("#box-2").click(function (event) {
+		event.stopPropagation();
+		console.log("두번째 박스가 클릭되었습니다.");
+	});
+	$("#box-3").click(function () {
+		console.log("세번째 박스가 클릭되었습니다.");
+		return false;
+	});
+</script>
+</body>
+</html>

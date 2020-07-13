@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		border: 2px solid gray;
+		padding: 15px;
+		margin-bottom: 10px;
+	}
+</style>
+</head>
+<body>
+
+	<h1>이벤트 처리하기</h1>
+	
+	<div id="button-box-1">
+		<button>이미 존재하는 버튼</button> 
+	</div>
+	
+	<div id="button-box-2">
+		<button id="btn-1">이벤트 핸들러 함수 등록하기</button>
+		<button id="btn-2">1회용 이벤트 핸들러 함수 등록하기</button>
+		<button id="btn-3">등록된 이벤트 핸들러 함수 제거하기</button>
+		<button id="btn-4">이벤트 강제 발생시키기</button>
+		<button id="btn-5">아직 존재하지 않는 엘리먼트에 이벤트 등록하기</button>
+	</div>
+
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$("#btn-1").on("click", function() {
+		alert("첫번째 버튼이 클릭되었습니다");
+		$("#button-box-1").append("<button>버튼</button> ")
+	});
+	
+	$("#btn-2").one("click", function() {
+		alert("두 번째 버튼이 클릭되었습니다.");
+	});
+	
+	$("#btn-3").on("click", function () {
+		$("#btn-1").off("click");
+		alert("첫번째 버튼에 click 이벤트와 관련되어 등록된 이벤트 핸들러 함수를 제거합니다.");
+	});
+	
+	$("#btn-4").on("click", function() {
+		$("#btn-1").trigger("click");
+		alert("첫번째 버튼에서 클릭이벤트가 발생하게 했습니다.");
+	})
+	
+	$("#button-box-1").on("click", "button", function () {
+		alert("나는 새로 추가된 버튼이다.")
+	});
+	
+</script>
+</body>
+</html>

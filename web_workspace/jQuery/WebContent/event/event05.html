@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>이벤트 처리하기</h1>
+	
+	<h3>상품리스트</h3>
+	<table class="table" id="product-table" border="1" style="width: 100%;">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>상품명</th>
+				<th>제조사</th>
+				<th>가격</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="row-100">
+				<td>100</td>
+				<td>갤럭시S20</td>
+				<td>삼성전자</td>
+				<td>900,000원</td>
+				<td><button class="btn-danger" data-product-no="100">삭제</button></td>
+			</tr>
+			<tr id="row-120">
+				<td>120</td>
+				<td>아이폰 11</td>
+				<td>애플</td>
+				<td>1,000,000원</td>
+				<td><button class="btn-danger" data-product-no="120">삭제</button></td>
+			</tr>
+			<tr id="row-150">
+				<td>150</td>
+				<td>맥북프로</td>
+				<td>애플</td>
+				<td>2,500,000원</td>
+				<td><button class="btn-danger" data-product-no="150">삭제</button></td>
+			</tr>
+		</tbody>
+	</table>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$("#product-table button.btn-danger").on("click", function() {
+		var rowId = "#row-" + $(this).data("product-no");
+		$(rowId).remove();
+		// $(this).parents("tr").remove();
+	});
+
+</script>
+</body>
+</html>

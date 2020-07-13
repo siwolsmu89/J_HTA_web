@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div.box {
+		width: 350px;
+		height: 200px;
+		border: 1px solid orange;
+		padding: 15px;
+		margin-bottom: 10px;
+	}
+	div.box span {
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid green;
+		margin: 5px;
+		cursor: pointer;
+	}
+	div.box span:hover {
+		background-color: yellow;
+	}
+</style>
+</head>
+<body>
+	<h1>이벤트 처리하기</h1>
+	
+	<div class="box">
+		<h3>사원리스트</h3>
+		<div id="emp-list">
+			<span>김유신</span>
+			<span>이순신</span>
+			<span>홍길동</span>
+			<span>강감찬</span>
+			<span>류관순</span>
+			<span>안창호</span>
+			<span>윤봉길</span>
+		</div>
+	</div>
+	
+	<div class="box">
+		<h3>세미나 참가 리스트</h3>
+		<div id="seminar-emp-list"></div>
+	</div>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$("#emp-list span").on("click", function() {
+		$("#seminar-emp-list").append(this);
+	});
+	
+	$("#seminar-emp-list").on("click", "span", function() {
+		$("#emp-list").append(this);
+	});
+	
+</script>
+</body>
+</html>
