@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.tab {
+		margin-top: 10px;
+	}
+	.tab-link {
+		display: inline-block;
+		border: 2px solid gray;
+		margin-right: 5px;
+		padding: 6px;
+	}
+	.tab-link.active {
+		background-color: green;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.tab-contents {
+		margin-top: 10px;
+	}
+	.tab-content {
+		padding: 15px;
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body>
+	<h1>페이지가 로딩될 때 작업 수행하기</h1>
+	<p>
+		jQuery에서는 페이지로딩이 완료되었을 때, Document 객체가 준비되었을 때 코드가 실행되게 할 수 있다.
+	</p>
+	
+	<div id="btn-box">
+		<button>버튼1</button>
+		<button>버튼2</button>
+		<button>버튼3</button>
+	</div>
+	
+	<div class="tabs">
+		<div class="tab">
+			<a href="" class="tab-link">탭1</a>
+			<a href="" class="tab-link">탭2</a>
+			<a href="" class="tab-link">탭3</a>
+		</div>
+		<div class="tab-contents">
+			<div class="tab-content">첫번째 탭의 컨텐츠입니다.</div>
+			<div class="tab-content">두번째 탭의 컨텐츠입니다.</div>
+			<div class="tab-content">세번째 탭의 컨텐츠입니다.</div>
+		</div>
+	</div>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	// Document객체가 준비되었을 때 실행할 이벤트 핸들러 함수 등록하기
+	// $(document).ready(function() {}); 처럼 적어도 되고, $(function(){}) 형태로 적어도 된다.
+	$(function() {	
+		// 버튼 등 여러 엘리먼트에 이벤트 핸들러 등록하기
+		// AJAX를 실행시켜서 첫 데이터 가져오기
+		// 화면의 스타일과 관련된 작업(특정 엘리먼트를 표시하거나 감추는 작업 등)
+		$("#btn-box button").click(function() {
+			var buttonName = $(this).text();
+			alert(buttonName + "이(가) 클릭되었습니다.");
+		});
+		$(".tabs .tab-link:first").addClass("active");
+		$(".tabs .tab-content:first").show().siblings().hide();
+	});
+</script>
+</body>
+</html>

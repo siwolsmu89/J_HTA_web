@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div#top-category {
+		border-bottom: 1px solid black;
+		padding: 5px;
+		margin-bottom: 10px;
+	}
+	div#top-category span {
+		font-weight: bold;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	div#sub-category span {
+		border: 1px solid black;
+		padding: 5px 10px;
+		margin-right: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>mouseenter와 mouseleave 사용하기</h1>
+
+	<div>
+		<h3>주요 카테고리</h3>
+		<div id="top-category">
+			<span data-category="book">도서</span>
+			<span data-category="movie">영화</span>
+			<span data-category="ticket">티켓</span>
+			<span data-category="goods">상품</span>
+		</div>
+		<div id="sub-category"></div>
+	</div>
+
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	var menus = {
+			book: ['소설', '인문', '사회', '경제', '자기계발', '유아/청소년', 'IT', '외국어'],
+			movie: ['예매', '영화', '이벤트', '매거진', '다운로드'],
+			ticket: ['콘서트', '뮤지컬', '연극', '클래식', '전시'], 
+			goods: ['문구', '의류', '디지털', '생활/건강', '주방/푸드', '패션잡화']
+	}
+	
+	
+//	$("#top-category span").mouseenter(cb1);
+//	$("#top-category span").mouseleave(cb2);
+	$("#top-category span").hover(cb1,cb2);
+	
+	function cb1() {
+		var cat = $(this).data("category");
+		var subCat = menus[cat];
+
+		var $subCategory = $("#sub-category");
+		for (var i=0; i<subCat.length; i++) {
+			var spanEl = "<span>" + subCat[i] + "</span>";
+			$subCategory.append(spanEl);	
+		}
+	}
+	
+	function cb2() {
+		$("#sub-category").empty();
+	}
+</script>
+
+</body>
+</html>

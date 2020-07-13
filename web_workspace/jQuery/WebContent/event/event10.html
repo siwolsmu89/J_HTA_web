@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img {
+		width: 200px;
+		height: 200px;
+	}
+</style>
+</head>
+<body>
+	<h1>무한 스크롤</h1>
+	
+	<div id="image-box">
+		<img src="../resources/images/1.png" />
+		<img src="../resources/images/4.png" />
+		<img src="../resources/images/3.png" />
+		<img src="../resources/images/4.png" />
+		<img src="../resources/images/1.png" />
+		<img src="../resources/images/4.png" />
+		<img src="../resources/images/3.png" />
+		<img src="../resources/images/4.png" />
+	</div>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	var images = ["1.png", "4.png", "3.png", "4.png", "1.png", "4.png", "3.png", "4.png"];
+	var $imageBox = $("#image-box");
+	var windowHeight = $(window).height();
+	var documentHeight = $(document).height();
+	
+	$(window).scroll(function() {
+		var scrollTop = $(window).scrollTop();
+		
+		if (windowHeight + scrollTop + 50 > documentHeight) {
+			for (var i = 0; i<images.length; i++) {
+				$imageBox.append("<image src='../resources/images/" + images[i] + "' /> ")
+			}			
+			documentHeight = $(document).height();
+		}
+	});
+</script>
+
+</body>
+</html>
