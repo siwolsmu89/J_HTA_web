@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.form-group {
+		border: 1px dashed #aaa;
+		margin-bottom: 10px;
+		padding: 15px;
+	}
+	.form-group label {
+		display: block;
+		margin-bottom: 5px;
+	}
+	.form-group .form-control {
+		width: 100%;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+	.form-group input.form-control {
+		height: 25px;
+	}
+</style>
+</head>
+<body>
+	<h1>엘리먼트 추가하기</h1>
+	
+	<h3>사진 등록하기</h3>
+	<p>사진은 한 번에 최대 5개까지만 등록가능합니다.</p>
+	<form id="form-fileupload">
+		<div class="form-group">
+			<label>제목</label>
+			<input type="text" class="form-control" name="title" />
+		</div>
+		<div class="form-group">
+			<label>설명</label>
+			<textarea rows="6" class="form-control" name="description"></textarea>
+		</div>
+		<div class="form-group">
+			<label>사진 
+				<button type="button" class="btn btn-default btn-sm" id="btn-add">추가</button>
+				<button type="button" class="btn btn-default btn-sm" id="btn-del">삭제</button>
+			</label>
+			<input type="file" class="form-control" name="photofile" />
+		</div>
+		<div class="text-right">
+			<button type="submit" class="btn btn-primary">등록</button>
+		</div>
+	</form>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$("#btn-add").click(function () {
+		var photofileGroupCount = $(".form-group:has(:file)").length;
+		if (photofileGroupCount < 5) {
+			var $newFileGroup = $(".form-group:has(:file):first").clone();
+			$newFileGroup.find("input").val("");
+			$newFileGroup.find("button").remove();
+			$(".form-group:has(:file):last").after($newFileGroup);
+			
+			if (photofileGroupCount == 4) {
+				$("#btn-add").attr("disabled", true);
+			}
+			if ($("#btn-del").attr("disabled")) {
+				$("#btn-del").attr("disabled", false);
+			}
+		}
+	});
+	$("#btn-del").click(function () {
+		var photofileGroupCount = $(".form-group:has(:file)").length;
+		if (photofileGroupCount > 1) {
+			$(".form-group:has(:file):last").remove();
+			
+			if ($("#btn-add").attr("disabled")) {
+				$("#btn-add").attr("disabled", false);
+			}
+			if (photofileGroupCount == 2) {
+				$("#btn-del").attr("disabled", true);
+			}
+		}
+	});
+</script>
+</body>
+</html>
