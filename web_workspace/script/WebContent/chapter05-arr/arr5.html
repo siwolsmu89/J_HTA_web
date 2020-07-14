@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>배열의 주요 메소드</h1>
+	
+<script type="text/javascript">
+	var scores = [60, 30, 100, 70, 50];
+	
+	console.log("for문을 사용해서 배열의 값을 출력하기");
+	for (var i = 0; i < scores.length; i++) {
+		console.log(scores[i]);
+	}
+	
+	console.log("for~in문을 사용해서 배열의 값을 출력하기");
+	// length를 계산할 필요가 없다.
+	for (var index in scores) {
+		console.log(index, scores[index]);
+	}
+	
+	console.log("forEach문을 사용해서 배열의 값을 출력하기");
+	scores.forEach(function(item, index) {
+		console.log(index, item);
+	});
+</script>
+</body>
+</html>

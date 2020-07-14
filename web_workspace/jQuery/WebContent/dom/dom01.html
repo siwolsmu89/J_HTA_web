@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>조회하기</h1>
+
+	<div id="outter-box">
+		<h3>jQuery의 조회기능</h3>
+		<p>엘리먼트의 컨텐츠, 값, 속성 등을 조회하기</p>
+		<div id="box-1">
+			<input type="text" name="keyword" value="자바" readonly />
+		</div>
+		<div id="box-2">
+			<label>
+				<input type="checkbox" name="skill" value="c" disabled /> C언어
+			</label>
+			<label>
+				<input type="checkbox" name="skill" value="python" checked /> 파이썬
+			</label>
+		</div>
+		<div id="box-3">
+			<textarea rows="5" cols="40" name="summary">조회기능의 주요 메소드는 사용하기 편리하다.</textarea>
+		</div>
+		
+		<div>
+			<img src="../resources/images/4.png" alt="angry maltese" width="200px" height="200px" />
+		</div>
+	</div>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	// 엘리먼트의 텍스트 컨텐츠 조회하기
+	var text1 = $('h1').text();
+	var text2 = $('h3').text();
+	var text3 = $('p').text();
+	console.log("첫번째 텍스트", text1);
+	console.log("두번째 텍스트", text2);
+	console.log("세번째 텍스트", text3);
+	
+	// 엘리먼트의 html 컨텐츠 조회하기
+	var html1 = $('div#outter-box').html();
+	var html2 = $('div#box-2 label:eq(0)').html();
+	console.log("html 컨텐츠 1", html1);
+	console.log("html 컨텐츠 2", html2);
+	
+	// 폼요소의 값 조회하기
+	var val1 = $(":input[name='keyword']").val();
+	var val2 = $(":checkbox[name=skill]:eq(0)").val();
+	var val3 = $(":checkbox[name=skill]:eq(1)").val();
+	var val4 = $(":input[name=summary]").val();
+	console.log("폼입력요소의 값 1", val1);
+	console.log("폼입력요소의 값 2", val2);
+	console.log("폼입력요소의 값 3", val3);
+	console.log("폼입력요소의 값 4", val4);
+	
+	// 프로퍼티 값 조회하기
+	var prop1 = $(":input[name=keyword]").prop("readonly");				// 읽기 전용 여부
+	var prop2 = $(":checkbox[name=skill]:eq(0)").prop("disabled");		// 비활성화 여부
+	var prop3 = $(":checkbox[name=skill]:eq(1)").prop("disabled");
+	var prop4 = $(":checkbox[name=skill]:eq(0)").prop("checked");		// 체크 여부
+	var prop5 = $(":checkbox[name=skill]:eq(1)").prop("checked");
+	console.log("프로퍼티값 조회 1", prop1);
+	console.log("프로퍼티값 조회 2", prop2);
+	console.log("프로퍼티값 조회 3", prop3);
+	console.log("프로퍼티값 조회 4", prop4);
+	console.log("프로퍼티값 조회 5", prop5);
+	
+	// 속성값 조회하기(name="", id="", type="", src="", alt="", href="", title="" 등)
+	var attrVal1 = $("img").attr("src"); 
+	var attrVal2 = $("img").attr("alt"); 
+	var attrVal3 = $("img").attr("width"); 
+	var attrVal4 = $("img").attr("height");
+	console.log("속성값 조회 1", attrVal1);
+	console.log("속성값 조회 2", attrVal2);
+	console.log("속성값 조회 3", attrVal3);
+	console.log("속성값 조회 4", attrVal4);
+</script>
+</body>
+</html>

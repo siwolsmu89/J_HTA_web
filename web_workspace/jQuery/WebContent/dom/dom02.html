@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>변경하기</h1>
+	
+	<div id="outter-box">
+		<h3></h3>
+		
+		<div id="box-1"></div>
+		<div id="box-2">
+			<label>
+				<input type="checkbox" name="skill" value="java" /> 자바
+				<input type="checkbox" name="skill" value="python" /> 파이썬
+			</label>
+		</div>
+		<div id="box-3">
+			<select name="location">
+				<option value="seoul">서울</option>
+				<option value="gyeonggi">경기</option>
+				<option value="incheon">인천</option>
+				<option value="gangwon">강원</option>
+			</select>
+		</div>
+		<div id="box-4">
+			<img src="../resources/images/1.png" alt="two rings binded to each other" width="200" height="200" />
+		</div>
+	</div>
+	
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	// 엘리먼트의 텍스트 변경하기
+	$("h3").text("변경하기 기능은 엘리먼트를 변경하고, 해당 엘리먼트의 jQuery 객체를 반환한다.").css("color", "red");
+	
+	// 엘리먼트의 html 변경하기
+	$("#box-1").html("<input type='text' name='username'>");
+	
+	// 엘리먼트의 값 변경하기
+	$("#box-1 :input[name=username]").val("홍길동");
+	$("#box-3 select[name=location]").val('gangwon');
+	
+	// 엘리먼트의 프로퍼티 변경하기(readonly, disabled, checked 변경가능)
+	$("#box-1 :input[name=username]").prop("disabled", true); // 입력필드 비활성화
+	$("#box-2 :input[name=skill]:eq(1)").prop("checked", true);	  // 두번째 체크박스 체크
+	
+	// 속성값 변경하기
+	$("img").attr("src", "../resources/images/4.png").attr("alt", "malteses never forgive");
+</script>
+</body>
+</html>
