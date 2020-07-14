@@ -40,7 +40,7 @@
 		<div class="form-group">
 			<label>사진 
 				<button type="button" class="btn btn-default btn-sm" id="btn-add">추가</button>
-				<button type="button" class="btn btn-default btn-sm" id="btn-del">삭제</button>
+				<button type="button" class="btn btn-default btn-sm" id="btn-del" disabled>삭제</button>
 			</label>
 			<input type="file" class="form-control" name="photofile" />
 		</div>
@@ -53,16 +53,16 @@
 	$("#btn-add").click(function () {
 		var photofileGroupCount = $(".form-group:has(:file)").length;
 		if (photofileGroupCount < 5) {
-			var $newFileGroup = $(".form-group:has(:file):first").clone();
+			var $newFileGroup = $(".form-group:has(:file):last").clone();
 			$newFileGroup.find("input").val("");
 			$newFileGroup.find("button").remove();
 			$(".form-group:has(:file):last").after($newFileGroup);
 			
 			if (photofileGroupCount == 4) {
-				$("#btn-add").attr("disabled", true);
+				$("#btn-add").prop("disabled", true);
 			}
-			if ($("#btn-del").attr("disabled")) {
-				$("#btn-del").attr("disabled", false);
+			if ($("#btn-del").prop("disabled")) {
+				$("#btn-del").prop("disabled", false);
 			}
 		}
 	});
@@ -71,11 +71,11 @@
 		if (photofileGroupCount > 1) {
 			$(".form-group:has(:file):last").remove();
 			
-			if ($("#btn-add").attr("disabled")) {
-				$("#btn-add").attr("disabled", false);
+			if ($("#btn-add").prop("disabled")) {
+				$("#btn-add").prop("disabled", false);
 			}
 			if (photofileGroupCount == 2) {
-				$("#btn-del").attr("disabled", true);
+				$("#btn-del").prop("disabled", true);
 			}
 		}
 	});
