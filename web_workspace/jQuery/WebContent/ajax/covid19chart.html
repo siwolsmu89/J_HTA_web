@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>코로나 19 시/도별 발생 현황</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+	<style type="text/css">
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<h1>코로나 19 시/도별 발생 현황</h1>
+		</div>
+		<div class="mt-3 col-3 offset-3">
+			<form class="form-inline">
+				<input type="date" class="form-control" id="search-date">
+				<button type="button" id="btn-search" class="btn btn-primary btn-sm ml-3">조회</button>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row mt-3">
+		<div class="col-12">
+			<div class="card card-primary">
+				<div class="card-header">
+					<h4 class="card-title">
+						시/도별 신규 확진자 현황
+						<button class="btn btn-sm btn-outline-secondary float-right">접기</button>
+					</h4>
+				</div>
+				<div class="card-body">
+					<canvas id="covid19-canvas"></canvas>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row mt-3">
+		<div class="col-4">
+			<div class="card card-info">
+				<div class="card-header">오늘 확진자 현황</div>
+				<div class="card-body">
+					<table class="table table-bordered">
+						<colgroup>
+							<col width="60%">
+							<col width="40%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>신규 확진자 수</th>
+								<td id="covid19-new"></td>
+							</tr>
+							<tr>
+								<th>지역 감염자 수</th>
+								<td id="covid19-local"></td>
+							</tr>
+							<tr>
+								<th>해외 유입 감염자 수</th>
+								<td id="covid19-overflow"></td>
+							</tr>
+							<tr>
+								<th>총 사망자</th>
+								<td id="covid19-death"></td>
+							</tr>
+							<tr>
+								<th>총 확진자 수</th>
+								<td id="covid19-total"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>	
+<script type="text/javascript">
+	$(function() {
+		// 0. 차트 작성에 필요한 변수 및 기본 정보 설정
+		// 시도명
+		var sido = ["검역", "제주", "경남", "경북", "전남", "전북", "충남", "충북", "강원", "경기", "세종", "울산", "대전", "광주", "인천", "대구", "부산", "서울"];
+		// Chart 작성에 필요한 시도별 확진자 발생 현황 정보를 담는 배열. 페이지 로딩 시, 날짜 선택 후 검색버튼 클릭 시 새로 채워진다.
+		var covid19Items = [];
+		var covid19Total = {};
+		// BarChart 객체를 저장할 변수
+		var covidBarChart;
+		// BarChart 작성에 필요한 ChartData 객체 정의
+		var barChartData = {
+				labels: sido,
+				datasets: [{
+					label:"지역 내 확진자",
+					borderWidth: 1,
+					backgroundColor: "red",
+					data: []
+				}, {
+					label: "해외 유입 확진자",
+					borderWidth: 1,
+					backgroundColor: "orange",
+					data: []
+				}]
+		};
+		
+		$("#btn-search").click(function() {
+			if ($("#search-date").val() == "") {
+				alert("날짜를 선택하세요");
+				return;
+			}
+			updateCovid19();
+		});
+		
+		// 6. BarChart 그리기
+		function drawBarChart() {
+		// 7. BarChart 작성에 필요한 지역감염자, 해외유입감염자를 covid19Items 배열에서 뽑아서 barChartData의 datasets에 각각 저장한다.
+			barChartData.datasets[0].data.length= 0;
+			barChartData.datasets[1].data.length= 0;
+			for (var index in covid19Items) {
+				var covid19Item = covid19Items[index];
+				barChartData.datasets[0].data.push(covid19Item.localOccCnt);
+				barChartData.datasets[1].data.push(covid19Item.overFlowCnt);
+			}
+		// 8. BarChart를 화면에 표시하거나, 기존 BarChart를 업데이트한다.	
+			if (covidBarChart) {
+				// BarChart 업데이트(Chart 객체에 있는 update() 메소드를 사용한다.)
+				covidBarChart.update();
+			} else {
+				// BarChart 처음 그리기
+				var ctx = document.querySelector("#covid19-canvas").getContext('2d');
+				covidBarChart = new Chart(ctx, {
+					type: "bar",				// 차트 타입
+					data: barChartData,			// 차트 표현에 필요한 데이터
+					options: {					// 차트 옵션
+						responsive: true,		// 반응형 지원
+						legend: {				// 범례 설정
+							position: 'top'		// 범례 위치를 top으로 설정
+						},
+						title: {				// 차트 제목 설정
+							display: true,
+							text: "시/도별 신규 확진자 현황"
+						}
+					}
+				});
+			}
+		}
+		
+		function updateCovid19() {
+			// 1. 요청 파라미터 정의
+			var reqParam = {
+					pageNo: 1,
+					startCreateDt: getSearchDate(),
+					endCreateDt: getSearchDate()
+			}
+			// 2. AJAX 요청
+			$.get("/jQuery/covid19sido", reqParam, function(xmlDoc) {
+			// 3. XML 응답 데이터 처리	
+				covid19Items.length = 0;
+			
+				var items = $(xmlDoc).find("item");
+				for (var index in items) {
+					var $item = $(items[index]);
+					
+					if ($item.find("gubun").text() == "합계") {
+						covid19Total = {
+							defCnt		: parseInt($item.find("defCnt").text()),
+							deathCnt	: parseInt($item.find("deathCnt").text()),
+							incDec		: parseInt($item.find("incDec").text()),
+							localOccCnt : parseInt($item.find("localOccCnt").text()),
+							overFlowCnt : parseInt($item.find("overFlowCnt").text())		
+						}
+						break;
+					}
+					var covid19Item = {
+						gubun		: $item.find("gubun").text(),
+						defCnt		: parseInt($item.find("defCnt").text()),
+						deathCnt	: parseInt($item.find("deathCnt").text()),
+						incDec		: parseInt($item.find("incDec").text()),
+						localOccCnt : parseInt($item.find("localOccCnt").text()),
+						overFlowCnt : parseInt($item.find("overFlowCnt").text())
+					}
+			// 4. covid19Items 배열에 시도별 코로나 발생현황 데이터 저장		
+					covid19Items.push(covid19Item);
+				}
+			// 5. BarChart 그리기, 확진자 현황 업데이트하기	
+				drawBarChart();
+				updateCovid19Table();
+			});
+		}
+		
+		function updateCovid19Table() {
+			$("#covid19-new").text(covid19Total.incDec);
+			$("#covid19-local").text(covid19Total.localOccCnt);
+			$("#covid19-overflow").text(covid19Total.overFlowCnt);
+			$("#covid19-death").text(covid19Total.deathCnt);
+			$("#covid19-total").text(covid19Total.defCnt);
+		}
+		
+		function getSearchDate() {
+			var searchDate = $("#search-date").val();
+			if (searchDate == "") {
+				var dateObj = getDate();
+				
+				$("#search-date").val(dateObj.date);
+				return dateObj.searchDate;
+			} else {
+				return searchDate.replace(/-/g, '');
+			}
+		}
+		
+		function getDate() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth() + 1;
+			var day = now.getDate();
+			
+			var date = year + "-" + (month < 10 ? "0"+month : month) + "-" + (day < 10 ? "0" + day : day);
+			var searchDate = date.replace(/-/g, "");
+			
+			return {
+				"date":date,
+				"searchDate": searchDate
+			}
+		}
+		
+		updateCovid19();
+	});
+</script>
+</body>
+</html>

@@ -39,7 +39,7 @@ public class Covid19Servlet extends HttpServlet {
 		connection.setRequestMethod("GET");
 		connection.setRequestProperty("Content-type", "text/xml");
 		
-		System.out.println("응답코드: " +connection.getResponseCode());
+		// System.out.println("응답코드: " +connection.getResponseCode());
 		
 		IOUtils.copy(connection.getInputStream(), resp.getOutputStream());
 	}

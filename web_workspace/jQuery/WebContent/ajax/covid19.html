@@ -45,6 +45,14 @@
 <script type="text/javascript">
 	$(function() {
 		
+		$("#btn-search").click(function() {
+			if ($("#search-date").val() == "") {
+				alert("날짜를 선택하세요");
+				return;
+			}
+			refreshTable();
+		});
+		
 		function refreshTable() {
 			var reqParam = {
 					pageNo: 1,
@@ -86,22 +94,32 @@
 		function getSearchDate() {
 			var searchDate = $("#search-date").val();
 			if (searchDate == "") {
-				var now = new Date();
-				var year = now.getFullYear();
-				var month = now.getMonth() + 1;
-				var date = now.getDate();
+				var dateObj = getDate();
 				
-				searchDate = year + (month < 10 ? "0"+month : month) + (date < 10 ? "0" + date : date);
-				$("#search-date").val(searchDate);
-				return searchDate;
+				$("#search-date").val(dateObj.date);
+				return dateObj.searchDate;
 			} else {
 				return searchDate.replace(/-/g, '');
 			}
+		}
+		
+		function getDate() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth() + 1;
+			var day = now.getDate();
 			
+			var date = year + "-" + (month < 10 ? "0"+month : month) + "-" + (day < 10 ? "0" + day : day);
+			var searchDate = date.replace(/-/g, "");
+			
+			return {
+				"date":date,
+				"searchDate": searchDate
+			}
 		}
 		
 		refreshTable();
-	})
+	});
 </script>
 </body>
 </html>
