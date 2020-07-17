@@ -130,17 +130,18 @@
      								<tr>
      									<th>제목</th>
      									<td colspan="3" id="todo-title">프로젝트 일정 회의</td>
+     									<input type="hidden" name="todo-no" id="modal-todo-no" value="" />
      								</tr>
      								<tr>
      									<th>작성자</th>
      									<td id="todo-user">홍길동</td>
-     									<th>등록일</th>
+     									<th>예정일</th>
      									<td id="todo-day">2020-06-12</td>
      								</tr>
      								<tr>
      									<th>상태</th>
      									<td id="todo-status">처리예정</td>
-     									<th>예정일</th>
+     									<th>처리완료일</th>
      									<td id="todo-completed-date">2020-07-12</td>
      								</tr>
      								<tr>
@@ -288,19 +289,15 @@ $(function() {
 			if (jsonObj.status=="success") {
 				$("#row-home").hide();		
 				$("#row-my-todos").show();
+				$("#table-my-todos tbody").empty();
 				
 				var todos = jsonObj.todos;
 				$.each(todos, function(index, todo) {
-					var title = todo.title;
-					var status = todo.status;
-					var day = todo.day;
-					var no = todo.no;
-
-					var tr = "<tr>";
-					tr += "<td>" + title + "</td>";
-					tr += "<td>" + status + "</td>";
-					tr += "<td>" + day + "</td>";
-					tr += "<td><button class='btn btn-info btn-sm' data-todo-no='" + no + "'>상세정보</button></td>";
+					var tr = "<tr id='tr-" + todo.no + "'>";
+					tr += "<td>" + todo.title + "</td>";
+					tr += "<td>" + todo.status + "</td>";
+					tr += "<td>" + todo.day + "</td>";
+					tr += "<td><button class='btn btn-info btn-sm' data-todo-no='" + todo.no + "'>상세정보</button></td>";
 					tr += "</tr>";
 
 					$("#table-my-todos tbody").append(tr);
@@ -313,16 +310,19 @@ $(function() {
 		return false;
 	});
 	
-	// 일정 상세정보 버튼 클릭 시 상세정보 모달창 보이기
-	
 	// 회원가입 모달창 표시하기
 	$("#link-register").click(function() {
+		clearInputField();
+		$("#row-register-success").hide();
+		$("#row-register-fail").hide();
 		$("#modal-register-form").modal("show");
 		return false;
 	});
 	
 	// 로그인 모달창 표시하기
 	$("#link-login").click(function() {
+		clearInputField();
+		$("#row-로그인-fail").hide();
 		$("#modal-login-form").modal("show");
 		return false;
 	});
@@ -339,6 +339,10 @@ $(function() {
 		$("#link-login").show();
 		$("#link-register").show();
 		$("#link-logout").hide();
+	}
+	
+	function clearInputField() {
+		$("input").val("");
 	}
 	
 	// 로그인버튼 클릭 시 로그인 처리
@@ -363,6 +367,7 @@ $(function() {
 		};
 		$.post("login.hta", requestParam, function(jsonObj) {
 			if (jsonObj.status == "success") {
+				$("#row-로그인-fail").hide();
 				$("#modal-login-form").modal("hide");
 				showLoginNav();
 			} else {
@@ -370,6 +375,7 @@ $(function() {
 				$("#login-fail-message").text(jsonObj.message);
 			}
 		});
+		clearInputField();
 	});
 	
 	// 로그아웃 클릭 시 로그아웃 처리
@@ -401,6 +407,7 @@ $(function() {
 				$("#row-register-fail").show();
 				$("#register-fail-message").text(jsonObj.message);
 			}
+			clearInputField();
 		});
 	});
 	
@@ -410,10 +417,50 @@ $(function() {
 	});
 	
 	// 일정 상세정보 모달창 표시하기
-	$("#table-my-todos tbody").on("click", ".btn-info", function() {
-		$("#modal-todo-detail").modal("show");
-	})
+	$("#table-my-todos tbody").on("click", ".btn-info", function(event) {
+		var todoNo = $(event.target).data("todo-no");
+		var requestParam = "todono=" +todoNo;
+		
+		$.get("todo.hta", requestParam, function(jsonObj) {
+			if(jsonObj.status == "success") {
+				$("#modal-todo-detail").modal("show");
+				
+				var todo = jsonObj.todo;
+				$("#todo-title").text(todo.title);
+				$("#todo-user").text(todo.userId);
+				$("#todo-day").text(todo.day);
+				$("#todo-status").text(todo.status);
+				$("#todo-completed-date").text(todo.completedDay == null ? "미완료" : todo.completedDay);
+				$("#todo-content").text(todo.content);
+				$("#modal-todo-no").val(todo.no);
+				
+				var selector = "#modal-todo-detail button:contains("+todo.status+")";
+				$(selector).prop("disabled", true);
+			}
+		})
+	});
 	
+	$("#modal-todo-detail button").click(function(event) {
+		var $targetBtn = $(event.target);
+		if ($targetBtn.text() == "닫기") {
+			return;
+		}
+		$targetBtn.siblings().prop("disabled", false);
+		// 바깥에 있는 status도 바꿔야됨
+		$("#todo-status").text($targetBtn.text());
+		var requestParam = {
+			todono: $("input#modal-todo-no").val(),
+			title: $("#todo-title").text(),
+			content: $("#todo-content").text(),
+			day: $("#todo-day").text(),
+			status: $("#todo-status").text(),
+		}
+		$.post("modifytodo.hta", requestParam, function(jsonObj) {
+			if (jsonObj.status == "success"){
+				$targetBtn.prop("disabled", true);
+			}
+		})
+	});
 })
 </script>
 </body>

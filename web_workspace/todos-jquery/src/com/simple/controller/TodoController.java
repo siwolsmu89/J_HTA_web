@@ -238,7 +238,8 @@ public class TodoController {
 		int todoNo = NumberUtil.stringToInt(req.getParameter("todono"));
 		String title = StringUtil.nullToBlank(req.getParameter("title"));
 		String content = StringUtil.nullToBlank(req.getParameter("content"));
-		Date day = new SimpleDateFormat().parse(req.getParameter("day"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date day = sdf.parse(req.getParameter("day"));
 		String status = StringUtil.nullToBlank(req.getParameter("status"));
 		
 		Todo todo = todoService.getTodoDetail(todoNo);
@@ -246,6 +247,9 @@ public class TodoController {
 		todo.setContent(content);
 		todo.setDay(day);
 		todo.setStatus(status);
+		if ("처리완료".equals(status)) {
+			todo.setCompletedDay(new Date());
+		}
 		
 		dataMap.put("status", "success");
 		dataMap.put("todo", todoService.updateTodo(todo));
