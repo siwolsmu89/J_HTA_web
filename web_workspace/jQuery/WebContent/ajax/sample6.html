@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>Bootstrap 4 Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.table tbody td {
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+<div class="container mb-5">
+	<div class="row mt-3">
+		<div class="col-12">
+			<form>
+				<div class="card">
+					<div class="card-header">장바구니</div>
+					<div class="card-body">
+						<!-- 장바구니 테이블 시작 -->
+						<table class="table" id="cart-table">
+							<colgroup>
+								<col width="5%">
+								<col width="15%">
+								<col width="*">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="7%">
+							</colgroup>
+							<thead class="thead-dark">
+								<tr>
+									<th>
+										<div class="form-check-inline">
+	  										<label class="form-check-label">
+	    										<input type="checkbox" class="form-check-input" id="header-checkbox" >
+	  										</label>
+										</div>
+									</th>
+									<th></th>
+									<th>상품명</th>
+									<th class="text-right">가격</th>
+									<th class="text-right">구매수량</th>
+									<th class="text-right">구매가격</th>
+									<th class="text-center"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="row-10001">
+									<td>
+										<div class="form-check-inline">
+	  										<label class="form-check-label">
+	    										<input type="checkbox" class="form-check-input" id="product-checkbox-10001" name="no" value="10001" >
+	  										</label>
+										</div>
+									</td>
+									<td><img src="../resources/images/goods1.jpg" class="img-thumbnail "/></td>
+									<td>고급 로드자전거</td>
+									<td class="text-right"><span id="price-10001">4000000</span> 원</td>
+									<td class="text-right"><input type="number" class="w-50 text-right" id="amount-10001" value="2" min="1" ></td>
+									<td class="text-right"><strong id="order-price-10001">8000000</strong> 원</td>
+									<td class="text-center">
+										<div class="btn-group-vertical btn-group-sm">
+											<button type="button" class="btn btn-danger" data-product-no="10001" >삭제</button>
+										</div>
+									</td>
+								</tr>
+								<tr id="row-10004">
+									<td>
+										<div class="form-check-inline">
+	  										<label class="form-check-label">
+	    										<input type="checkbox" class="form-check-input" id="product-checkbox-10004" name="no" value="10004" >
+	  										</label>
+										</div>
+									</td>
+									<td><img src="../resources/images/goods1.jpg" class="img-thumbnail"/></td>
+									<td>시티형 전기 자전거</td>
+									<td class="text-right"><span id="price-10004">1200000</span> 원</td>
+									<td class="text-right"><input type="number" class="w-50 text-right" id="amount-10004" value="3" min="1" ></td>
+									<td class="text-right"><strong id="order-price-10004">3600000</strong> 원</td>
+									<td class="text-center">
+										<div class="btn-group-vertical btn-group-sm">
+											<button type="button" class="btn btn-danger" data-product-no="10004">삭제</button>
+										</div>
+									</td>
+								</tr>
+								<tr id="row-10006">
+									<td>
+										<div class="form-check-inline">
+	  										<label class="form-check-label">
+	    										<input type="checkbox" class="form-check-input" id="product-checkbox-10006" name="no" value="10006" >
+	  										</label>
+										</div>
+									</td>
+									<td><img src="../resources/images/goods1.jpg" class="img-thumbnail"/></td>
+									<td>하이브리드 출퇴근용 자전거</td>
+									<td class="text-right"><span id="price-10006">150000</span> 원</td>
+									<td class="text-right"><input type="number"  class="w-50 text-right" id="amount-10006" value="2" min="1" ></td>
+									<td class="text-right"><strong id="order-price-10006">300000</strong> 원</td>
+									<td class="text-center">
+										<div class="btn-group-vertical btn-group-sm">
+											<button type="button" class="btn btn-danger" data-product-no="10006" >삭제</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- 장바구니 테이블 끝 -->
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-6">
+								<button class="btn btn-outline-danger" id="btn-del-all-goods">전체 삭제</button>
+								<button class="btn btn-outline-danger" id="btn-del-checked-goods">선택 삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	// 삭제 버튼을 클릭하면 해당 상품이 삭제된다.
+	// 전체삭제 버튼을 클릭하면 모든 상품이 삭제된다.
+	// 선택삭제 버튼을 클릭하면 체크된 상품이 삭제된다.
+	
+	// 제목줄의 체크박스를 체크/해제하면 모든 상품이 체크/해제 되어야 한다.
+	
+	// 구매수량을 변경하면 구매가격이 변경된다.
+</script>
+</body>
+</html>

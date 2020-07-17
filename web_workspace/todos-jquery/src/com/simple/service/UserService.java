@@ -1,4 +1,4 @@
-package service;
+package com.simple.service;
 
 import com.simple.dao.UserDao;
 import com.simple.vo.User;
@@ -14,7 +14,12 @@ public class UserService {
 	 * @throws Exception
 	 */
 	public void addNewUser(User user) throws Exception {
+		User savedUser = userDao.getUserById(user.getId());
+		if (savedUser != null) {
+			throw new Exception("아이디 중복");
+		}
 		
+		userDao.insertUser(user);
 	}
 	
 	/**
@@ -26,7 +31,15 @@ public class UserService {
 	 * @throws Exception
 	 */
 	public User getLoginUser(String userId, String password) throws Exception {
-		User user = null;
+		User user = userDao.getUserById(userId);
+		
+		if (user == null) {
+			throw new Exception("입력받은 아이디와 일치하는 사용자 없음");
+		} 
+		
+		if (!password.equals(user.getPassword())) {
+			throw new Exception("비밀번호 불일치");
+		}
 		
 		return user;
 	}

@@ -1,0 +1,43 @@
+/register.hta
+요청파라미터
+	id, name, password, email
+응답
+	{status: "success", username: "홍길동"}
+	{status: "fail", message: "동일한 아이디가 이미 사용중입니다."}
+
+/login.hta
+요청파라미터
+	id, password
+응답
+	{status: "success", username: "홍길동"}
+	{status: "fail", message: "아이디 또는 비밀번호가 일치하지 않습니다."}
+
+/logout.hta
+요청파라미터
+	없음
+응답
+	{status: "success"}
+
+/mytodos.hta
+요청파라미터
+	없음
+응답
+	{status: "success", todos: [{no: 1, title: "장보기", ...}, {}, {}, ...]}
+
+/todo.hta
+요청파라미터
+	todoNo
+응답
+	{status: "success", todo:{no:1, title: "장보기", ...}}
+
+/addtodo.hta
+요청파라미터
+	title, content, day
+응답
+	{status: "success", todo:{no:1, title: "장보기", ...}}
+
+/modifytodo.hta
+요청파라미터
+	no, title, content, day, status
+응답
+	{status: "success", todo:{no:1, title: "장보기", ...}}

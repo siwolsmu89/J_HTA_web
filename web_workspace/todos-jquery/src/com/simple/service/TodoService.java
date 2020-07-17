@@ -1,6 +1,5 @@
-package service;
+package com.simple.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.simple.dao.TodoDao;
@@ -18,7 +17,13 @@ public class TodoService {
 	 * @throws Exception
 	 */
 	public Todo addNewTodo(Todo todo) throws Exception {
-		return null;
+		int todoNo = todoDao.getTodoSequence();
+		todo.setNo(todoNo);
+		
+		todoDao.insertTodo(todo);
+		Todo savedTodo = todoDao.getTodoByNo(todoNo);
+		
+		return savedTodo;
 	}
 	
 	/**
@@ -28,7 +33,9 @@ public class TodoService {
 	 * @throws Exception
 	 */
 	public Todo updateTodo(Todo todo) throws Exception {
-		return null;
+		todoDao.updateTodo(todo);
+		
+		return todo;
 	}
 	
 	/**
@@ -38,7 +45,7 @@ public class TodoService {
 	 * @throws Exception
 	 */
 	public List<Todo> getMyTodoList(String userId) throws Exception {
-		List<Todo> todoList = new ArrayList<Todo>();
+		List<Todo> todoList = todoDao.getTodoListByUserId(userId);
 		
 		return todoList;
 	}
@@ -50,7 +57,7 @@ public class TodoService {
 	 * @throws Exception
 	 */
 	public Todo getTodoDetail(int todoNo) throws Exception {
-		Todo todo = null;
+		Todo todo = todoDao.getTodoByNo(todoNo);
 		
 		return todo;
 	}

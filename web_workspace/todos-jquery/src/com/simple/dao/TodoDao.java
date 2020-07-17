@@ -1,10 +1,14 @@
 package com.simple.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.simple.util.ConnectionUtil;
+import com.simple.util.QueryUtil;
 import com.simple.vo.Todo;
 
 public class TodoDao {
@@ -39,6 +43,18 @@ public class TodoDao {
 	public int getTodoSequence() throws SQLException {
 		int todoSequence = 0;
 		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getTodoSequence"));		
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			todoSequence = rs.getInt("seq");
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+		
 		return todoSequence;
 	}
 	
@@ -48,7 +64,19 @@ public class TodoDao {
 	 * @throws SQLException
 	 */
 	public void insertTodo(Todo todo) throws SQLException {
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.insertTodo"));
+		pstmt.setInt(1, todo.getNo());
+		pstmt.setString(2, todo.getTitle());
+		pstmt.setString(3, todo.getContent());
+		pstmt.setDate(4, new java.sql.Date(todo.getDay().getTime()));
+		pstmt.setString(5, todo.getStatus());
+		pstmt.setString(6, todo.getUserId());
 		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
 	}
 	
 	/**
@@ -57,7 +85,19 @@ public class TodoDao {
 	 * @throws SQLException
 	 */
 	public void updateTodo(Todo todo) throws SQLException {
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.updateTodo"));
+		pstmt.setString(1, todo.getTitle());
+		pstmt.setString(2, todo.getContent());
+		pstmt.setDate(3, new java.sql.Date(todo.getDay().getTime()));
+		pstmt.setDate(4, new java.sql.Date(todo.getCompletedDay().getTime()));
+		pstmt.setString(5, todo.getStatus());
+		pstmt.setInt(6, todo.getNo());
 		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
 	}
 	
 	/**
@@ -67,7 +107,20 @@ public class TodoDao {
 	 * @throws SQLException
 	 */
 	public Todo getTodoByNo(int todoNo) throws SQLException {
-		Todo todo = new Todo();
+		Todo todo = null;
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getTodoByNo"));
+		pstmt.setInt(1, todoNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			todo = resultSetToTodo(rs);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
 		
 		return todo;
 	}
@@ -80,6 +133,20 @@ public class TodoDao {
 	 */
 	public List<Todo> getTodoListByUserId(String userId) throws SQLException {
 		List<Todo> todoList = new ArrayList<Todo>();
+		
+		Connection con = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(QueryUtil.getSQL("todo.getTodoListByUserId"));
+		pstmt.setString(1, userId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			Todo todo = resultSetToTodo(rs);
+			todoList.add(todo);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
 		
 		return todoList;
 	}
