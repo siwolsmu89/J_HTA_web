@@ -1,15 +1,13 @@
 package com.simple.controller;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.DateFormatter;
 
 import com.simple.service.TodoService;
 import com.simple.service.UserService;
@@ -33,7 +31,7 @@ public class TodoController {
 	/*
 	 * 신규회원 가입
 	 * 요청방식 : POST
-	 * 요청파라미터 : id, name, password, email
+	 * 요청파라미터 : id, name, pwd, email
 	 * 응답 : 
 	 * 		{status:"success", username:"홍길동"}
 	 * 		{status:"fail", message:"동일한 아이디가 이미 사용중입니다."}
@@ -50,7 +48,7 @@ public class TodoController {
 		try {
 			String id = req.getParameter("id");
 			String name = req.getParameter("name");
-			String password = req.getParameter("password");
+			String password = req.getParameter("pwd");
 			String email = req.getParameter("email");
 			
 			User user = new User();
@@ -63,7 +61,7 @@ public class TodoController {
 			userService.addNewUser(user);
 			
 			dataMap.put("status", "success");
-			dataMap.put("username", "홍길동");
+			dataMap.put("username", name);
 		} catch (Exception e) {
 			dataMap.put("status", "fail");
 			dataMap.put("message", "동일한 아이디가 이미 사용중입니다.");
@@ -74,7 +72,7 @@ public class TodoController {
 	
 	/*
 	 * 요청방식 : POST
-	 * 요청파라미터 : id, password
+	 * 요청파라미터 : userid, userpwd
 	 * 응답
 	 * 		{status:"success", username:"홍길동"}
 	 * 		{status:"fail", message:"아이디 혹은 비밀번호가 올바르지 않습니다."}
@@ -90,7 +88,7 @@ public class TodoController {
 		
 		try {
 			String userId = StringUtil.nullToBlank(req.getParameter("userid"));
-			String password = StringUtil.nullToBlank(req.getParameter("password"));
+			String password = StringUtil.nullToBlank(req.getParameter("userpwd"));
 			
 			User user = userService.getLoginUser(userId, password);
 			HttpSession session = req.getSession();
@@ -115,6 +113,7 @@ public class TodoController {
 	@RequestMapping("/logout.hta")
 	public ModelAndView logoutUser(HttpServletRequest req, HttpServletResponse resp)
 		throws Exception {
+		System.out.println("logout.hta 실행됨");
 		Map<String, Object> dataMap = new HashMap<>();
 
 		ModelAndView mav = new ModelAndView();
@@ -146,19 +145,30 @@ public class TodoController {
 		mav.setView(jsonView);
 		mav.addAttribute("data", dataMap);
 		
-		HttpSession session = req.getSession();
-		User user = (User) session.getAttribute("loginUser");
-		List<Todo> todos = todoService.getMyTodoList(user.getId());
+		try {
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("loginUser");
+			
+			if (user == null) {
+				dataMap.put("status", "fail");
+				dataMap.put("message", "no user");
+			} else {
+				dataMap.put("status", "success");
+				dataMap.put("todos", todoService.getMyTodoList(user.getId()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			dataMap.put("status", "fail");
+			dataMap.put("message", "service Error");
+		}
 		
-		dataMap.put("status", "success");
-		dataMap.put("todos", todos);
 		
 		return mav;
 	}
 	
 	/*
 	 * 요청방식 : GET
-	 * 요청파라미터 : todoNo
+	 * 요청파라미터 : todono
 	 * 응답
 	 * 		{status:"success", todo:{no:1, title:"장보기", ...}}
 	 */
@@ -171,18 +181,17 @@ public class TodoController {
 		mav.setView(jsonView);
 		mav.addAttribute("data", dataMap);
 		
-		int todoNo = NumberUtil.stringToInt(req.getParameter("todoNo"));
-		Todo todo = todoService.getTodoDetail(todoNo);
+		int todoNo = NumberUtil.stringToInt(req.getParameter("todono"));
 		
 		dataMap.put("status", "success");
-		dataMap.put("todo", todo);
+		dataMap.put("todo", todoService.getTodoDetail(todoNo));
 		
 		return mav;
 	}
 	
 	/*
 	 * 요청방식 : POST
-	 * 요청파라미터 : title, content, day
+	 * 요청파라미터 : name, content, day
 	 * 응답
 	 * 		{status:"success", todo:{no:1, title:"장보기", ...}}
 	 */
@@ -197,7 +206,16 @@ public class TodoController {
 		
 		String title = StringUtil.nullToBlank(req.getParameter("title"));
 		String content = StringUtil.nullToBlank(req.getParameter("content"));
-		Date day;
+		Date day = new SimpleDateFormat().parse(req.getParameter("day"));
+		
+		Todo todo = new Todo();
+		todo.setTitle(title);
+		todo.setContent(content);
+		todo.setDay(day);
+		
+		dataMap.put("status", "success");
+		dataMap.put("todo", todoService.addNewTodo(todo));
+		
 		
 		return mav;
 	}
@@ -209,7 +227,7 @@ public class TodoController {
 	 * 		{status:"success", todo:{no:1, title:"장보기", ...}}
 	 */
 	@RequestMapping("/modifytodo.hta")
-	public ModelAndView modifyTodo(HttpServletRequest re, HttpServletResponse resp)
+	public ModelAndView modifyTodo(HttpServletRequest req, HttpServletResponse resp)
 		throws Exception {
 		Map<String, Object> dataMap = new HashMap<>();
 
@@ -217,7 +235,20 @@ public class TodoController {
 		mav.setView(jsonView);
 		mav.addAttribute("data", dataMap); 
 		
-		// 요청처리
+		int todoNo = NumberUtil.stringToInt(req.getParameter("todono"));
+		String title = StringUtil.nullToBlank(req.getParameter("title"));
+		String content = StringUtil.nullToBlank(req.getParameter("content"));
+		Date day = new SimpleDateFormat().parse(req.getParameter("day"));
+		String status = StringUtil.nullToBlank(req.getParameter("status"));
+		
+		Todo todo = todoService.getTodoDetail(todoNo);
+		todo.setTitle(title);
+		todo.setContent(content);
+		todo.setDay(day);
+		todo.setStatus(status);
+		
+		dataMap.put("status", "success");
+		dataMap.put("todo", todoService.updateTodo(todo));
 		
 		return mav;
 	}

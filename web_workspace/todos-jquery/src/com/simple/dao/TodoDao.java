@@ -30,7 +30,6 @@ public class TodoDao {
 		todo.setCompletedDay(rs.getDate("todo_completed_day"));
 		todo.setCreatedDate(rs.getDate("todo_created_date"));
 		todo.setUserId(rs.getString("user_id"));
-		todo.setUserName(rs.getString("user_name"));
 		
 		return todo;
 	}
