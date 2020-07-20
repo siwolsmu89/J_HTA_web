@@ -32,19 +32,44 @@ $(function() {
 		var typeValue = $(":input[name=type]").val();
 		var priceValue = $(":input[name=price]").val();
 		
+		// 자바스크립트 객체
 		var searchOption = {
 				category: categoryValue,
 				type: typeValue,
 				price: priceValue
 		}
 		
+		// json형식의 텍스트로 변환
+		var requestText = JSON.stringify(searchOption);
+
+		/*
 		$.ajax({
 			type: "POST",
 			url: "server/sample5.jsp",
-			data: JSON.stringify(searchOption),
+			data: requestText,
 			contentType: "application/json",		// 요청 컨텐츠 타입
 			dataType: "json",						// 응답 컨텐츠 타입
-			success: function(result) {}
+			success: function(result) {
+				$.each(result, function(index, product) {
+					console.log(product.name, product.price, product.stock);
+				});
+			}
+		})
+		*/
+		$.ajax({
+			type: "POST",
+			url: "server/sample5.jsp",
+			data: requestText,
+			contentType: "application/json",		// 요청 컨텐츠 타입
+			dataType: "json",						// 응답 컨텐츠 타입
+		})
+		.done(function(result) {
+			console.log("성공적인 응답을 받음")
+			console.log(result);
+		})
+		.fail(function(error) {
+			console.log("요청처리 중 에러가 발생함")
+			console.log(error);
 		})
 	});
 })

@@ -1,0 +1,45 @@
+jQuery의 jsonp 요청
+$.ajax({
+	url: "server/sample6.jsp"
+	data: {cat: "book", type: "New"},
+	dataType: "jsonp",			// 응답데이터의 컨텐츠타입이 jsonp인 경우
+	success: function(result) {    <------------------------------------------------------------------------|
+		응답데이터 처리											|
+	}													|
+})														|
+														|
+	1. callback이라는 이름으로 서버로 전달해주는 값과 동일한 이름의 javascript 함수를 정의한다.		|
+		function jQuery1234_5678(result) {			<=================================	|
+			// $.ajax 옵션 객체의 success(result)를 실행한다.				||	|
+			option.success(result)	----------------------------------------------------------------|
+		}											||
+	2. 서버로 요청을 보낸다.									||
+		* 요청 파라미터 : cat=book&type=New&callback=jQuery1234_5678				||
+	3. 서버측에서는 callback이라는 이름으로 전달된 함수명을 조회한다.				||
+		String callbackName = "jQuery1234_5678";						||
+	4. 서버측에서는 callback이름의 함수를 실행시키는 자바스크립트 소스를 응답으로 보낸다.		||
+		String script = callbakcName + "(" + jsonText + ");";					||
+	5. jQuery는 응답으로 내려받은 자바스크립트 소스를 실행시킨다.					||
+		jQuery1234_5678({name:"맥북 프로", price:2700000, stock:10}); ============================
+
+
+	예시
+	<head>
+	<script>
+		function myCallback(data) {
+			console.log(data);
+		}
+
+		var $script = $("<script>").attr("src", "http://data.go.kr/weather?callback=myCallback");
+		$("head").append($script);
+	</script>
+	</head>
+
+	// <script src="http://data.go.kr/weather?callback=MyCallback"></script> 라는 태그를 추가하게 된다.
+
+	서버 : http://data.go.kr/weather
+	* 서버에서는 myCallback이라는 이름의 스크립트 수행문을 응답으로 보낸다.
+	myCallback({name:"홍길동", id:"hong"})
+
+	// 서버와 통신이 완료되면 위의 <script> 태그는 아래의 수행문을 내려받고, 해당 수행문을 실행한다.
+	myCallback({name:"홍길동", id:"hong"});
