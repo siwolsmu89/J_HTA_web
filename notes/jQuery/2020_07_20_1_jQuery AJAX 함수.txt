@@ -1,0 +1,45 @@
+jQuery AJAX 함수
+
+	$.get(url, data, function(res) { ... }, resDataType)
+	$.post(url, data, function(res) { ... }, resDataType)
+	$.getJSON(url, data, function(res) { ... })
+
+	* url : 요청을 처리하고 응답데이터를 제공하는 서버의 주소
+	* data : 요청처리에 필요한 요청파라미터 값
+		 {name: value, name: value, name: value ... }
+		 "name=" + value + "&name=" + value + "&name=" + value + ...
+	* function(res) { ... } : 성공적인 응답이 오면 jQuery가 실행하는 함수
+				  res에는 서버가 보낸 응답데이터가 전달된다.
+	* resDataType : 서버가 제공할 것으로 예상되는 컨텐츠 타입
+			"text", "xml", "json", "html", "jsonp"
+			** jsonp : 다른 사이트의 서버로부터 데이터를 요청할 때 사용
+
+범용 AJAX 메소드
+	$.ajax(옵션객체)
+	$.ajax({
+		type: "요청방식", 					
+		url: "요청URL",
+		data: {name: value, name: value, name: value, ... }, 	
+		contentType: "application/x-www-form-urlencoded",
+		dataType: "json",
+		beforeSend: function(xhr) { ... },
+		success: function(resData) { ... },
+		error: function(err) { ... },
+		complete: function() { ... }
+	})
+	type
+		- 요청방식. 아래의 요청방식 중 하나를 적는다.
+		- "GET", "POST", "PUT", "DELETE"
+	url 
+		- 요청을 처리하고, 응답데이터를 제공하는 서버의 url 경로
+	data
+		- 요청처리에 필요한 요청파라미터 값
+		- {name: value, name: value, ... } 혹은 "name=" + value + "&name=" + value + ...
+	contentType
+		- 서버로 보내는 요청파라미터의 컨텐츠 타입 
+		- 기본값은 "application/x-www-form-urlencoded" (생략시 기본값 적용)
+		- 기본값 외에 "application/json", "text/xml" 등으로 변경할 수 있다.
+	dataType
+		- 서버가 제공할 것으로 예상되는 컨텐츠 타입
+		- "text", "xml", "json", "html", "jsonp"
+	beforeSend
