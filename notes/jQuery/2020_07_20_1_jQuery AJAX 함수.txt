@@ -1,18 +1,21 @@
 jQuery AJAX 함수
 
+GET 방식 메소드
 	$.get(url, data, function(res) { ... }, resDataType)
+POST 방식 메소드
 	$.post(url, data, function(res) { ... }, resDataType)
+응답 컨텐츠(resDataType)로 JSON이 오는 경우
 	$.getJSON(url, data, function(res) { ... })
 
-	* url : 요청을 처리하고 응답데이터를 제공하는 서버의 주소
-	* data : 요청처리에 필요한 요청파라미터 값
-		 {name: value, name: value, name: value ... }
-		 "name=" + value + "&name=" + value + "&name=" + value + ...
-	* function(res) { ... } : 성공적인 응답이 오면 jQuery가 실행하는 함수
-				  res에는 서버가 보낸 응답데이터가 전달된다.
-	* resDataType : 서버가 제공할 것으로 예상되는 컨텐츠 타입
-			"text", "xml", "json", "html", "jsonp"
-			** jsonp : 다른 사이트의 서버로부터 데이터를 요청할 때 사용
+* url : 요청을 처리하고 응답데이터를 제공하는 서버의 주소
+* data : 요청처리에 필요한 요청파라미터 값
+	 {name: value, name: value, name: value ... }
+	 "name=" + value + "&name=" + value + "&name=" + value + ...
+* function(res) { ... } : 성공적인 응답이 오면 jQuery가 실행하는 함수
+			  res에는 서버가 보낸 응답데이터가 전달된다.
+* resDataType : 서버가 제공할 것으로 예상되는 컨텐츠 타입
+		"text", "xml", "json", "html", "jsonp"
+		** jsonp : 다른 사이트의 서버로부터 데이터를 요청할 때 사용
 
 범용 AJAX 메소드
 	$.ajax(옵션객체)
@@ -23,9 +26,9 @@ jQuery AJAX 함수
 		contentType: "application/x-www-form-urlencoded",
 		dataType: "json",
 		beforeSend: function(xhr) { ... },
-		success: function(resData) { ... },
-		error: function(err) { ... },
-		complete: function() { ... }
+		success: function(result, status, xhr) { ... },
+		error: function(xhr, status, err) { ... },
+		complete: function(xhr, status) { ... }
 	})
 	type
 		- 요청방식. 아래의 요청방식 중 하나를 적는다.
@@ -43,3 +46,92 @@ jQuery AJAX 함수
 		- 서버가 제공할 것으로 예상되는 컨텐츠 타입
 		- "text", "xml", "json", "html", "jsonp"
 	beforeSend
+		- AJAX 요청을 보내기 전에 실행될 함수를 정의한다.
+	success
+		- 성공적인 응답이 왔을 때 실행될 함수를 정의한다.
+	error
+		- 요청처리가 실패했을 때 실행될 함수를 정의한다.
+	complete
+		- AJAX 요청이 완료되었을 때 실행될 함수를 정의한다.
+		- success나 error에 정의된 함수가 실행된 이후에 실행된다.
+
+	* Promise 인터페이스(Java에서 비동기통신을 좀 더 간편하게 하기 위해서 만든 인터페이스)를 활용한 AJAX 처리
+	$.get(url, data)
+	.done(function(result) { ... })   // 성공 시 실행
+	.fail(function() { ... })	  // 실패 시 실행
+	.always(function() { ... })	  // 성공, 실패와 무관하게 항상 실행
+	* GET방식 외에도 모든 방식의 AJAX 메소드에 사용 가능하다.
+
+	$.get(url, data)
+	.then(function(result) { ... }, function(xhr, status, error) { ... })
+
+	* 자바스크립트의 Promise
+		- 프로미스 객체는 자바스크립트에서 비동기 처리에 사용되는 객체다.
+		- 프로미스 객체는 3가지 상태를 가진다.
+			* Pending(대기 상태)
+				- 요청처리가 완료되지 않은 상태
+			* Fulfilled(이행/완료/성공 상태)
+				- 요청처리가 완료되고, 결과값을 반환해 준 상태
+			* Rejected(실패 상태)
+				- 요청처리가 실패하거나 오류가 발생한 상태
+		- 프로미스 객체의 처리과정
+			* 대기상태 - new Promise() 메소드가 호출되면 대기 상태가 된다.
+				new Promise(); // 프로미스 객체 생성
+				new Promise(function(resolve, reject) { ... })
+				* 프로미스 객체를 생성할 때 콜백함수를 선언할 수 있고, 콜백함수는 resolve와 reject를 인자로 갖는다.
+				성공시 resolve, 실패시 reject 실행
+			* 이행상태 - 콜백함수의 인자 resolve를 실행하면 이행상태가 된다.
+				new Promise(function(resolve, reject) {
+					resolve();
+				})
+			* 실패상태 - 콜백함수의 인자 reject를 실행하면 실패상태가 된다.
+				new Promise(function(resolve, reject) {
+					reject();
+				})
+
+		- 프로미스 예제
+			var  new Promise(function(resolve, reject) {
+				$.get(url, data, function(result) {
+					if (result != null) {
+						resolve(result);
+					} else {
+						reject(new Error("에러메시지");
+					}
+				})
+			})
+			.then(function(result) {
+				응답데이터 처리
+			})
+			.catch(function(error) {
+				예외처리
+			})
+
+		- 여러 개의 프로미스 연결하기 (Promise Chaining)
+			new Promise(function(resolve, reject) {
+				$.get("요청1", data, function(result1) {
+					if (result1 != null) {
+						resolve(result1);
+					}
+				}
+			}
+			.then(function(result1) {
+				return new Promise(function(resolve, reject) {
+					$.get("요청2", data, function(result2) {
+						if (result2 != null) {
+							resolve(result2);
+						}
+					}
+				})
+			})
+			.then(function(result2) {
+				return new Promise(function(resolve, reject) {
+					$.get("요청3", data, function(result3) {
+						if (result3 != null) {
+							resolve(result3);
+						}
+					}
+				})
+			})
+			.then(function(result3) {
+				// result3을 화면에 표시
+			})
