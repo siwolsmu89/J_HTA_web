@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>서버에게 json데이터 보내고, json데이터 받기</h1>
+	
+	<form id="search-form">
+		<div>
+			<label>카테고리</label>
+			<input type="text" name="cat" />	<!-- 책, 티켓, 음반, 선물 중 하나 -->
+		</div>
+		<div>
+			<label>제품타입</label>
+			<input type="text" name="type" /> 	<!-- 새 상품, 베스트, 추천 중 하나 -->
+		</div>
+		<div>
+			<label>제품가격</label>
+			<input type="number" name="price" />	
+		</div>
+		<div>
+			<button type="button" id="btn-search">Search</button>
+		</div>
+	</form>
+<script type="text/javascript" src="../resources/js/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#btn-search").click(function() {
+		var categoryValue = $(":input[name=cat]").val();
+		var typeValue = $(":input[name=type]").val();
+		var priceValue = $(":input[name=price]").val();
+		
+		var searchOption = {
+				category: categoryValue,
+				type: typeValue,
+				price: priceValue
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: "server/sample5.jsp",
+			data: JSON.stringify(searchOption),
+			contentType: "application/json",		// 요청 컨텐츠 타입
+			dataType: "json",						// 응답 컨텐츠 타입
+			success: function(result) {}
+		})
+	});
+})
+</script>
+</body>
+</html>
